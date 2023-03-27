@@ -1,5 +1,5 @@
 
- [![image alt text](https://github.com/VladBigBrain/VladBigBrain/blob/main/header.png?raw=true)](anchor link)
+ [image alt text](https://github.com/VladBigBrain/VladBigBrain/blob/main/header.png?raw=true)
  
 ### Educational profiles:
 
