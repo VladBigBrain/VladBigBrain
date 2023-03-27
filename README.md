@@ -11,7 +11,7 @@
 
 ### Leetcode Stats:
 
-![Leetcode Stats](https://leetcard.jacoblin.cool/shevelevatv95?theme=dark)
+![LeetCode Stats](https://leetcode.card.workers.dev/https://leetcode.com/vladmetelica1996novosib/?theme=default&font=baloo&extension=null)
 
 ### Languages and Tools:
 
