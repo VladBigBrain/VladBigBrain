@@ -1,5 +1,5 @@
 
- [image alt text](https://github.com/VladBigBrain/VladBigBrain/blob/main/header.png?raw=true)
+ ![text](header.png){ width=60%,height:30px }
  
 ### Educational profiles:
 
