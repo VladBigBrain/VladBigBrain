@@ -15,7 +15,6 @@
 
 ![Java](https://img.shields.io/badge/Java-1E7775?style=for-the-badge&logo=java&logoColor=E9D54D)
 ![Maven](https://img.shields.io/badge/-Maven-1E7775?style=for-the-badge&logo=apache&logoColor=6296CC)
-![Gradle](https://img.shields.io/badge/-Gradle-1E7775?style=for-the-badge&logo=Gradle&logoColor=6296CC)
 
 
 ![C](https://img.shields.io/badge/-C-1E7775?style=for-the-badge&logo=C&logoColor=6296CC)
