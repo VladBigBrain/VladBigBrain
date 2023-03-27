@@ -36,8 +36,7 @@ Utils
 
 ![Git](https://img.shields.io/badge/-GIT-1E7775?style=for-the-badge&logo=GIT&logoColor=F88C00)
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=50&pause=1000&width=435&lines=My+Projects%3A)](https://git.io/typing-svg)
-
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=50&pause=1000&width=435&height=100&lines=My+Projects%3A)](https://git.io/typing-svg)
 
 |   |   |   |   |   |
 |---|---|---|---|---|
