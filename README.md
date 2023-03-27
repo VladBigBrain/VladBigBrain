@@ -1,5 +1,6 @@
-https://github.com/VladBigBrain/VladBigBrain/blob/main/header.png?raw=true
 
+ [![image alt text](https://github.com/VladBigBrain/VladBigBrain/blob/main/header.png?raw=true)](anchor link)
+ 
 ### Educational profiles:
 
 <a href="https://stepik.org/users/342077352">
