@@ -11,7 +11,7 @@
 
 ### Leetcode Stats:
 
-![LeetCode Stats](https://leetcode.card.workers.dev/https://leetcode.com/vladmetelica1996novosib/?theme=default&font=baloo&extension=null)
+![LeetCode Stats](https://leetcode.card.workers.dev/vladmetelica1996novosib?theme=default&font=baloo&extension=null)
 
 ### Languages and Tools:
 
