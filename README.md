@@ -1,5 +1,4 @@
-
-<img src="[https://github.com/blackcater/blackcater/raw/main/images/Hi.gif](https://github.com/VladBigBrain/VladBigBrain/blob/main/header.png?raw=true)" height="32"/></h1>
+https://github.com/VladBigBrain/VladBigBrain/blob/main/header.png?raw=true
 
 ### Educational profiles:
 
