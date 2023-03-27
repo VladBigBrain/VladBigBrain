@@ -1,5 +1,5 @@
 
- ![text](header.png){ width=60%,height:30px }
+(header.png)
  
 ### Educational profiles:
 
