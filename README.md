@@ -34,7 +34,7 @@ Utils
 
 ![Git](https://img.shields.io/badge/-GIT-1E7775?style=for-the-badge&logo=GIT&logoColor=F88C00)
 
-<h1 align="center">My Projects: <a href="https://daniilshat.ru/" target="_blank">Vlad</a> 
+<h1 align="center">My Projects: </h1> 
 
 |   |   |   |   |   |
 |---|---|---|---|---|
