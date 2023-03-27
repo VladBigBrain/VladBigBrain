@@ -1,4 +1,5 @@
-<img alt="welcome" align="center" src="https://user-images.githubusercontent.com/94602550/189288384-d4c469c4-6eef-4d05-8099-5435d99a015e.gif">
+<h1 align="center">Hi there, I'm <a href="https://daniilshat.ru/" target="_blank">Vlad</a> 
+<img src="https://github.com/blackcater/blackcater/raw/main/images/Hi.gif" height="32"/></h1>
 
 ### Educational profiles:
 
