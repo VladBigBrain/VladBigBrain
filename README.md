@@ -16,13 +16,13 @@
 
 Java  
 
-![Java](https://img.shields.io/badge/Java-1E7775?style=for-the-badge&logo=java&logoColor=E9D54D)
+![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white)
 ![Maven](https://img.shields.io/badge/-Maven-1E7775?style=for-the-badge&logo=apache&logoColor=6296CC)
 
 C++ 
 
-![C](https://img.shields.io/badge/-C-1E7775?style=for-the-badge&logo=C&logoColor=6296CC)
-![C++](https://img.shields.io/badge/-C++-1E7775?style=for-the-badge&logo=C%2b%2b&logoColor=6296CC)
+![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white)
+![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white)
 
 Python
 
