@@ -1,5 +1,6 @@
 
-![text](header.png){ width=60%,height:30px } 
+<img src="header.png" alt="альтернативный текст">
+
 
 ### Educational profiles:
 
