@@ -1,6 +1,6 @@
 
-(header.png)
- 
+![text](header.png){ width=60%,height:30px } 
+
 ### Educational profiles:
 
 <a href="https://stepik.org/users/342077352">
