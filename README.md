@@ -1,5 +1,9 @@
 ### Hi there 👋
 
+
+
+![LeetCode Stats](https://leetcode.card.workers.dev/vladmetelica1996novosib?theme=default&font=baloo&extension=null)
+
 <!--
 **VladBigBrain/VladBigBrain** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
