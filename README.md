@@ -34,7 +34,7 @@ Utils
 
 ![Git](https://img.shields.io/badge/-GIT-1E7775?style=for-the-badge&logo=GIT&logoColor=F88C00)
 
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?color=%2336BCF7&lines=My + Projects)](https://git.io/typing-svg)
+<h1 align="center">My Projects: </h1> 
 
 
 |   |   |   |   |   |
