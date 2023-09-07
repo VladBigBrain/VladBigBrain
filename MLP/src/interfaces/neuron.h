@@ -18,7 +18,7 @@ class Neuron {
 
   virtual auto Derivative(double value) -> double = 0;
   virtual auto Activate(double value) -> double = 0;
-  
+  virtual auto UpdateWeights(double learningRate) -> void = 0;
   [[nodiscard]] auto GetWeights() const -> const Eigen::VectorXd& {
     return weights_;
   }

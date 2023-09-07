@@ -15,6 +15,10 @@ class SigmoidNeuron : public Neuron {
   auto operator=(SigmoidNeuron&&) -> SigmoidNeuron& = default;
   ~SigmoidNeuron() override = default;
 
+  auto UpdateWeights(double learningRate) -> void override {
+    // weights_ += learningRate * Derivative(value_);
+  }
+
   auto Derivative(double value) -> double override {
     double sigmoid = Activate(value);
     return sigmoid * (1 - sigmoid);
