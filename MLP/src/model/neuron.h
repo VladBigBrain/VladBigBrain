@@ -16,14 +16,18 @@ class Neuron {
   auto operator=(const Neuron&) -> Neuron& = default;
   auto operator=(Neuron&&) -> Neuron& = default;
   ~Neuron() = default;
+
   auto UpdateWeights(double learningRate) -> void {
     // weights_ += learningRate * Derivative(value_);
   }
+
   auto Derivative(double value) -> double {
     double sigmoid = Activate(value);
     return sigmoid * (1 - sigmoid);
   }
+
   auto Activate(double value) -> double { return 1 / (1 + std::exp(-value)); }
+
   friend std::ostream& operator<<(std::ostream& os, const Neuron& neuron) {
     os << "VALUE " << neuron.value << " "
        << "Bias " << neuron.bias << std::endl;
@@ -31,6 +35,7 @@ class Neuron {
     for (const auto& weight : neuron.weights) {
       os << " " << weight;
     }
+    os << std::endl;
     return os;
   }
 

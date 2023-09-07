@@ -2,18 +2,14 @@
 
 #include "console.h"
 #include "csv.h"
-#include "layer_perceptrone.h"
-#include "neuron.h"
+#include "neural_network.h"
 #include "random.h"
-
-TEST(Test, Neuron) {
-  s21::Neuron neuron;
-  s21::PerceptroneLayer perceptrone_layer(
-      s21::RandomGenerator::GenerateRandomLayer(2));
-  for (auto temp : perceptrone_layer.GetNeurons()) {
-    Console::WriteLine(temp);
+TEST(Test, Constructors) {
+  s21::NeuralNetwork nn(
+      s21::RandomGenerator::GenerateRandomNeuralNetwork(2, 3));
+  for (auto& layer : nn.GetLayers()) {
+    Console::WriteLine(layer);
   }
-  Console::WriteLine(perceptrone_layer.GetNeurons().size());
 }
 
 TEST(Test, CSVParser) {
