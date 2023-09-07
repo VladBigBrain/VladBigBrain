@@ -17,8 +17,8 @@ class Neuron {
   auto operator=(Neuron&&) -> Neuron& = default;
   ~Neuron() = default;
 
-  auto UpdateWeights(double learningRate) -> void {
-    // weights_ += learningRate * Derivative(value_);
+  auto UpdateWeights(double learningRate, double delta) -> void {
+    // weights = weights + (learningRate * delta);
   }
 
   auto Derivative(double value) -> double {
@@ -26,6 +26,8 @@ class Neuron {
     return sigmoid * (1 - sigmoid);
   }
 
+  [[nodiscard]] auto GetWeights() -> Eigen::VectorXd { return weights; }
+  auto operator[](size_t index) -> double& { return weights(index); }
   auto Activate(double value) -> double { return 1 / (1 + std::exp(-value)); }
 
   friend std::ostream& operator<<(std::ostream& os, const Neuron& neuron) {

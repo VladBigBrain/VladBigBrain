@@ -7,9 +7,14 @@
 TEST(Test, Constructors) {
   s21::NeuralNetwork nn(
       s21::RandomGenerator::GenerateRandomNeuralNetwork(2, 3));
-  for (auto& layer : nn.GetLayers()) {
-    Console::WriteLine(layer);
-  }
+  ASSERT_EQ(nn.GetLayers().size(), 2);
+}
+
+TEST(Test, FeedForward) {
+  s21::NeuralNetwork nn(
+      s21::RandomGenerator::GenerateRandomNeuralNetwork(2, 3));
+  auto result = nn.FeedForward(Eigen::VectorXd::Ones(2));
+  for(auto t:)
 }
 
 TEST(Test, CSVParser) {

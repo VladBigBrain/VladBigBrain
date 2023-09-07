@@ -47,7 +47,7 @@ enable_testing()
 set(commonSource)
 
 #MODELTEST
-set(modelsource model_tests.cc)
+set(modelsource model_tests.cc ../src/model/layer_perceptrone.cc ../src/model/neural_network.cc )
 add_executable(Model ${modelsource} ${commonSource})
 target_link_libraries(Model PRIVATE  GTest::gtest_main Eigen3::Eigen)
 target_include_directories(Model PRIVATE ../src/model ../src/libraries)
