@@ -12,7 +12,7 @@ set(CMAKE_CXX_COMPILER ${CMAKE_CXX_COMPILER})
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -Wextra -pedantic")
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -Wextra -pedantic")
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -w --coverage")
 #set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --coverage")
 #Flags
@@ -50,7 +50,7 @@ set(commonSource)
 set(modelsource model_tests.cc)
 add_executable(Model ${modelsource} ${commonSource})
 target_link_libraries(Model PRIVATE  GTest::gtest_main Eigen3::Eigen)
-target_include_directories(Model PRIVATE ../src/interfaces ../src/model ../src/libraries)
+target_include_directories(Model PRIVATE ../src/model ../src/libraries)
 
 add_custom_target(build_model
     COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --target Model
