@@ -9,7 +9,7 @@ namespace s21 {
 class NeuralNetwork {
  public:
   NeuralNetwork(std::size_t layers, std::size_t neurons) {
-    for(auto i = 0; i < layers; ++i) {
+    for (auto i = 0; i < layers; ++i) {
       layers_.push_back(Layer(neurons));
     }
   }
@@ -23,6 +23,14 @@ class NeuralNetwork {
   auto BackPropagation(const Eigen::VectorXd& gradients, double learningRate)
       -> void;
   [[nodiscard]] auto GetLayers() const -> std::vector<Layer> { return layers_; }
+
+  friend auto operator<<(std::ostream& os, const NeuralNetwork& neuralNetwork)
+      -> std::ostream& {
+    for (const auto& layer : neuralNetwork.layers_) {
+      os << layer;
+    }
+    return os;
+  }
 
  private:
   std::vector<Layer> layers_;

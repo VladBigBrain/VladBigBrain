@@ -32,7 +32,8 @@ class Neuron {
   auto Activate(double value) -> double { return 1 / (1 + std::exp(-value)); }
 
   auto operator[](size_t index) -> double& { return weights_(index); }
-  auto operator()(double value) -> void { value = Activate(value); }
+  auto operator()(double value) -> void { value_ = Activate(value); }
+  
   friend std::ostream& operator<<(std::ostream& os, const Neuron& neuron) {
     os << "VALUE " << neuron.value_ << " "
        << "Bias " << neuron.bias_ << std::endl;

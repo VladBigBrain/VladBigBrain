@@ -21,17 +21,11 @@ TEST(Test, Constructors) {
 TEST(Test, FeedForward) {
   s21::NeuralNetwork nn(2, 3);
   auto inputs = Eigen::RowVectorXd::Random(3);
-  for (auto t : nn.GetLayers()) {
-    Console::WriteLine(t.Size());
-  }
-  // Eigen::MatrixXd A = Eigen::MatrixXd::Random(3, 2);
-  // Eigen::VectorXd x = Eigen::VectorXd::Random(2);
-  // Eigen::VectorXd y = A * x;
-
+  Console::WriteLine("Before");
+  Console::WriteLine(nn);
   auto result = nn.FeedForward(inputs);
-  // for (auto t : result) {
-  //   Console::WriteLine(t);
-  // }
+  Console::WriteLine(nn);
+
 }
 
 // TEST(Test, CSVParser) {
