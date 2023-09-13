@@ -1,9 +1,10 @@
 #ifndef MLP_MODEL_LAYER_H_
 #define MLP_MODEL_LAYER_H_
 
+#include <iostream>
+
 #include "algorithm.h"
 #include "neuron.h"
-
 namespace s21 {
 
 class Layer {
@@ -21,19 +22,19 @@ class Layer {
     return neurons_;
   }
   auto BuildMatrixOfWeights() -> Eigen::MatrixXd {
-    Eigen::MatrixXd weights;
+    Eigen::MatrixXd weights(neurons_.size(), neurons_[0].GetWeights().size());
     for (auto i = 0; i < neurons_.size(); ++i) {
       weights.row(i) = neurons_[i].GetWeights();
     }
     return weights;
   }
 
-  auto BuildNeurons(Eigen::VectorXd out) -> void {
+  auto BuildNeurons(const Eigen::VectorXd& out) -> void {
     for (auto i = 0; i < neurons_.size(); ++i) {
       neurons_[i](out(i));
     }
   }
-  
+
   friend auto operator<<(std::ostream& os, const Layer& layer)
       -> std::ostream& {
     for (const auto& neuron : layer.neurons_) {

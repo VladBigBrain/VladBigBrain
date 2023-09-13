@@ -2,8 +2,8 @@
 namespace s21 {
 auto NeuralNetwork::FeedForward(const Eigen::VectorXd& inputs)
     -> Eigen::VectorXd {
-  Eigen::VectorXd outputs;
-  ForEach(layers_, [&](auto& layer) { outputs = layer.FeedForward(inputs); });
+  Eigen::VectorXd outputs = inputs;
+  ForEach(layers_, [&](auto& layer) { outputs = layer.FeedForward(outputs); });
   return outputs;
 }
 auto NeuralNetwork::BackPropagation(const Eigen::VectorXd& gradients,

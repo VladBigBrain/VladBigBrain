@@ -23,8 +23,8 @@ dist:
 
 tests: 
 	cmake -S $(P_TEST) -B $(P_TBLD_Tests)
-	cmake --build $(P_TBLD_Tests) --target Model
-	../tests/Tests/Model
+	cmake --build $(P_TBLD_Tests) --config Debug --target Model
+	$(P_TBLD_Tests)/Model
 
 coverage: 
 	cmake -S $(P_TEST) -B $(P_TBLD_Report)
