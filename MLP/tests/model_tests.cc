@@ -3,7 +3,6 @@
 #include "console.h"
 #include "csv.h"
 #include "neural_network.h"
-#include "random.h"
 
 auto fnc(Eigen::VectorXd& inputs) {
   for (auto t : inputs) {
@@ -12,8 +11,7 @@ auto fnc(Eigen::VectorXd& inputs) {
 }
 
 TEST(Test, Constructors) {
-  s21::NeuralNetwork nn(
-      s21::RandomGenerator::GenerateRandomNeuralNetwork(2, 3));
+  s21::NeuralNetwork nn(2, 3);
   for (auto i : nn.GetLayers()) {
     Console::WriteLine(i);
   }
@@ -21,9 +19,11 @@ TEST(Test, Constructors) {
 }
 
 TEST(Test, FeedForward) {
-  s21::NeuralNetwork nn(
-      s21::RandomGenerator::GenerateRandomNeuralNetwork(2, 3));
+  s21::NeuralNetwork nn(2, 3);
   auto inputs = Eigen::RowVectorXd::Random(3);
+  for (auto t : nn.GetLayers()) {
+    Console::WriteLine(t.Size());
+  }
   // Eigen::MatrixXd A = Eigen::MatrixXd::Random(3, 2);
   // Eigen::VectorXd x = Eigen::VectorXd::Random(2);
   // Eigen::VectorXd y = A * x;

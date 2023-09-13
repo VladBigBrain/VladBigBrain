@@ -8,14 +8,18 @@ namespace s21 {
 
 class NeuralNetwork {
  public:
-  NeuralNetwork(const std::vector<Layer>& layers) : layers_(layers) {}
+  NeuralNetwork(std::size_t layers, std::size_t neurons) {
+    for(auto i = 0; i < layers; ++i) {
+      layers_.push_back(Layer(neurons));
+    }
+  }
   NeuralNetwork() = default;
   NeuralNetwork(const NeuralNetwork& neuralNetwork) = default;
   NeuralNetwork(NeuralNetwork&& neuralNetwork) = default;
   NeuralNetwork& operator=(const NeuralNetwork& neuralNetwork) = default;
   NeuralNetwork& operator=(NeuralNetwork&& neuralNetwork) = default;
   ~NeuralNetwork() = default;
-  auto FeedForward( const Eigen::VectorXd& inputs) -> Eigen::VectorXd;
+  auto FeedForward(const Eigen::VectorXd& inputs) -> Eigen::VectorXd;
   auto BackPropagation(const Eigen::VectorXd& gradients, double learningRate)
       -> void;
   [[nodiscard]] auto GetLayers() const -> std::vector<Layer> { return layers_; }

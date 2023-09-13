@@ -9,7 +9,11 @@ namespace s21 {
 
 class Layer {
  public:
-  Layer(std::vector<Neuron> neurons) : neurons_(neurons) {}
+  Layer(std::size_t neurons) {
+    for (auto i = 0; i < neurons; ++i) {
+      neurons_.push_back(Neuron(0, neurons, 0));
+    }
+  }
   Layer(const Layer&) = default;
   Layer(Layer&&) = default;
   auto operator=(const Layer&) -> Layer& = default;
@@ -21,6 +25,7 @@ class Layer {
   [[nodiscard]] auto GetNeurons() const -> std::vector<Neuron> {
     return neurons_;
   }
+  auto Size() const -> size_t { return neurons_.size(); }
   auto BuildMatrixOfWeights() -> Eigen::MatrixXd {
     Eigen::MatrixXd weights(neurons_.size(), neurons_[0].GetWeights().size());
     for (auto i = 0; i < neurons_.size(); ++i) {

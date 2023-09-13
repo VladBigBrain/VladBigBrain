@@ -1,13 +1,10 @@
 #include "console.h"
 #include "layer.h"
 namespace s21 {
-auto Layer::FeedForward(const Eigen::VectorXd& inputs)
-    -> Eigen::VectorXd {
+auto Layer::FeedForward(const Eigen::VectorXd& inputs) -> Eigen::VectorXd {
   Eigen::MatrixXd weights = BuildMatrixOfWeights();
-
-  for (auto t = 0; t < weights.cols(); ++t) {
-    Console::WriteLine(weights.col(t));
-  }
+  Console::WriteLine("Weights");
+  Console::WriteLine(weights);
 
   Console::WriteLine("Inputs");
   for (auto t : inputs) {
