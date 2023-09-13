@@ -11,21 +11,18 @@ auto fnc(Eigen::VectorXd& inputs) {
 }
 
 TEST(Test, Constructors) {
-  s21::NeuralNetwork nn(2, 3);
-  for (auto i : nn.GetLayers()) {
-    Console::WriteLine(i);
-  }
-  ASSERT_EQ(nn.GetLayers().size(), 3);
+  s21::NeuralNetwork nn(2, 3, 5);
+  // Console::WriteLine(nn);
+  ASSERT_EQ(nn.GetLayers().size(), 4);
 }
 
 TEST(Test, FeedForward) {
-  s21::NeuralNetwork nn(2, 3);
-  auto inputs = Eigen::RowVectorXd::Random(3);
-  //Console::WriteLine("Before");
+  s21::NeuralNetwork nn(2, 3, 5);
+  auto inputs = Eigen::RowVectorXd::Random(5);
+  // Console::WriteLine("Before");
   // Console::WriteLine(nn);
   auto result = nn.FeedForward(inputs);
-  // Console::WriteLine(nn);
-
+  Console::WriteLine(nn);
 }
 
 // TEST(Test, CSVParser) {
