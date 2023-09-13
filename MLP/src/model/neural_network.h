@@ -8,10 +8,13 @@ namespace s21 {
 
 class NeuralNetwork {
  public:
-  NeuralNetwork(std::size_t layers, std::size_t neurons) {
+  NeuralNetwork(std::size_t layers = 2, std::size_t neurons = 5) {
+    layers_.reserve(layers + 1);
     for (auto i = 0; i < layers; ++i) {
       layers_.push_back(Layer(neurons));
     }
+    auto last = Layer(26);
+    layers_.push_back(last);
   }
   NeuralNetwork() = default;
   NeuralNetwork(const NeuralNetwork& neuralNetwork) = default;
@@ -26,9 +29,12 @@ class NeuralNetwork {
 
   friend auto operator<<(std::ostream& os, const NeuralNetwork& neuralNetwork)
       -> std::ostream& {
+    auto i = 0;
     for (const auto& layer : neuralNetwork.layers_) {
+      std::cout << "Layer " << ++i << ":" << std::endl;
       os << layer;
     }
+    std::cout << std::endl;
     return os;
   }
 

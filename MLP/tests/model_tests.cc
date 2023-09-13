@@ -15,16 +15,16 @@ TEST(Test, Constructors) {
   for (auto i : nn.GetLayers()) {
     Console::WriteLine(i);
   }
-  ASSERT_EQ(nn.GetLayers().size(), 2);
+  ASSERT_EQ(nn.GetLayers().size(), 3);
 }
 
 TEST(Test, FeedForward) {
   s21::NeuralNetwork nn(2, 3);
   auto inputs = Eigen::RowVectorXd::Random(3);
-  Console::WriteLine("Before");
-  Console::WriteLine(nn);
+  //Console::WriteLine("Before");
+  // Console::WriteLine(nn);
   auto result = nn.FeedForward(inputs);
-  Console::WriteLine(nn);
+  // Console::WriteLine(nn);
 
 }
 
