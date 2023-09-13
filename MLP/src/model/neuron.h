@@ -27,9 +27,11 @@ class Neuron {
   }
 
   [[nodiscard]] auto GetWeights() -> Eigen::VectorXd { return weights; }
-  auto operator[](size_t index) -> double& { return weights(index); }
+
   auto Activate(double value) -> double { return 1 / (1 + std::exp(-value)); }
 
+  auto operator[](size_t index) -> double& { return weights(index); }
+  auto operator()(double value) -> void { value = Activate(value); }
   friend std::ostream& operator<<(std::ostream& os, const Neuron& neuron) {
     os << "VALUE " << neuron.value << " "
        << "Bias " << neuron.bias << std::endl;

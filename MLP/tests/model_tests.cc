@@ -11,10 +11,10 @@ TEST(Test, Constructors) {
 }
 
 TEST(Test, FeedForward) {
-  s21::NeuralNetwork nn(
-      s21::RandomGenerator::GenerateRandomNeuralNetwork(2, 3));
-  auto result = nn.FeedForward(Eigen::VectorXd::Ones(2));
-  for(auto t:)
+  // s21::NeuralNetwork nn(
+  //     s21::RandomGenerator::GenerateRandomNeuralNetwork(2, 3));
+  // auto result = nn.FeedForward(Eigen::VectorXd::Ones(2));
+  // for(auto t:)
 }
 
 TEST(Test, CSVParser) {
