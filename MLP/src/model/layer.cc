@@ -15,8 +15,18 @@ auto Layer::FeedForward(const Eigen::VectorXd& inputs) -> Eigen::VectorXd {
   return output;
 }
 
-auto Layer::BackPropagation(const Eigen::VectorXd& gradients,
-                            double learningRate) -> void {}
+void Layer::BackPropagation(Eigen::VectorXd& inputs, double error,
+                            double learningRate) {
+  Eigen::VectorXd gradient(neurons_.size());  // Создаем вектор для градиентов
+
+  // Вычисляем градиент ошибки для каждого нейрона
+  for (size_t i = 0; i < neurons_.size(); ++i) {
+    gradient(i) = neurons_[i].Derivative() * error;
+  }
+
+  // Обновляем веса. Эта операция выполняется матрично для ускорения
+  weights_ -= learningRate * gradient * inputs.transpose();
+}
 
 auto Layer::GetNeurons() const -> std::vector<Neuron> { return neurons_; }
 auto Layer::Size() const -> size_t { return neurons_.size(); }

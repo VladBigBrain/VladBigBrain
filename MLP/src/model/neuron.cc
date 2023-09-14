@@ -4,8 +4,8 @@ namespace s21 {
 
 Neuron::Neuron(double value, double bias) : value_(value), bias_(bias) {}
 
-auto Neuron::Derivative(double value) -> double {
-  double sigmoid = Activate(value);
+auto Neuron::Derivative() -> double {
+  double sigmoid = Activate(value_);
   return sigmoid * (1 - sigmoid);
 }
 

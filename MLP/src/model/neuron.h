@@ -14,9 +14,9 @@ class Neuron {
   auto operator=(Neuron&&) -> Neuron& = default;
   ~Neuron() = default;
 
-  auto Derivative(double value) -> double;
+  auto Derivative() -> double;
   auto Activate(double value) -> double;
-  
+
   friend std::ostream& operator<<(std::ostream& os, const Neuron& neuron);
 
  private:

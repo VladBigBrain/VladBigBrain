@@ -3,13 +3,14 @@
 #define MLP_MODEL_NEURAL_NETWORK_H_
 
 #include "layer.h"
+#include <cmath>
 
 namespace s21 {
 
 class NeuralNetwork {
  public:
   NeuralNetwork(std::size_t layers = 2, std::size_t neurons = 5,
-                std::size_t inputs = 144);
+                std::size_t inputs = 784);
   NeuralNetwork() = default;
   NeuralNetwork(const NeuralNetwork& neuralNetwork) = default;
   NeuralNetwork(NeuralNetwork&& neuralNetwork) = default;
@@ -18,15 +19,15 @@ class NeuralNetwork {
   ~NeuralNetwork() = default;
 
   auto FeedForward(const Eigen::VectorXd& inputs) -> Eigen::VectorXd;
-  auto BackPropagation(const Eigen::VectorXd& gradients, double learningRate)
-      -> void;
-
+  auto BackPropagation(const Eigen::VectorXd& inputs,double errors, double learningRate) -> void;
+  auto Train(size_t epochs = 1, Eigen::VectorXd& inputs) -> void;
   [[nodiscard]] auto GetLayers() const -> std::vector<Layer> { return layers_; }
 
   friend auto operator<<(std::ostream& os, const NeuralNetwork& neuralNetwork)
       -> std::ostream&;
 
  private:
+  auto ErrorFunction(double result, double target) -> double;
   std::vector<Layer> layers_;
 };
 

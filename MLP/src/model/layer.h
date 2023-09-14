@@ -17,8 +17,8 @@ class Layer {
   ~Layer() = default;
 
   auto FeedForward(const Eigen::VectorXd& inputs) -> Eigen::VectorXd;
-  auto BackPropagation(const Eigen::VectorXd& gradients, double learningRate)
-      -> void;
+  auto BackPropagation(Eigen::VectorXd& inputs, double error,
+                       double learningRate) -> void;
   auto Size() const -> size_t;
   auto BuildMatrixOfWeights(const std::size_t inputs) -> void;
   auto BuildNeurons(const Eigen::VectorXd& out) -> void;

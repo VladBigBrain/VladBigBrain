@@ -12,15 +12,30 @@ NeuralNetwork::NeuralNetwork(std::size_t layers, std::size_t neurons,
   layers_.push_back(last);
 }
 
+auto NeuralNetwork::ErrorFunction(double result, double target) -> double {
+  return pow(result - target, 2);
+}
+
+auto NeuralNetwork::Train(size_t epochs = 1, Eigen::VectorXd& inputs) -> void {
+  for (size_t i = 0; i < epochs; ++i) {
+    auto result = FeedForward(inputs);
+    auto errors = ErrorFunction(result.maxCoeff(), inputs[0]);
+    BackPropagation(result, errors, 0.1);
+  }
+}
+
 auto NeuralNetwork::FeedForward(const Eigen::VectorXd& inputs)
     -> Eigen::VectorXd {
   Eigen::VectorXd outputs = inputs;
   ForEach(layers_, [&](auto& layer) { outputs = layer.FeedForward(outputs); });
   return outputs;
 }
-auto NeuralNetwork::BackPropagation(const Eigen::VectorXd& gradients,
-                                    double learningRate) -> void {
-  //
+auto NeuralNetwork::BackPropagation(const Eigen::VectorXd& inputs,
+                                    double errors, double learningRate)
+    -> void {
+  std::for_each(layers_.rbegin(), layers_.rend(), [&](auto& layer)) {
+    layer.BackPropagation(inputs, errors, learningRate);
+  }
 }
 
 auto operator<<(std::ostream& os, const NeuralNetwork& neuralNetwork)
