@@ -16,9 +16,11 @@ TEST(Test, FeedForward) {
   ASSERT_EQ(result.size(), 26);
 }
 
-TEST(Test, FeedForward) {
+TEST(Test, Back) {
   s21::NeuralNetwork nn(2, 3, 5);
   auto inputs = Eigen::RowVectorXd::Random(5);
   auto result = nn.FeedForward(inputs);
+  auto errors = std::pow((result.maxCoeff() - inputs[0]), 2);
+  nn.BackPropagation(result, errors, 0.1);
   ASSERT_EQ(result.size(), 26);
 }

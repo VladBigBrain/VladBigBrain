@@ -16,7 +16,8 @@ auto NeuralNetwork::ErrorFunction(double result, double target) -> double {
   return pow(result - target, 2);
 }
 
-auto NeuralNetwork::Train(size_t epochs = 1, Eigen::VectorXd& inputs) -> void {
+auto NeuralNetwork::Train(size_t epochs, const Eigen::VectorXd& inputs)
+    -> void {
   for (size_t i = 0; i < epochs; ++i) {
     auto result = FeedForward(inputs);
     auto errors = ErrorFunction(result.maxCoeff(), inputs[0]);
@@ -33,8 +34,9 @@ auto NeuralNetwork::FeedForward(const Eigen::VectorXd& inputs)
 auto NeuralNetwork::BackPropagation(const Eigen::VectorXd& inputs,
                                     double errors, double learningRate)
     -> void {
-  std::for_each(layers_.rbegin(), layers_.rend(), [&](auto& layer)) {
-    layer.BackPropagation(inputs, errors, learningRate);
+  auto output = inputs;
+  for (auto i = layers_.size() - 1; i > 0; --i) {
+    output = layers_[i].BackPropagation(output, errors, learningRate);
   }
 }
 

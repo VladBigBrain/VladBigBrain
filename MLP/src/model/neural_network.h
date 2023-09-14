@@ -2,8 +2,9 @@
 #ifndef MLP_MODEL_NEURAL_NETWORK_H_
 #define MLP_MODEL_NEURAL_NETWORK_H_
 
-#include "layer.h"
 #include <cmath>
+
+#include "layer.h"
 
 namespace s21 {
 
@@ -19,8 +20,10 @@ class NeuralNetwork {
   ~NeuralNetwork() = default;
 
   auto FeedForward(const Eigen::VectorXd& inputs) -> Eigen::VectorXd;
-  auto BackPropagation(const Eigen::VectorXd& inputs,double errors, double learningRate) -> void;
-  auto Train(size_t epochs = 1, Eigen::VectorXd& inputs) -> void;
+  auto BackPropagation(const Eigen::VectorXd& inputs, double errors,
+                       double learningRate) -> void;
+  auto Train(size_t epochs = 1,
+             const Eigen::VectorXd& inputs = Eigen::VectorXd::Random(784)) -> void;
   [[nodiscard]] auto GetLayers() const -> std::vector<Layer> { return layers_; }
 
   friend auto operator<<(std::ostream& os, const NeuralNetwork& neuralNetwork)
