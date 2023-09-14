@@ -12,16 +12,19 @@ NeuralNetwork::NeuralNetwork(std::size_t layers, std::size_t neurons,
   layers_.push_back(last);
 }
 
-auto NeuralNetwork::ErrorFunction(double result, double target) -> double {
-  return pow(result - target, 2);
+auto NeuralNetwork::ErrorFunction(const Eigen::VectorXd& inputs, int target)
+    -> Eigen::VectorXd {
+  Eigen::VectorXd targetVector(inputs.size());
+  targetVector.setZero();
+  targetVector(target) = 1.0;
+  return targetVector;
 }
 
 auto NeuralNetwork::Train(size_t epochs, const Eigen::VectorXd& inputs)
     -> void {
   for (size_t i = 0; i < epochs; ++i) {
     auto result = FeedForward(inputs);
-    auto errors = ErrorFunction(result.maxCoeff(), inputs[0]);
-    BackPropagation(result, errors, 0.1);
+    BackPropagation(result, ErrorFunction(result, inputs[0]), 0.1);
   }
 }
 
@@ -32,11 +35,13 @@ auto NeuralNetwork::FeedForward(const Eigen::VectorXd& inputs)
   return outputs;
 }
 auto NeuralNetwork::BackPropagation(const Eigen::VectorXd& inputs,
-                                    double errors, double learningRate)
-    -> void {
-  auto output = inputs;
-  for (auto i = layers_.size() - 1; i > 0; --i) {
-    output = layers_[i].BackPropagation(output, errors, learningRate);
+                                    const Eigen::VectorXd& target,
+                                    double learningRate) -> void {
+  Eigen::VectorXd layerError =
+      error * Eigen::VectorXd::Ones(
+                  inputs.size());  // Преобразуем скалярную ошибку в векторную
+  for (int i = layers_.size() - 1; i >= 0; --i) {
+    layerError = layers_[i].BackPropagation(layerError, learningRate);
   }
 }
 

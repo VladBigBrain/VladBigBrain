@@ -15,31 +15,21 @@ auto Layer::FeedForward(const Eigen::VectorXd& inputs) -> Eigen::VectorXd {
   return output;
 }
 
-// Function Layer::BackPropagation(double error, double learningRate):
-//     # Шаг 1: Вычислить градиент ошибки для текущего слоя
-//     gradient = DerivativeOfActivation(this->neurons_value) * error
-
-//     # Шаг 2: Обратно распространить ошибку на предыдущий слой
-//     If this is not InputLayer:
-//         previous_layer_error = weights_matrix.Transpose() * gradient
-
-//     # Шаг 3: Обновление весов текущего слоя
-//     weights_matrix -= learningRate * gradient
-
-//     # Возвращаем ошибку для предыдущего слоя, чтобы продолжить цикл
-//     return previous_layer_error
-
-auto Layer::BackPropagation(const Eigen::VectorXd& inputs, double error,
-                            double learningRate) -> Eigen::VectorXd {
-  Eigen::VectorXd gradient(neurons_.size());
-  
-  for (size_t i = 0; i < neurons_.size(); ++i) {
-    gradient(i) = neurons_[i].Derivative() * error;
-  }
-  
-  Eigen::MatrixXd deltaWeights = learningRate * gradient * inputs.transpose();
+auto Layer::BackPropagation(const Eigen::VectorXd& error, double learningRate)
+    -> Eigen::VectorXd {
+Eigen::VectorXd gradient = error.array() * GetDerivativeVector().array();
+  Eigen::MatrixXd deltaWeights = learningRate * gradient * weights_.transpose();
   weights_ -= deltaWeights;
-  return inputs;
+  Eigen::VectorXd prevError = weights_.transpose() * gradient;
+  return prevError;
+}
+
+auto Layer::GetDerivativeVector() -> Eigen::VectorXd {
+  Eigen::VectorXd out(neurons_.size());
+  for (auto i = 0; i < neurons_.size(); ++i) {
+    out(i) = neurons_[i].Derivative();
+  }
+  return out;
 }
 
 auto Layer::GetNeurons() const -> std::vector<Neuron> { return neurons_; }

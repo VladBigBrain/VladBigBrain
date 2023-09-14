@@ -13,7 +13,7 @@ class Neuron {
   auto operator=(const Neuron&) -> Neuron& = default;
   auto operator=(Neuron&&) -> Neuron& = default;
   ~Neuron() = default;
-
+  auto GetValue() const -> double;
   auto Derivative() -> double;
   auto Activate(double value) -> double;
 

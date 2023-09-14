@@ -22,4 +22,6 @@ auto Neuron::Activate(double value) -> double {
   return value_;
 }
 
+auto Neuron::GetValue() const -> double { return value_; }
+
 }  // namespace s21

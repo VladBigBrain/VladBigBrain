@@ -20,7 +20,7 @@ class NeuralNetwork {
   ~NeuralNetwork() = default;
 
   auto FeedForward(const Eigen::VectorXd& inputs) -> Eigen::VectorXd;
-  auto BackPropagation(const Eigen::VectorXd& inputs, double errors,
+  auto BackPropagation(const Eigen::VectorXd& inputs, const Eigen::VectorXd&,
                        double learningRate) -> void;
   auto Train(size_t epochs = 1,
              const Eigen::VectorXd& inputs = Eigen::VectorXd::Random(784)) -> void;
@@ -30,7 +30,7 @@ class NeuralNetwork {
       -> std::ostream&;
 
  private:
-  auto ErrorFunction(double result, double target) -> double;
+  auto ErrorFunction(const Eigen::VectorXd& inputs, int target) -> Eigen::VectorXd;
   std::vector<Layer> layers_;
 };
 
