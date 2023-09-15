@@ -16,6 +16,8 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 set(PROJECT_SOURCES
         main.cpp
+        paintscene.cpp
+        paintscene.h
         view.cpp
         view.h
         view.ui
