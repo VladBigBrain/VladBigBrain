@@ -1,6 +1,6 @@
 # Prerequisites
 *.d
-
+*build-view-Desktop_x86_darwin_generic_mach_o_64bit-Debug/
 # Compiled Object files
 *.slo
 *.lo
