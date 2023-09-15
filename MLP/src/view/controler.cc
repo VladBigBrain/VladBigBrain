@@ -1,7 +1,6 @@
 #include "controler.h"
 namespace s21 {
-void Controler::StartLearn() {}
+void Controler::StartLearn() { model.StartLearn(); }
 
-Controler::Controler() {
-}
+Controler::Controler() {}
 } // namespace s21

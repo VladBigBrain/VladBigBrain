@@ -19,4 +19,4 @@ view::view(QWidget *parent) : QMainWindow(parent), ui(new Ui::view) {
 
 view::~view() { delete ui; }
 
-void view::on_Learnbutton_clicked() {}
+void view::on_Learnbutton_clicked() { controller.StartLearn(); }
