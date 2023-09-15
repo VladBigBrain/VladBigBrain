@@ -7,30 +7,46 @@ void Model::StartLearn() {
 }
 
 std::vector<Data> Model::Parse(const std::string &filename) {
-  //  io::CSVReader<1> in(
-  //      filename); // Настроим парсер только для одного столбца (метки)
-  //  int label;
-  //  std::vector<Data> dataset;
-
-  //  while (in.read_row(label)) { // Считываем только первый элемент (метку)
-  //    Eigen::VectorXd pixels(784); // Вектор для пикселей
-  //    Eigen::VectorXd labelVector =
-  //        Eigen::VectorXd::Zero(10); // One-hot encoding вектор
-  //    labelVector[label] = 1.0; // Задаем правильный ответ в one-hot encoding
-
-  ////    for (int i = 0; i < 784; ++i) {
-  ////      double pixel_value;
-  ////      in.read_row(i + 1, pixel_value); // Считываем каждый следующий
-  ///столбец /                                          // в переменную
-  ///pixel_value /      pixels[i] = pixel_value; // Заполняем вектор пикселей /
-  ///}
-
-  //    dataset.push_back({pixels, labelVector}); // Добавляем в датасет
-  //  }
-
-  //  return dataset; // Возвращаем результат
-  return {};
+  std::vector<Data> dataset;
+  io::LineReader reader(filename);
+  std::vector<std::string> data;
+  while (auto temp = reader.next_line()) {
+    std::istringstream lineStream(temp);
+    std::string cell;
+    std::getline(lineStream, cell);
+    data.push_back(cell);
+  }
+  dataset = ConvertToEigen(data);
+  return dataset;
 }
 
 Model::Model() {}
+
+std::vector<Data> Model::ConvertToEigen(const std::vector<std::string> &data) {
+  std::vector<Data> dataset;
+
+  for (const auto &full_row : data) {
+    std::stringstream row_stream(full_row);
+    std::string cell;
+
+    // Читаем метку
+    std::getline(row_stream, cell, ',');
+    int label = std::stoi(cell);
+    Eigen::VectorXd labelVector = Eigen::VectorXd::Zero(27);
+    labelVector[label] = 1.0; // One-hot encoding
+
+    Eigen::VectorXd pixels(784);
+
+    // Читаем пиксели
+    int i = 0;
+    while (std::getline(row_stream, cell, ',')) {
+      pixels[i] = std::stod(cell);
+      i++;
+    }
+
+    dataset.push_back({pixels, labelVector});
+  }
+
+  return dataset;
+}
 } // namespace s21

@@ -20,7 +20,7 @@ public:
   void StartLearn();
   std::vector<Data> Parse(const std::string &filename);
   Model();
-
+  std::vector<Data> ConvertToEigen(const std::vector<std::string>& data);
 private:
   NeuralNetwork network;
 };
