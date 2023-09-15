@@ -14,7 +14,27 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
+ include(FetchContent)
+ FetchContent_Declare(
+   Eigen
+   GIT_REPOSITORY https://gitlab.com/libeigen/eigen.git
+   GIT_TAG master
+   GIT_SHALLOW TRUE
+   GIT_PROGRESS TRUE)
+ set(EIGEN_BUILD_DOC OFF)
+
+ set(BUILD_TESTING OFF)
+ set(EIGEN_BUILD_PKGCONFIG OFF)
+ set( OFF)
+ FetchContent_MakeAvailable(Eigen)
+
 set(PROJECT_SOURCES
+        ../model/layer.cc
+        ../model/layer.h
+        ../model/neural_network.cc
+        ../model/neural_network.h
+        ../model/neuron.cc
+        ../model/neuron.h
         main.cpp
         paintscene.cpp
         paintscene.h
@@ -46,7 +66,8 @@ else()
     endif()
 endif()
 
-target_link_libraries(view PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(view PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Eigen3::Eigen)
+target_include_directories(view PRIVATE ../model ../libraries)
 
 set_target_properties(view PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
