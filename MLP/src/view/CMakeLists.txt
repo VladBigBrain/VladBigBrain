@@ -36,6 +36,10 @@ set(PROJECT_SOURCES
         ../model/neuron.cc
         ../model/neuron.h
         main.cpp
+        controler.cc
+        controler.h
+        model.cc
+        model.h
         paintscene.cpp
         paintscene.h
         view.cpp

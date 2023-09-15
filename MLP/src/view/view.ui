@@ -1152,7 +1152,7 @@ QProgressBar::chunk {
            </widget>
           </item>
           <item row="2" column="0">
-           <widget class="QPushButton" name="pushButton_2">
+           <widget class="QPushButton" name="Learnbutton">
             <property name="styleSheet">
              <string notr="true">* {
     color: black;  /* Черный текст для всех элементов */

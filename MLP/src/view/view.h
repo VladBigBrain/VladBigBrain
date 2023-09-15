@@ -1,24 +1,26 @@
 #ifndef VIEW_H
 #define VIEW_H
 
+#include "controler.h"
 #include <QMainWindow>
-
 QT_BEGIN_NAMESPACE
-namespace Ui { class view; }
+namespace Ui {
+class view;
+}
 QT_END_NAMESPACE
 
-class view : public QMainWindow
-{
-    Q_OBJECT
+class view : public QMainWindow {
+  Q_OBJECT
 
 public:
-    view(QWidget *parent = nullptr);
-    ~view();
+  view(QWidget *parent = nullptr);
+  ~view();
 
 private slots:
-    void on_pushButton_2_clicked();
+  void on_Learnbutton_clicked();
 
 private:
-    Ui::view *ui;
+  s21::Controler controller;
+  Ui::view *ui;
 };
 #endif // VIEW_H

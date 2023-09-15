@@ -12,7 +12,6 @@ class NeuralNetwork {
  public:
   NeuralNetwork(std::size_t layers = 2, std::size_t neurons = 5,
                 std::size_t inputs = 784);
-  NeuralNetwork() = default;
   NeuralNetwork(const NeuralNetwork& neuralNetwork) = default;
   NeuralNetwork(NeuralNetwork&& neuralNetwork) = default;
   NeuralNetwork& operator=(const NeuralNetwork& neuralNetwork) = default;

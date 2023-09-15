@@ -19,8 +19,4 @@ view::view(QWidget *parent) : QMainWindow(parent), ui(new Ui::view) {
 
 view::~view() { delete ui; }
 
-void view::on_pushButton_2_clicked()
-{
-
-}
-
+void view::on_Learnbutton_clicked() {}
