@@ -16,16 +16,17 @@ class Layer {
   auto operator=(Layer&&) -> Layer& = default;
   ~Layer() = default;
   auto FeedForward(const Eigen::VectorXd& inputs) -> Eigen::VectorXd;
-  auto BackPropagation( const Eigen::VectorXd& error, double learningRate)
+  auto BackPropagation(const Eigen::VectorXd& error, double learningRate)
       -> Eigen::VectorXd;
   auto GetDerivativeVector() -> Eigen::VectorXd;
   auto Size() const -> size_t;
   friend auto operator<<(std::ostream& os, const Layer& layer) -> std::ostream&;
 
  private:
-  auto BuildGradientMatrix(double error) -> Eigen::VectorXd;
+  auto BuildGradientMatrix(const Eigen::VectorXd& error) -> Eigen::VectorXd;
   auto BuildMatrixOfWeights(const std::size_t inputs) -> void;
   auto BuildNeurons(const Eigen::VectorXd& out) -> void;
+  auto BuildOutputNeurons() -> Eigen::VectorXd;
   [[nodiscard]] auto GetNeurons() const -> std::vector<Neuron>;
   std::vector<Neuron> neurons_;
   Eigen::MatrixXd weights_;

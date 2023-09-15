@@ -37,11 +37,11 @@ auto NeuralNetwork::FeedForward(const Eigen::VectorXd& inputs)
 auto NeuralNetwork::BackPropagation(const Eigen::VectorXd& inputs,
                                     const Eigen::VectorXd& target,
                                     double learningRate) -> void {
-  Eigen::VectorXd layerError =
-      error * Eigen::VectorXd::Ones(
-                  inputs.size());  // Преобразуем скалярную ошибку в векторную
-  for (int i = layers_.size() - 1; i >= 0; --i) {
-    layerError = layers_[i].BackPropagation(layerError, learningRate);
+  auto error = target - inputs;  // error
+  auto diff = layers_.back().GetDerivativeVector().array() * error.array();
+  Eigen::VectorXd errors = diff;
+  for (auto i = layers_.size() - 2; i > 0; --i) {
+    errors = layers_[i].BackPropagation(errors, learningRate);
   }
 }
 
