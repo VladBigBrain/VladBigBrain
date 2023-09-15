@@ -1,27 +1,24 @@
 #ifndef PAINTSCENE_H
 #define PAINTSCENE_H
-#include "ui_PaintScene.h"
+#include <QMouseEvent>
+#include <QPaintEvent>
+#include <QPointF>
+#include <QVector>
 #include <QWidget>
-#include <QtWidgets>
+#include <iostream>
 class PaintScene : public QWidget {
   Q_OBJECT
 
-  bool draw;
-  QVector<QPointF> vv;
-  QImage pic;
-
 public:
-  PaintScene(QWidget *parent = Q_NULLPTR);
-  void paintEvent(QPaintEvent *);
-  void mousePressEvent(QMouseEvent *);
-  void mouseMoveEvent(QMouseEvent *);
-  void mouseReleaseEvent(QMouseEvent *);
-  ~PaintScene();
-public slots:
-  void Clear();
+  explicit PaintScene(QWidget *parent = nullptr);
+  void paintEvent(QPaintEvent *event) override;
+  void mousePressEvent(QMouseEvent *event) override;
+  void mouseMoveEvent(QMouseEvent *event) override;
+  void mouseReleaseEvent(QMouseEvent *event) override;
 
 private:
-  Ui::PaintScene ui;
+  bool draw;
+  QVector<QPointF> points;
 };
 
 #endif // PAINTSCENE_H

@@ -1,56 +1,46 @@
+#include "paintscene.h"
+#include "QtWidgets/qgraphicseffect.h"
+#include <QPainter>
 
-#include "PaintScene.h"
+PaintScene::PaintScene(QWidget *parent) : QWidget(parent), draw(false) {
 
-PaintScene::PaintScene(QWidget *parent) : QWidget(parent) {
-  ui.setupUi(this);
-  setFocusPolicy(Qt::StrongFocus);
-  draw = false;
+  QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect();
+
+  // Настраиваем эффект тени
+  effect->setBlurRadius(10); // Размытие
+  effect->setXOffset(5);     // Смещение по X
+  effect->setYOffset(5);     // Смещение по Y
+
+  // Применяем эффект тени к виджету
+  this->setGraphicsEffect(effect);
+  setFixedSize(280, 280); // или любой другой размер
 }
 
-void PaintScene::paintEvent(QPaintEvent *) {
+void PaintScene::paintEvent(QPaintEvent *event) {
   QPainter painter(this);
-  QPalette Pal(palette());
-  Pal.setColor(QPalette::Background, Qt::black);
-  setAutoFillBackground(true);
-  setPalette(Pal);
-  painter.setRenderHint(QPainter::Antialiasing, true);
-  painter.setPen(QPen(Qt::green, 10, Qt::SolidLine));
-  for (int i = 0; i < vv.size(); ++i)
-    if (i > 0)
-      painter.drawEllipse(vv[i - 1], 12, 12);
+  painter.fillRect(event->rect(), Qt::white);
+  painter.setPen(QPen(Qt::black, 20)); // Черный цвет, толщина 5
+  for (const auto &point : points) {
+    painter.drawPoint(point);
+  }
 }
-void PaintScene::mousePressEvent(QMouseEvent *pe) { draw = true; }
-void PaintScene::mouseMoveEvent(QMouseEvent *pe) {
+
+void PaintScene::mousePressEvent(QMouseEvent *event) {
+  if (event->button() == Qt::LeftButton) {
+    draw = true;
+    points.push_back(event->pos());
+    update();
+  } else if (event->button() == Qt::RightButton) {
+    points.clear();
+    update();
+  }
+}
+
+void PaintScene::mouseMoveEvent(QMouseEvent *event) {
   if (draw) {
-    vv.push_back(pe->pos());
+    points.push_back(event->pos());
+    update();
   }
-  update();
 }
-void PaintScene::mouseReleaseEvent(QMouseEvent *pe) {
-  draw = false;
-  QPixmap scr;
-  scr = QPixmap::grabWidget(this);
 
-  QFile mFile("test.txt");
-  mFile.open(QIODevice::WriteOnly);
-  QTextStream fin(&mFile);
-  fin.setRealNumberPrecision(2);
-
-  QImage img;
-  img = scr.toImage();
-  img = img.scaled(28, 28);
-  int w = img.size().width();
-  int h = img.size().height();
-  for (int i = 0; i < w; i++) {
-    for (int j = 0; j < h; j++) {
-      fin << img.pixelColor(j, i).green() / 255. << " ";
-    }
-    fin << endl;
-  }
-  mFile.close();
-}
-void PaintScene::clear() {
-  vv.clear();
-  update();
-}
-PaintScene::~PaintScene() {}
+void PaintScene::mouseReleaseEvent(QMouseEvent *event) { draw = false; }

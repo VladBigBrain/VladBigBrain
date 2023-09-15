@@ -6,6 +6,7 @@ view::view(QWidget *parent)
     , ui(new Ui::view)
 {
     ui->setupUi(this);
+
 }
 
 view::~view()

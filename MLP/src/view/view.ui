@@ -14,7 +14,7 @@
    <string>MLP</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -65,7 +65,7 @@
         <attribute name="title">
          <string>Recognition</string>
         </attribute>
-        <widget class="QWidget" name="">
+        <widget class="QWidget" name="layoutWidget">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -83,10 +83,10 @@
             <widget class="PaintScene" name="paintwidget" native="true">
              <property name="geometry">
               <rect>
-               <x>20</x>
-               <y>90</y>
-               <width>280</width>
-               <height>280</height>
+               <x>10</x>
+               <y>30</y>
+               <width>311</width>
+               <height>401</height>
               </rect>
              </property>
             </widget>
@@ -120,7 +120,7 @@
         <attribute name="title">
          <string>Learning</string>
         </attribute>
-        <widget class="QWidget" name="">
+        <widget class="QWidget" name="layoutWidget">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -165,7 +165,7 @@
         <attribute name="title">
          <string>Testing</string>
         </attribute>
-        <widget class="QWidget" name="">
+        <widget class="QWidget" name="layoutWidget">
          <property name="geometry">
           <rect>
            <x>10</x>
