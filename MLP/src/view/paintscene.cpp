@@ -5,14 +5,6 @@
 PaintScene::PaintScene(QWidget *parent) : QWidget(parent), draw(false) {
 
   QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect();
-
-  // Настраиваем эффект тени
-  effect->setBlurRadius(10); // Размытие
-  effect->setXOffset(5);     // Смещение по X
-  effect->setYOffset(5);     // Смещение по Y
-
-  // Применяем эффект тени к виджету
-  this->setGraphicsEffect(effect);
   setFixedSize(280, 280); // или любой другой размер
 }
 
