@@ -6,12 +6,68 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>908</width>
-    <height>571</height>
+    <width>947</width>
+    <height>846</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MLP</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+    background-color: #1a1a2e;
+}
+
+QGroupBox, QLabel {
+    color: #f1c40f;
+}
+
+QWidget {
+    background-color: #2c2c2c;
+}
+
+QGroupBox, QLabel {
+    color: #f1c40f;
+}
+
+QLabel {
+    background: none;  /* Убираем фон */
+    color: #f1c40f;  /* Цвет текста, можно адаптировать под свой дизайн */
+}
+
+QPushButton {
+    background-color: #B0C4DE; /* Металлический цвет */
+    color: #2c2c2c; /* Темный текст */
+    border: none;
+}
+
+QPushButton:hover {
+    background-color: #A9A9A9; /* Немного темнее при наведении */
+}
+
+QPushButton:pressed {
+    background-color: #778899; /* Ещё темнее при нажатии */
+}
+
+QLayout {
+    background: #B0C4DE;
+}
+
+QGridLayout, QVBoxLayout, QHBoxLayout {
+    background: #B0C4DE;
+}
+
+
+QProgressBar {
+    background-color: #1a1a2e; /* Фон, как у всего интерфейса */
+    border: none; /* Убираем рамку */
+}
+
+QProgressBar::chunk {
+    background-color: #4682B4; /* Синий цвет индикатора */
+}
+
+</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="layoutWidget">
@@ -19,8 +75,8 @@
      <rect>
       <x>10</x>
       <y>0</y>
-      <width>891</width>
-      <height>521</height>
+      <width>921</width>
+      <height>791</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout" rowstretch="0" columnstretch="1,4">
@@ -34,14 +90,6 @@
        </property>
        <item row="0" column="0">
         <widget class="QGroupBox" name="TypePerceptrone">
-         <property name="styleSheet">
-          <string notr="true">QGroupBox {
-    border: 1px solid #f1f1f1;
-    border-radius: 5px;
-    margin-top: 1ex;
-}
-</string>
-         </property>
          <property name="title">
           <string>Options</string>
          </property>
@@ -50,18 +98,11 @@
            <rect>
             <x>10</x>
             <y>30</y>
-            <width>141</width>
-            <height>81</height>
+            <width>161</width>
+            <height>161</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_6">
-           <item row="0" column="0">
-            <widget class="QLabel" name="typelabel">
-             <property name="text">
-              <string>Perceptrone Type</string>
-             </property>
-            </widget>
-           </item>
            <item row="1" column="0">
             <widget class="QComboBox" name="TypeBox">
              <item>
@@ -76,20 +117,19 @@
              </item>
             </widget>
            </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="typelabel">
+             <property name="text">
+              <string>Perceptrone Type</string>
+             </property>
+            </widget>
+           </item>
           </layout>
          </widget>
         </widget>
        </item>
        <item row="1" column="0">
         <widget class="QGroupBox" name="Weightsbox">
-         <property name="styleSheet">
-          <string notr="true">QGroupBox {
-    border: 1px solid #f1f1f1;
-    border-radius: 5px;
-    margin-top: 1ex;
-}
-</string>
-         </property>
          <property name="title">
           <string>Weights</string>
          </property>
@@ -98,8 +138,8 @@
            <rect>
             <x>10</x>
             <y>30</y>
-            <width>151</width>
-            <height>91</height>
+            <width>171</width>
+            <height>161</height>
            </rect>
           </property>
           <property name="orientation">
@@ -188,24 +228,16 @@
        </item>
        <item row="2" column="0">
         <widget class="QGroupBox" name="LearningBox">
-         <property name="styleSheet">
-          <string notr="true">QGroupBox {
-    border: 1px solid #f1f1f1;
-    border-radius: 5px;
-    margin-top: 1ex;
-}
-</string>
-         </property>
          <property name="title">
           <string>Lerning</string>
          </property>
          <widget class="QSplitter" name="splitter_2">
           <property name="geometry">
            <rect>
-            <x>0</x>
+            <x>10</x>
             <y>30</y>
             <width>171</width>
-            <height>81</height>
+            <height>151</height>
            </rect>
           </property>
           <property name="orientation">
@@ -253,73 +285,61 @@
        </item>
        <item row="3" column="0">
         <widget class="QGroupBox" name="Testingbox">
-         <property name="styleSheet">
-          <string notr="true">QGroupBox {
-    border: 1px solid #f1f1f1;
-    border-radius: 5px;
-    margin-top: 1ex;
-}
-</string>
-         </property>
          <property name="title">
           <string>Testing</string>
          </property>
-         <widget class="QWidget" name="layoutWidget">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>40</y>
-            <width>161</width>
-            <height>111</height>
-           </rect>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout">
-           <item>
-            <widget class="QPushButton" name="Testingimportbutton">
-             <property name="text">
-              <string>Import</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
          <widget class="QWidget" name="">
           <property name="geometry">
            <rect>
             <x>10</x>
-            <y>20</y>
-            <width>159</width>
-            <height>68</height>
+            <y>30</y>
+            <width>171</width>
+            <height>161</height>
            </rect>
           </property>
-          <layout class="QGridLayout" name="gridLayout_9">
-           <item row="0" column="0">
-            <widget class="QLabel" name="FileLabelTesting">
-             <property name="text">
-              <string>File</string>
-             </property>
-            </widget>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <item>
+            <layout class="QGridLayout" name="gridLayout_9">
+             <item row="0" column="0">
+              <widget class="QLabel" name="FileLabelTesting">
+               <property name="text">
+                <string>File</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLabel" name="FileLabelTestingresult">
+               <property name="text">
+                <string>n/a</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="SizeLabelTesting">
+               <property name="text">
+                <string>Size</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QLabel" name="SizeLabelTestingResult">
+               <property name="text">
+                <string>n/a</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </item>
-           <item row="0" column="1">
-            <widget class="QLabel" name="FileLabelTestingresult">
-             <property name="text">
-              <string>n/a</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="SizeLabelTesting">
-             <property name="text">
-              <string>Size</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QLabel" name="SizeLabelTestingResult">
-             <property name="text">
-              <string>n/a</string>
-             </property>
-            </widget>
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout">
+             <item>
+              <widget class="QPushButton" name="Testingimportbutton">
+               <property name="text">
+                <string>Import</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </item>
           </layout>
          </widget>
@@ -329,14 +349,8 @@
      </item>
      <item row="0" column="1">
       <widget class="QTabWidget" name="ControlWidget">
-       <property name="styleSheet">
-        <string notr="true">QTabWidget::pane {
-    border-top: 1px solid #f1f1f1;
-}
-</string>
-       </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="recognition">
         <attribute name="title">
@@ -351,14 +365,6 @@
            <height>191</height>
           </rect>
          </property>
-         <property name="styleSheet">
-          <string notr="true">QGroupBox {
-    border: 1px solid #f1f1f1;
-    border-radius: 5px;
-    margin-top: 1ex;
-}
-</string>
-         </property>
          <property name="title">
           <string>Result</string>
          </property>
@@ -368,17 +374,9 @@
           <rect>
            <x>359</x>
            <y>199</y>
-           <width>331</width>
-           <height>291</height>
+           <width>341</width>
+           <height>491</height>
           </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QGroupBox {
-    border: 1px solid #f1f1f1;
-    border-radius: 5px;
-    margin-top: 1ex;
-}
-</string>
          </property>
          <property name="title">
           <string>Visualization</string>
@@ -389,7 +387,7 @@
             <x>10</x>
             <y>37</y>
             <width>311</width>
-            <height>332</height>
+            <height>434</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_5">
@@ -765,8 +763,8 @@
           <rect>
            <x>11</x>
            <y>11</y>
-           <width>321</width>
-           <height>481</height>
+           <width>331</width>
+           <height>451</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="ImageLayout">
@@ -821,14 +819,6 @@
          <layout class="QGridLayout" name="gridLayout_2">
           <item row="0" column="0" rowspan="2">
            <widget class="QGroupBox" name="OptionBox">
-            <property name="styleSheet">
-             <string notr="true">QGroupBox {
-    border: 1px solid #f1f1f1;
-    border-radius: 5px;
-    margin-top: 1ex;
-}
-</string>
-            </property>
             <property name="title">
              <string>Options</string>
             </property>
@@ -909,14 +899,6 @@
           </item>
           <item row="0" column="1">
            <widget class="QGroupBox" name="ProgressBox">
-            <property name="styleSheet">
-             <string notr="true">QGroupBox {
-    border: 1px solid #f1f1f1;
-    border-radius: 5px;
-    margin-top: 1ex;
-}
-</string>
-            </property>
             <property name="title">
              <string>Progress</string>
             </property>
@@ -925,8 +907,8 @@
               <rect>
                <x>50</x>
                <y>40</y>
-               <width>191</width>
-               <height>111</height>
+               <width>221</width>
+               <height>151</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_10">
@@ -950,14 +932,6 @@
           </item>
           <item row="1" column="1" rowspan="2">
            <widget class="QGroupBox" name="Resultbox">
-            <property name="styleSheet">
-             <string notr="true">QGroupBox {
-    border: 1px solid #f1f1f1;
-    border-radius: 5px;
-    margin-top: 1ex;
-}
-</string>
-            </property>
             <property name="title">
              <string>Result</string>
             </property>
@@ -989,14 +963,6 @@
          <layout class="QGridLayout" name="gridLayout_3">
           <item row="0" column="0" rowspan="2">
            <widget class="QGroupBox" name="Optionstestingbox">
-            <property name="styleSheet">
-             <string notr="true">QGroupBox {
-    border: 1px solid #f1f1f1;
-    border-radius: 5px;
-    margin-top: 1ex;
-}
-</string>
-            </property>
             <property name="title">
              <string>Options</string>
             </property>
@@ -1027,14 +993,6 @@
           </item>
           <item row="0" column="1">
            <widget class="QGroupBox" name="Progressbox">
-            <property name="styleSheet">
-             <string notr="true">QGroupBox {
-    border: 1px solid #f1f1f1;
-    border-radius: 5px;
-    margin-top: 1ex;
-}
-</string>
-            </property>
             <property name="title">
              <string>Progress</string>
             </property>
@@ -1043,8 +1001,8 @@
               <rect>
                <x>10</x>
                <y>60</y>
-               <width>118</width>
-               <height>23</height>
+               <width>161</width>
+               <height>31</height>
               </rect>
              </property>
              <property name="value">
@@ -1062,14 +1020,6 @@
           </item>
           <item row="1" column="1" rowspan="2">
            <widget class="QGroupBox" name="Result">
-            <property name="styleSheet">
-             <string notr="true">QGroupBox {
-    border: 1px solid #f1f1f1;
-    border-radius: 5px;
-    margin-top: 1ex;
-}
-</string>
-            </property>
             <property name="title">
              <string>Result</string>
             </property>
@@ -1170,7 +1120,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>908</width>
+     <width>947</width>
      <height>22</height>
     </rect>
    </property>

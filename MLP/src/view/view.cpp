@@ -11,10 +11,10 @@ void applyShadowEffectToGroupBox(QGroupBox *box) {
 
 view::view(QWidget *parent) : QMainWindow(parent), ui(new Ui::view) {
   ui->setupUi(this);
-  QList<QGroupBox *> allGroupBoxes = this->findChildren<QGroupBox *>();
-  for (QGroupBox *box : allGroupBoxes) {
-    applyShadowEffectToGroupBox(box);
-  }
+//  QList<QGroupBox *> allGroupBoxes = this->findChildren<QGroupBox *>();
+//  for (QGroupBox *box : allGroupBoxes) {
+//    applyShadowEffectToGroupBox(box);
+//  }
 }
 
 view::~view() { delete ui; }
