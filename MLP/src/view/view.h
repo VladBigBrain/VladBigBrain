@@ -19,6 +19,8 @@ public:
 private slots:
   void on_Learnbutton_clicked();
 
+  void on_StartTestingButton_clicked();
+
 private:
   s21::Controler controller;
   Ui::view *ui;

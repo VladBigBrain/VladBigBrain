@@ -23,7 +23,7 @@ class Layer {
   friend auto operator<<(std::ostream& os, const Layer& layer) -> std::ostream&;
 
  private:
-  auto BuildGradientMatrix(const Eigen::VectorXd& error) -> Eigen::VectorXd;
+  auto BuildGradientMatrix(const Eigen::VectorXd& error) -> Eigen::MatrixXd;
   auto BuildMatrixOfWeights(const std::size_t inputs) -> void;
   auto BuildNeurons(const Eigen::VectorXd& out) -> void;
   auto BuildOutputNeurons() -> Eigen::VectorXd;

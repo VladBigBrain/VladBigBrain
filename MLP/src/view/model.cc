@@ -4,14 +4,36 @@ void Model::StartLearn() {
   auto parsedatas = Parse("/opt/goinfre/barnards/VladBigBrain/MLP/datasets/"
                           "emnist-letters-train.csv");
 
-  for (auto i : parsedatas) {
+  for (auto &i : parsedatas) {
+    std::cerr << "i'm Leraning;" << std::endl;
     network_.Train(1, i.input, i.correct_vector);
   }
 }
 
-void Model::StartTest()
-{
+void Model::StartTest() {
+  auto parsedatas = Parse("/opt/goinfre/barnards/VladBigBrain/MLP/datasets/"
+                          "emnist-letters-test.csv");
+  int correct = 0, incorrect = 0;
+  for (auto &temp : parsedatas) {
+    Eigen::VectorXd result = network_.FeedForward(temp.input);
+    int maxIndex;
+    double maxVal = result.maxCoeff(&maxIndex); // Find max coefficient
 
+    int trueLabelIndex;
+    temp.correct_vector.maxCoeff(&trueLabelIndex); // Find true label index
+
+    // Compare and count
+    if (maxIndex == trueLabelIndex) {
+      correct++;
+    } else {
+      incorrect++;
+    }
+  }
+
+  // Output results (or do further calculations)
+  std::cout << std::endl
+            << "Correct: " << correct << ", Incorrect: " << incorrect
+            << std::endl;
 }
 
 std::vector<Data> Model::Parse(const std::string &filename) {
@@ -49,7 +71,7 @@ std::vector<Data> Model::ConvertToEigen(const std::vector<std::string> &data) {
       i++;
     }
 
-    dataset.push_back({pixels, labelVector});
+    dataset.push_back({labelVector, pixels});
   }
   return dataset;
 }

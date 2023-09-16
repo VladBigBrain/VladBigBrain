@@ -12,13 +12,13 @@ NeuralNetwork::NeuralNetwork(std::size_t layers, std::size_t neurons,
   layers_.push_back(last);
 }
 
-//auto NeuralNetwork::ErrorFunction(const Eigen::VectorXd &inputs, int target)
-//    -> Eigen::VectorXd {
-//  Eigen::VectorXd targetVector(inputs.size());
-//  targetVector.setZero();
-//  targetVector(target) = 1.0;
-//  return targetVector;
-//}
+// auto NeuralNetwork::ErrorFunction(const Eigen::VectorXd &inputs, int target)
+//     -> Eigen::VectorXd {
+//   Eigen::VectorXd targetVector(inputs.size());
+//   targetVector.setZero();
+//   targetVector(target) = 1.0;
+//   return targetVector;
+// }
 
 auto NeuralNetwork::Train(size_t epochs, const Eigen::VectorXd &inputs,
                           const Eigen::VectorXd &target) -> void {
@@ -40,7 +40,9 @@ auto NeuralNetwork::BackPropagation(const Eigen::VectorXd &inputs,
   auto error = target - inputs; // error
   auto diff = layers_.back().GetDerivativeVector().array() * error.array();
   Eigen::VectorXd errors = diff;
+  std::cerr << "Layers size " << layers_.size() << std::endl;
   for (auto i = layers_.size() - 2; i > 0; --i) {
+    std::cerr << "i = " << i << " " << std::endl;
     errors = layers_[i].BackPropagation(errors, learningRate);
   }
 }
