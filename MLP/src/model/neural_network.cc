@@ -12,32 +12,32 @@ NeuralNetwork::NeuralNetwork(std::size_t layers, std::size_t neurons,
   layers_.push_back(last);
 }
 
-auto NeuralNetwork::ErrorFunction(const Eigen::VectorXd& inputs, int target)
-    -> Eigen::VectorXd {
-  Eigen::VectorXd targetVector(inputs.size());
-  targetVector.setZero();
-  targetVector(target) = 1.0;
-  return targetVector;
-}
+//auto NeuralNetwork::ErrorFunction(const Eigen::VectorXd &inputs, int target)
+//    -> Eigen::VectorXd {
+//  Eigen::VectorXd targetVector(inputs.size());
+//  targetVector.setZero();
+//  targetVector(target) = 1.0;
+//  return targetVector;
+//}
 
-auto NeuralNetwork::Train(size_t epochs, const Eigen::VectorXd& inputs)
-    -> void {
+auto NeuralNetwork::Train(size_t epochs, const Eigen::VectorXd &inputs,
+                          const Eigen::VectorXd &target) -> void {
   for (size_t i = 0; i < epochs; ++i) {
     auto result = FeedForward(inputs);
-    BackPropagation(result, ErrorFunction(result, inputs[0]), 0.1);
+    BackPropagation(result, target, 0.1);
   }
 }
 
-auto NeuralNetwork::FeedForward(const Eigen::VectorXd& inputs)
+auto NeuralNetwork::FeedForward(const Eigen::VectorXd &inputs)
     -> Eigen::VectorXd {
   Eigen::VectorXd outputs = inputs;
-  ForEach(layers_, [&](auto& layer) { outputs = layer.FeedForward(outputs); });
+  ForEach(layers_, [&](auto &layer) { outputs = layer.FeedForward(outputs); });
   return outputs;
 }
-auto NeuralNetwork::BackPropagation(const Eigen::VectorXd& inputs,
-                                    const Eigen::VectorXd& target,
+auto NeuralNetwork::BackPropagation(const Eigen::VectorXd &inputs,
+                                    const Eigen::VectorXd &target,
                                     double learningRate) -> void {
-  auto error = target - inputs;  // error
+  auto error = target - inputs; // error
   auto diff = layers_.back().GetDerivativeVector().array() * error.array();
   Eigen::VectorXd errors = diff;
   for (auto i = layers_.size() - 2; i > 0; --i) {
@@ -45,10 +45,10 @@ auto NeuralNetwork::BackPropagation(const Eigen::VectorXd& inputs,
   }
 }
 
-auto operator<<(std::ostream& os, const NeuralNetwork& neuralNetwork)
-    -> std::ostream& {
+auto operator<<(std::ostream &os, const NeuralNetwork &neuralNetwork)
+    -> std::ostream & {
   auto i = 0;
-  for (const auto& layer : neuralNetwork.layers_) {
+  for (const auto &layer : neuralNetwork.layers_) {
     std::cout << "Layer " << ++i << ":" << std::endl;
     os << layer;
   }
@@ -56,4 +56,4 @@ auto operator<<(std::ostream& os, const NeuralNetwork& neuralNetwork)
   return os;
 }
 
-}  // namespace s21
+} // namespace s21

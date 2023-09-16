@@ -294,7 +294,7 @@ QProgressBar::chunk {
          <property name="title">
           <string>Testing</string>
          </property>
-         <widget class="QWidget" name="">
+         <widget class="QWidget" name="layoutWidget">
           <property name="geometry">
            <rect>
             <x>10</x>
@@ -992,7 +992,7 @@ QProgressBar::chunk {
             <property name="title">
              <string>Progress</string>
             </property>
-            <widget class="QWidget" name="">
+            <widget class="QWidget" name="layoutWidget">
              <property name="geometry">
               <rect>
                <x>50</x>
@@ -1113,7 +1113,7 @@ QProgressBar::chunk {
             <property name="title">
              <string>Result</string>
             </property>
-            <widget class="QWidget" name="">
+            <widget class="QWidget" name="layoutWidget">
              <property name="geometry">
               <rect>
                <x>20</x>

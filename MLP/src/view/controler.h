@@ -5,6 +5,7 @@ namespace s21 {
 class Controler {
 public:
   auto StartLearn() -> void;
+  auto StartTest() -> void;
   Controler();
 
 private:
