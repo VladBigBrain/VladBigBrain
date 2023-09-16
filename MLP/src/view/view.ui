@@ -6,54 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>918</width>
-    <height>644</height>
+    <width>908</width>
+    <height>571</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MLP</string>
-  </property>
-  <property name="styleSheet">
-   <string notr="true">QWidget {
-    background: white;  /* Белый фон для всех виджетов */
-}
-* {
-    color: black;  /* Черный текст для всех элементов */
-}
-
-QLabel {
-    color: #333333; /* Тёмно-серый для хорошего контраста на белом фоне */
-    font: 14px &quot;Arial&quot;; /* Простой и чистый шрифт */
-}
-
-QLabel {
-    color: #333333; /* Тёмно-серый для хорошего контраста на белом фоне */
-    font: 14px &quot;Arial&quot;; /* Простой и чистый шрифт */
-}
-
-QSpinBox {
-    border: 1px solid #f1f1f1;
-    background: white;
-}
-
-QGroupBox {
-    border: 1px solid #f1f1f1;
-    border-radius: 5px;
-    margin-top: 1ex;
-}
-
-QPushButton {
-    background-color: yellow;
-    color: white;
-    border-radius: 5px;
-}
-
-QComboBox {
-    border: 1px solid #f1f1f1;
-    border-radius: 3px;
-    background: white;
-}
-</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="layoutWidget">
@@ -61,8 +19,8 @@ QComboBox {
      <rect>
       <x>10</x>
       <y>0</y>
-      <width>911</width>
-      <height>561</height>
+      <width>891</width>
+      <height>521</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout" rowstretch="0" columnstretch="1,4">
@@ -75,7 +33,7 @@ QComboBox {
         <number>0</number>
        </property>
        <item row="0" column="0">
-        <widget class="QGroupBox" name="groupBox">
+        <widget class="QGroupBox" name="TypePerceptrone">
          <property name="styleSheet">
           <string notr="true">QGroupBox {
     border: 1px solid #f1f1f1;
@@ -85,12 +43,45 @@ QComboBox {
 </string>
          </property>
          <property name="title">
-          <string>GroupBox</string>
+          <string>Options</string>
          </property>
+         <widget class="QWidget" name="">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>30</y>
+            <width>141</width>
+            <height>81</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_6">
+           <item row="0" column="0">
+            <widget class="QLabel" name="typelabel">
+             <property name="text">
+              <string>Perceptrone Type</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QComboBox" name="TypeBox">
+             <item>
+              <property name="text">
+               <string>Matrix</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Graph</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+          </layout>
+         </widget>
         </widget>
        </item>
        <item row="1" column="0">
-        <widget class="QGroupBox" name="groupBox_2">
+        <widget class="QGroupBox" name="Weightsbox">
          <property name="styleSheet">
           <string notr="true">QGroupBox {
     border: 1px solid #f1f1f1;
@@ -100,12 +91,103 @@ QComboBox {
 </string>
          </property>
          <property name="title">
-          <string>GroupBox</string>
+          <string>Weights</string>
          </property>
+         <widget class="QSplitter" name="splitter">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>30</y>
+            <width>151</width>
+            <height>91</height>
+           </rect>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <widget class="QWidget" name="">
+           <layout class="QGridLayout" name="gridLayout_7">
+            <item row="0" column="0">
+             <widget class="QLabel" name="FileLabel">
+              <property name="text">
+               <string>File</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLabel" name="Filelabelresult">
+              <property name="text">
+               <string>n/a</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="HiddenlayerLabel">
+              <property name="text">
+               <string>HiddenLayers</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QLabel" name="HiddenLayersLabelresult">
+              <property name="text">
+               <string>n/a</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="NeuroninLayersLabel">
+              <property name="text">
+               <string>Neuron in Layers</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QLabel" name="NeuronInlayersLabelresult">
+              <property name="text">
+               <string>n/a</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="AccuracyLabel">
+              <property name="text">
+               <string>Accuracy</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QLabel" name="accuracylabelresult">
+              <property name="text">
+               <string>n/a</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="">
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QPushButton" name="pushButton_2">
+              <property name="text">
+               <string>Import</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_4">
+              <property name="text">
+               <string>Export</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
         </widget>
        </item>
        <item row="2" column="0">
-        <widget class="QGroupBox" name="groupBox_3">
+        <widget class="QGroupBox" name="LearningBox">
          <property name="styleSheet">
           <string notr="true">QGroupBox {
     border: 1px solid #f1f1f1;
@@ -115,12 +197,62 @@ QComboBox {
 </string>
          </property>
          <property name="title">
-          <string>GroupBox</string>
+          <string>Lerning</string>
          </property>
+         <widget class="QSplitter" name="splitter_2">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>40</y>
+            <width>161</width>
+            <height>121</height>
+           </rect>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <widget class="QWidget" name="">
+           <layout class="QGridLayout" name="gridLayout_8">
+            <item row="0" column="0">
+             <widget class="QLabel" name="fileleraninglabel">
+              <property name="text">
+               <string>File</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLabel" name="filelearninglabelresult">
+              <property name="text">
+               <string>n/a</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="sizelabel">
+              <property name="text">
+               <string>Size</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QLabel" name="sizelabelresult">
+              <property name="text">
+               <string>n/a</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QPushButton" name="learningimportbuttonresult">
+           <property name="text">
+            <string>Import</string>
+           </property>
+          </widget>
+         </widget>
         </widget>
        </item>
        <item row="3" column="0">
-        <widget class="QGroupBox" name="groupBox_4">
+        <widget class="QGroupBox" name="Testingbox">
          <property name="styleSheet">
           <string notr="true">QGroupBox {
     border: 1px solid #f1f1f1;
@@ -130,8 +262,59 @@ QComboBox {
 </string>
          </property>
          <property name="title">
-          <string>GroupBox</string>
+          <string>Testing</string>
          </property>
+         <widget class="QWidget" name="">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>40</y>
+            <width>161</width>
+            <height>111</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout">
+           <item>
+            <layout class="QGridLayout" name="gridLayout_9">
+             <item row="0" column="0">
+              <widget class="QLabel" name="FileLabelTesting">
+               <property name="text">
+                <string>File</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLabel" name="FileLabelTestingresult">
+               <property name="text">
+                <string>n/a</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="SizeLabelTesting">
+               <property name="text">
+                <string>Size</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QLabel" name="SizeLabelTestingResult">
+               <property name="text">
+                <string>n/a</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QPushButton" name="Testingimportbutton">
+             <property name="text">
+              <string>Import</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
         </widget>
        </item>
       </layout>
@@ -145,7 +328,7 @@ QComboBox {
 </string>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="recognition">
         <attribute name="title">
@@ -172,44 +355,13 @@ QComboBox {
           <string>Result</string>
          </property>
         </widget>
-        <widget class="QGroupBox" name="groupBox_5">
-         <property name="geometry">
-          <rect>
-           <x>11</x>
-           <y>11</y>
-           <width>280</width>
-           <height>310</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QGroupBox {
-    border: 1px solid #f1f1f1;
-    border-radius: 5px;
-    margin-top: 1ex;
-}
-</string>
-         </property>
-         <property name="title">
-          <string>Paint</string>
-         </property>
-         <widget class="PaintScene" name="paintwidget" native="true">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>30</y>
-            <width>280</width>
-            <height>280</height>
-           </rect>
-          </property>
-         </widget>
-        </widget>
         <widget class="QGroupBox" name="groupBox_8">
          <property name="geometry">
           <rect>
            <x>359</x>
            <y>199</y>
            <width>331</width>
-           <height>341</height>
+           <height>291</height>
           </rect>
          </property>
          <property name="styleSheet">
@@ -223,18 +375,18 @@ QComboBox {
          <property name="title">
           <string>Visualization</string>
          </property>
-         <widget class="QWidget" name="">
+         <widget class="QWidget" name="layoutWidget">
           <property name="geometry">
            <rect>
-            <x>0</x>
-            <y>30</y>
-            <width>321</width>
-            <height>301</height>
+            <x>10</x>
+            <y>37</y>
+            <width>311</width>
+            <height>241</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_5">
            <item row="0" column="0">
-            <widget class="QLabel" name="label">
+            <widget class="QLabel" name="Alabel">
              <property name="text">
               <string>A</string>
              </property>
@@ -242,720 +394,356 @@ QComboBox {
            </item>
            <item row="0" column="1">
             <widget class="QProgressBar" name="progressBar">
-             <property name="styleSheet">
-              <string notr="true">QProgressBar {
-    border: 1px solid #f1f1f1;  /* Почти белый рамки */
-    background: white;  /* Белый фон */
-    border-radius: 5px;  /* Скругление углов */
-    text-align: center;  /* Центровка текста */
-}
-
-QProgressBar::chunk {
-    background: yellow;  /* Жёлтая заполненная часть */
-    border-radius: 4px;  /* Скругление углов */
-}
-</string>
-             </property>
              <property name="value">
               <number>24</number>
              </property>
             </widget>
            </item>
            <item row="0" column="2">
-            <widget class="QLabel" name="label_17">
+            <widget class="QLabel" name="Nlabel">
              <property name="text">
-              <string>A</string>
+              <string>N</string>
              </property>
             </widget>
            </item>
            <item row="0" column="3">
             <widget class="QProgressBar" name="progressBar_13">
-             <property name="styleSheet">
-              <string notr="true">QProgressBar {
-    border: 1px solid #f1f1f1;  /* Почти белый рамки */
-    background: white;  /* Белый фон */
-    border-radius: 5px;  /* Скругление углов */
-    text-align: center;  /* Центровка текста */
-}
-
-QProgressBar::chunk {
-    background: yellow;  /* Жёлтая заполненная часть */
-    border-radius: 4px;  /* Скругление углов */
-}
-</string>
-             </property>
              <property name="value">
               <number>24</number>
              </property>
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QLabel" name="label_2">
+            <widget class="QLabel" name="Blabel">
              <property name="text">
-              <string>A</string>
+              <string>B</string>
              </property>
             </widget>
            </item>
            <item row="1" column="1">
             <widget class="QProgressBar" name="progressBar_2">
-             <property name="styleSheet">
-              <string notr="true">QProgressBar {
-    border: 1px solid #f1f1f1;  /* Почти белый рамки */
-    background: white;  /* Белый фон */
-    border-radius: 5px;  /* Скругление углов */
-    text-align: center;  /* Центровка текста */
-}
-
-QProgressBar::chunk {
-    background: yellow;  /* Жёлтая заполненная часть */
-    border-radius: 4px;  /* Скругление углов */
-}
-</string>
-             </property>
              <property name="value">
               <number>24</number>
              </property>
             </widget>
            </item>
            <item row="1" column="2">
-            <widget class="QLabel" name="label_25">
+            <widget class="QLabel" name="Olabel">
              <property name="text">
-              <string>A</string>
+              <string>O</string>
              </property>
             </widget>
            </item>
            <item row="1" column="3">
             <widget class="QProgressBar" name="progressBar_14">
-             <property name="styleSheet">
-              <string notr="true">QProgressBar {
-    border: 1px solid #f1f1f1;  /* Почти белый рамки */
-    background: white;  /* Белый фон */
-    border-radius: 5px;  /* Скругление углов */
-    text-align: center;  /* Центровка текста */
-}
-
-QProgressBar::chunk {
-    background: yellow;  /* Жёлтая заполненная часть */
-    border-radius: 4px;  /* Скругление углов */
-}
-</string>
-             </property>
              <property name="value">
               <number>24</number>
              </property>
             </widget>
            </item>
            <item row="2" column="0">
-            <widget class="QLabel" name="label_3">
+            <widget class="QLabel" name="Clabel">
              <property name="text">
-              <string>A</string>
+              <string>C</string>
              </property>
             </widget>
            </item>
            <item row="2" column="1">
             <widget class="QProgressBar" name="progressBar_3">
-             <property name="styleSheet">
-              <string notr="true">QProgressBar {
-    border: 1px solid #f1f1f1;  /* Почти белый рамки */
-    background: white;  /* Белый фон */
-    border-radius: 5px;  /* Скругление углов */
-    text-align: center;  /* Центровка текста */
-}
-
-QProgressBar::chunk {
-    background: yellow;  /* Жёлтая заполненная часть */
-    border-radius: 4px;  /* Скругление углов */
-}
-</string>
-             </property>
              <property name="value">
               <number>24</number>
              </property>
             </widget>
            </item>
            <item row="2" column="2">
-            <widget class="QLabel" name="label_22">
+            <widget class="QLabel" name="Plabel">
              <property name="text">
-              <string>A</string>
+              <string>P</string>
              </property>
             </widget>
            </item>
            <item row="2" column="3">
             <widget class="QProgressBar" name="progressBar_12">
-             <property name="styleSheet">
-              <string notr="true">QProgressBar {
-    border: 1px solid #f1f1f1;  /* Почти белый рамки */
-    background: white;  /* Белый фон */
-    border-radius: 5px;  /* Скругление углов */
-    text-align: center;  /* Центровка текста */
-}
-
-QProgressBar::chunk {
-    background: yellow;  /* Жёлтая заполненная часть */
-    border-radius: 4px;  /* Скругление углов */
-}
-</string>
-             </property>
              <property name="value">
               <number>24</number>
              </property>
             </widget>
            </item>
            <item row="3" column="0">
-            <widget class="QLabel" name="label_4">
+            <widget class="QLabel" name="Dlabel">
              <property name="text">
-              <string>A</string>
+              <string>D</string>
              </property>
             </widget>
            </item>
            <item row="3" column="1">
             <widget class="QProgressBar" name="progressBar_4">
-             <property name="styleSheet">
-              <string notr="true">QProgressBar {
-    border: 1px solid #f1f1f1;  /* Почти белый рамки */
-    background: white;  /* Белый фон */
-    border-radius: 5px;  /* Скругление углов */
-    text-align: center;  /* Центровка текста */
-}
-
-QProgressBar::chunk {
-    background: yellow;  /* Жёлтая заполненная часть */
-    border-radius: 4px;  /* Скругление углов */
-}
-</string>
-             </property>
              <property name="value">
               <number>24</number>
              </property>
             </widget>
            </item>
            <item row="3" column="2">
-            <widget class="QLabel" name="label_21">
+            <widget class="QLabel" name="Qlabel">
              <property name="text">
-              <string>A</string>
+              <string>Q</string>
              </property>
             </widget>
            </item>
            <item row="3" column="3">
             <widget class="QProgressBar" name="progressBar_10">
-             <property name="styleSheet">
-              <string notr="true">QProgressBar {
-    border: 1px solid #f1f1f1;  /* Почти белый рамки */
-    background: white;  /* Белый фон */
-    border-radius: 5px;  /* Скругление углов */
-    text-align: center;  /* Центровка текста */
-}
-
-QProgressBar::chunk {
-    background: yellow;  /* Жёлтая заполненная часть */
-    border-radius: 4px;  /* Скругление углов */
-}
-</string>
-             </property>
              <property name="value">
               <number>24</number>
              </property>
             </widget>
            </item>
            <item row="4" column="0">
-            <widget class="QLabel" name="label_6">
+            <widget class="QLabel" name="Elabel">
              <property name="text">
-              <string>A</string>
+              <string>E</string>
              </property>
             </widget>
            </item>
            <item row="4" column="1">
             <widget class="QProgressBar" name="progressBar_7">
-             <property name="styleSheet">
-              <string notr="true">QProgressBar {
-    border: 1px solid #f1f1f1;  /* Почти белый рамки */
-    background: white;  /* Белый фон */
-    border-radius: 5px;  /* Скругление углов */
-    text-align: center;  /* Центровка текста */
-}
-
-QProgressBar::chunk {
-    background: yellow;  /* Жёлтая заполненная часть */
-    border-radius: 4px;  /* Скругление углов */
-}
-</string>
-             </property>
              <property name="value">
               <number>24</number>
              </property>
             </widget>
            </item>
            <item row="4" column="2">
-            <widget class="QLabel" name="label_14">
+            <widget class="QLabel" name="Rlabel">
              <property name="text">
-              <string>A</string>
+              <string>R</string>
              </property>
             </widget>
            </item>
            <item row="4" column="3">
             <widget class="QProgressBar" name="progressBar_9">
-             <property name="styleSheet">
-              <string notr="true">QProgressBar {
-    border: 1px solid #f1f1f1;  /* Почти белый рамки */
-    background: white;  /* Белый фон */
-    border-radius: 5px;  /* Скругление углов */
-    text-align: center;  /* Центровка текста */
-}
-
-QProgressBar::chunk {
-    background: yellow;  /* Жёлтая заполненная часть */
-    border-radius: 4px;  /* Скругление углов */
-}
-</string>
-             </property>
              <property name="value">
               <number>24</number>
              </property>
             </widget>
            </item>
            <item row="5" column="0">
-            <widget class="QLabel" name="label_5">
+            <widget class="QLabel" name="Flabel">
              <property name="text">
-              <string>A</string>
+              <string>F</string>
              </property>
             </widget>
            </item>
            <item row="5" column="1">
             <widget class="QProgressBar" name="progressBar_8">
-             <property name="styleSheet">
-              <string notr="true">QProgressBar {
-    border: 1px solid #f1f1f1;  /* Почти белый рамки */
-    background: white;  /* Белый фон */
-    border-radius: 5px;  /* Скругление углов */
-    text-align: center;  /* Центровка текста */
-}
-
-QProgressBar::chunk {
-    background: yellow;  /* Жёлтая заполненная часть */
-    border-radius: 4px;  /* Скругление углов */
-}
-</string>
-             </property>
              <property name="value">
               <number>24</number>
              </property>
             </widget>
            </item>
            <item row="5" column="2">
-            <widget class="QLabel" name="label_18">
+            <widget class="QLabel" name="Slabel">
              <property name="text">
-              <string>A</string>
+              <string>S</string>
              </property>
             </widget>
            </item>
            <item row="5" column="3">
             <widget class="QProgressBar" name="progressBar_11">
-             <property name="styleSheet">
-              <string notr="true">QProgressBar {
-    border: 1px solid #f1f1f1;  /* Почти белый рамки */
-    background: white;  /* Белый фон */
-    border-radius: 5px;  /* Скругление углов */
-    text-align: center;  /* Центровка текста */
-}
-
-QProgressBar::chunk {
-    background: yellow;  /* Жёлтая заполненная часть */
-    border-radius: 4px;  /* Скругление углов */
-}
-</string>
-             </property>
              <property name="value">
               <number>24</number>
              </property>
             </widget>
            </item>
            <item row="6" column="0">
-            <widget class="QLabel" name="label_7">
+            <widget class="QLabel" name="Glabel">
              <property name="text">
-              <string>A</string>
+              <string>G</string>
              </property>
             </widget>
            </item>
            <item row="6" column="1">
             <widget class="QProgressBar" name="progressBar_6">
-             <property name="styleSheet">
-              <string notr="true">QProgressBar {
-    border: 1px solid #f1f1f1;  /* Почти белый рамки */
-    background: white;  /* Белый фон */
-    border-radius: 5px;  /* Скругление углов */
-    text-align: center;  /* Центровка текста */
-}
-
-QProgressBar::chunk {
-    background: yellow;  /* Жёлтая заполненная часть */
-    border-radius: 4px;  /* Скругление углов */
-}
-</string>
-             </property>
              <property name="value">
               <number>24</number>
              </property>
             </widget>
            </item>
            <item row="6" column="2">
-            <widget class="QLabel" name="label_16">
+            <widget class="QLabel" name="Tlabel">
              <property name="text">
-              <string>A</string>
+              <string>T</string>
              </property>
             </widget>
            </item>
            <item row="6" column="3">
             <widget class="QProgressBar" name="progressBar_16">
-             <property name="styleSheet">
-              <string notr="true">QProgressBar {
-    border: 1px solid #f1f1f1;  /* Почти белый рамки */
-    background: white;  /* Белый фон */
-    border-radius: 5px;  /* Скругление углов */
-    text-align: center;  /* Центровка текста */
-}
-
-QProgressBar::chunk {
-    background: yellow;  /* Жёлтая заполненная часть */
-    border-radius: 4px;  /* Скругление углов */
-}
-</string>
-             </property>
              <property name="value">
               <number>24</number>
              </property>
             </widget>
            </item>
            <item row="7" column="0">
-            <widget class="QLabel" name="label_8">
+            <widget class="QLabel" name="Hlabel">
              <property name="text">
-              <string>A</string>
+              <string>H</string>
              </property>
             </widget>
            </item>
            <item row="7" column="1">
             <widget class="QProgressBar" name="progressBar_5">
-             <property name="styleSheet">
-              <string notr="true">QProgressBar {
-    border: 1px solid #f1f1f1;  /* Почти белый рамки */
-    background: white;  /* Белый фон */
-    border-radius: 5px;  /* Скругление углов */
-    text-align: center;  /* Центровка текста */
-}
-
-QProgressBar::chunk {
-    background: yellow;  /* Жёлтая заполненная часть */
-    border-radius: 4px;  /* Скругление углов */
-}
-</string>
-             </property>
              <property name="value">
               <number>24</number>
              </property>
             </widget>
            </item>
            <item row="7" column="2">
-            <widget class="QLabel" name="label_19">
+            <widget class="QLabel" name="Ulabel">
              <property name="text">
-              <string>A</string>
+              <string>U</string>
              </property>
             </widget>
            </item>
            <item row="7" column="3">
             <widget class="QProgressBar" name="progressBar_15">
-             <property name="styleSheet">
-              <string notr="true">QProgressBar {
-    border: 1px solid #f1f1f1;  /* Почти белый рамки */
-    background: white;  /* Белый фон */
-    border-radius: 5px;  /* Скругление углов */
-    text-align: center;  /* Центровка текста */
-}
-
-QProgressBar::chunk {
-    background: yellow;  /* Жёлтая заполненная часть */
-    border-radius: 4px;  /* Скругление углов */
-}
-</string>
-             </property>
              <property name="value">
               <number>24</number>
              </property>
             </widget>
            </item>
            <item row="8" column="0">
-            <widget class="QLabel" name="label_10">
+            <widget class="QLabel" name="Ilabel">
              <property name="text">
-              <string>A</string>
+              <string>I</string>
              </property>
             </widget>
            </item>
            <item row="8" column="1">
             <widget class="QProgressBar" name="progressBar_20">
-             <property name="styleSheet">
-              <string notr="true">QProgressBar {
-    border: 1px solid #f1f1f1;  /* Почти белый рамки */
-    background: white;  /* Белый фон */
-    border-radius: 5px;  /* Скругление углов */
-    text-align: center;  /* Центровка текста */
-}
-
-QProgressBar::chunk {
-    background: yellow;  /* Жёлтая заполненная часть */
-    border-radius: 4px;  /* Скругление углов */
-}
-</string>
-             </property>
              <property name="value">
               <number>24</number>
              </property>
             </widget>
            </item>
            <item row="8" column="2">
-            <widget class="QLabel" name="label_26">
+            <widget class="QLabel" name="Vlabel">
              <property name="text">
-              <string>A</string>
+              <string>V</string>
              </property>
             </widget>
            </item>
            <item row="8" column="3">
             <widget class="QProgressBar" name="progressBar_26">
-             <property name="styleSheet">
-              <string notr="true">QProgressBar {
-    border: 1px solid #f1f1f1;  /* Почти белый рамки */
-    background: white;  /* Белый фон */
-    border-radius: 5px;  /* Скругление углов */
-    text-align: center;  /* Центровка текста */
-}
-
-QProgressBar::chunk {
-    background: yellow;  /* Жёлтая заполненная часть */
-    border-radius: 4px;  /* Скругление углов */
-}
-</string>
-             </property>
              <property name="value">
               <number>24</number>
              </property>
             </widget>
            </item>
            <item row="9" column="0">
-            <widget class="QLabel" name="label_9">
+            <widget class="QLabel" name="Jlabel">
              <property name="text">
-              <string>A</string>
+              <string>J</string>
              </property>
             </widget>
            </item>
            <item row="9" column="1">
             <widget class="QProgressBar" name="progressBar_21">
-             <property name="styleSheet">
-              <string notr="true">QProgressBar {
-    border: 1px solid #f1f1f1;  /* Почти белый рамки */
-    background: white;  /* Белый фон */
-    border-radius: 5px;  /* Скругление углов */
-    text-align: center;  /* Центровка текста */
-}
-
-QProgressBar::chunk {
-    background: yellow;  /* Жёлтая заполненная часть */
-    border-radius: 4px;  /* Скругление углов */
-}
-</string>
-             </property>
              <property name="value">
               <number>24</number>
              </property>
             </widget>
            </item>
            <item row="9" column="2">
-            <widget class="QLabel" name="label_24">
+            <widget class="QLabel" name="Wlabel">
              <property name="text">
-              <string>A</string>
+              <string>W</string>
              </property>
             </widget>
            </item>
            <item row="9" column="3">
             <widget class="QProgressBar" name="progressBar_23">
-             <property name="styleSheet">
-              <string notr="true">QProgressBar {
-    border: 1px solid #f1f1f1;  /* Почти белый рамки */
-    background: white;  /* Белый фон */
-    border-radius: 5px;  /* Скругление углов */
-    text-align: center;  /* Центровка текста */
-}
-
-QProgressBar::chunk {
-    background: yellow;  /* Жёлтая заполненная часть */
-    border-radius: 4px;  /* Скругление углов */
-}
-</string>
-             </property>
              <property name="value">
               <number>24</number>
              </property>
             </widget>
            </item>
            <item row="10" column="0">
-            <widget class="QLabel" name="label_12">
+            <widget class="QLabel" name="Klabel">
              <property name="text">
-              <string>A</string>
+              <string>K</string>
              </property>
             </widget>
            </item>
            <item row="10" column="1">
             <widget class="QProgressBar" name="progressBar_19">
-             <property name="styleSheet">
-              <string notr="true">QProgressBar {
-    border: 1px solid #f1f1f1;  /* Почти белый рамки */
-    background: white;  /* Белый фон */
-    border-radius: 5px;  /* Скругление углов */
-    text-align: center;  /* Центровка текста */
-}
-
-QProgressBar::chunk {
-    background: yellow;  /* Жёлтая заполненная часть */
-    border-radius: 4px;  /* Скругление углов */
-}
-</string>
-             </property>
              <property name="value">
               <number>24</number>
              </property>
             </widget>
            </item>
            <item row="10" column="2">
-            <widget class="QLabel" name="label_15">
+            <widget class="QLabel" name="Xlabel">
              <property name="text">
-              <string>A</string>
+              <string>X</string>
              </property>
             </widget>
            </item>
            <item row="10" column="3">
             <widget class="QProgressBar" name="progressBar_22">
-             <property name="styleSheet">
-              <string notr="true">QProgressBar {
-    border: 1px solid #f1f1f1;  /* Почти белый рамки */
-    background: white;  /* Белый фон */
-    border-radius: 5px;  /* Скругление углов */
-    text-align: center;  /* Центровка текста */
-}
-
-QProgressBar::chunk {
-    background: yellow;  /* Жёлтая заполненная часть */
-    border-radius: 4px;  /* Скругление углов */
-}
-</string>
-             </property>
              <property name="value">
               <number>24</number>
              </property>
             </widget>
            </item>
            <item row="11" column="0">
-            <widget class="QLabel" name="label_11">
+            <widget class="QLabel" name="Llabel">
              <property name="text">
-              <string>A</string>
+              <string>L</string>
              </property>
             </widget>
            </item>
            <item row="11" column="1">
             <widget class="QProgressBar" name="progressBar_18">
-             <property name="styleSheet">
-              <string notr="true">QProgressBar {
-    border: 1px solid #f1f1f1;  /* Почти белый рамки */
-    background: white;  /* Белый фон */
-    border-radius: 5px;  /* Скругление углов */
-    text-align: center;  /* Центровка текста */
-}
-
-QProgressBar::chunk {
-    background: yellow;  /* Жёлтая заполненная часть */
-    border-radius: 4px;  /* Скругление углов */
-}
-</string>
-             </property>
              <property name="value">
               <number>24</number>
              </property>
             </widget>
            </item>
            <item row="11" column="2">
-            <widget class="QLabel" name="label_20">
+            <widget class="QLabel" name="Ylabel">
              <property name="text">
-              <string>A</string>
+              <string>Y</string>
              </property>
             </widget>
            </item>
            <item row="11" column="3">
             <widget class="QProgressBar" name="progressBar_24">
-             <property name="styleSheet">
-              <string notr="true">QProgressBar {
-    border: 1px solid #f1f1f1;  /* Почти белый рамки */
-    background: white;  /* Белый фон */
-    border-radius: 5px;  /* Скругление углов */
-    text-align: center;  /* Центровка текста */
-}
-
-QProgressBar::chunk {
-    background: yellow;  /* Жёлтая заполненная часть */
-    border-radius: 4px;  /* Скругление углов */
-}
-</string>
-             </property>
              <property name="value">
               <number>24</number>
              </property>
             </widget>
            </item>
            <item row="12" column="0">
-            <widget class="QLabel" name="label_13">
+            <widget class="QLabel" name="Mlabel">
              <property name="text">
-              <string>A</string>
+              <string>M</string>
              </property>
             </widget>
            </item>
            <item row="12" column="1">
             <widget class="QProgressBar" name="progressBar_17">
-             <property name="styleSheet">
-              <string notr="true">QProgressBar {
-    border: 1px solid #f1f1f1;  /* Почти белый рамки */
-    background: white;  /* Белый фон */
-    border-radius: 5px;  /* Скругление углов */
-    text-align: center;  /* Центровка текста */
-}
-
-QProgressBar::chunk {
-    background: yellow;  /* Жёлтая заполненная часть */
-    border-radius: 4px;  /* Скругление углов */
-}
-</string>
-             </property>
              <property name="value">
               <number>24</number>
              </property>
             </widget>
            </item>
            <item row="12" column="2">
-            <widget class="QLabel" name="label_23">
+            <widget class="QLabel" name="Zlabel">
              <property name="text">
-              <string>A</string>
+              <string>Z</string>
              </property>
             </widget>
            </item>
            <item row="12" column="3">
             <widget class="QProgressBar" name="progressBar_25">
-             <property name="styleSheet">
-              <string notr="true">QProgressBar {
-    border: 1px solid #f1f1f1;  /* Почти белый рамки */
-    background: white;  /* Белый фон */
-    border-radius: 5px;  /* Скругление углов */
-    text-align: center;  /* Центровка текста */
-}
-
-QProgressBar::chunk {
-    background: yellow;  /* Жёлтая заполненная часть */
-    border-radius: 4px;  /* Скругление углов */
-}
-</string>
-             </property>
              <property name="value">
               <number>24</number>
              </property>
@@ -964,26 +752,49 @@ QProgressBar::chunk {
           </layout>
          </widget>
         </widget>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QWidget" name="">
          <property name="geometry">
           <rect>
-           <x>80</x>
-           <y>330</y>
-           <width>121</width>
-           <height>31</height>
+           <x>11</x>
+           <y>11</y>
+           <width>321</width>
+           <height>481</height>
           </rect>
          </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-    background-color: blue;
-    color: white;
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <widget class="QGroupBox" name="groupBox_5">
+            <property name="styleSheet">
+             <string notr="true">QGroupBox {
+    border: 1px solid #f1f1f1;
     border-radius: 5px;
+    margin-top: 1ex;
 }
 </string>
-         </property>
-         <property name="text">
-          <string>Import Image</string>
-         </property>
+            </property>
+            <property name="title">
+             <string>Paint</string>
+            </property>
+            <widget class="PaintScene" name="paintwidget" native="true">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>30</y>
+               <width>319</width>
+               <height>428</height>
+              </rect>
+             </property>
+            </widget>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton">
+            <property name="text">
+             <string>Import Image</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </widget>
        </widget>
        <widget class="QWidget" name="learning">
@@ -1013,7 +824,7 @@ QProgressBar::chunk {
             <property name="title">
              <string>GroupBox</string>
             </property>
-            <widget class="QWidget" name="">
+            <widget class="QWidget" name="layoutWidget">
              <property name="geometry">
               <rect>
                <x>10</x>
@@ -1025,13 +836,6 @@ QProgressBar::chunk {
              <layout class="QVBoxLayout" name="verticalLayout_2">
               <item>
                <widget class="QLabel" name="HIddenLayersLabel">
-                <property name="styleSheet">
-                 <string notr="true">QLabel {
-    color: #333333; /* Тёмно-серый для хорошего контраста на белом фоне */
-    font: 14px &quot;Arial&quot;; /* Простой и чистый шрифт */
-}
-</string>
-                </property>
                 <property name="text">
                  <string>HIddenLayers</string>
                 </property>
@@ -1042,13 +846,6 @@ QProgressBar::chunk {
               </item>
               <item>
                <widget class="QLabel" name="EpochLabel">
-                <property name="styleSheet">
-                 <string notr="true">QLabel {
-    color: #333333; /* Тёмно-серый для хорошего контраста на белом фоне */
-    font: 14px &quot;Arial&quot;; /* Простой и чистый шрифт */
-}
-</string>
-                </property>
                 <property name="text">
                  <string>Epoch</string>
                 </property>
@@ -1059,13 +856,6 @@ QProgressBar::chunk {
               </item>
               <item>
                <widget class="QLabel" name="FoldCountlabel">
-                <property name="styleSheet">
-                 <string notr="true">QLabel {
-    color: #333333; /* Тёмно-серый для хорошего контраста на белом фоне */
-    font: 14px &quot;Arial&quot;; /* Простой и чистый шрифт */
-}
-</string>
-                </property>
                 <property name="text">
                  <string>Foldcount</string>
                 </property>
@@ -1076,13 +866,6 @@ QProgressBar::chunk {
               </item>
               <item>
                <widget class="QLabel" name="LearningRateLabel">
-                <property name="styleSheet">
-                 <string notr="true">QLabel {
-    color: #333333; /* Тёмно-серый для хорошего контраста на белом фоне */
-    font: 14px &quot;Arial&quot;; /* Простой и чистый шрифт */
-}
-</string>
-                </property>
                 <property name="text">
                  <string>Learningrate</string>
                 </property>
@@ -1093,29 +876,13 @@ QProgressBar::chunk {
               </item>
               <item>
                <widget class="QLabel" name="Type">
-                <property name="styleSheet">
-                 <string notr="true">QLabel {
-    color: #333333; /* Тёмно-серый для хорошего контраста на белом фоне */
-    font: 14px &quot;Arial&quot;; /* Простой и чистый шрифт */
-}
-</string>
-                </property>
                 <property name="text">
                  <string>Type</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QComboBox" name="TypecomboBox">
-                <property name="styleSheet">
-                 <string notr="true">QComboBox {
-    border: 1px solid #f1f1f1;
-    border-radius: 3px;
-    background: white;
-}
-</string>
-                </property>
-               </widget>
+               <widget class="QComboBox" name="TypecomboBox"/>
               </item>
              </layout>
             </widget>
@@ -1153,11 +920,6 @@ QProgressBar::chunk {
           </item>
           <item row="2" column="0">
            <widget class="QPushButton" name="Learnbutton">
-            <property name="styleSheet">
-             <string notr="true">* {
-    color: black;  /* Черный текст для всех элементов */
-}</string>
-            </property>
             <property name="text">
              <string>Start</string>
             </property>
@@ -1245,7 +1007,7 @@ QProgressBar::chunk {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>918</width>
+     <width>908</width>
      <height>22</height>
     </rect>
    </property>
