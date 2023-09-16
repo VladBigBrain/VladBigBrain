@@ -45,7 +45,7 @@
          <property name="title">
           <string>Options</string>
          </property>
-         <widget class="QWidget" name="">
+         <widget class="QWidget" name="layoutWidget">
           <property name="geometry">
            <rect>
             <x>10</x>
@@ -105,7 +105,7 @@
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
-          <widget class="QWidget" name="">
+          <widget class="QWidget" name="layoutWidget">
            <layout class="QGridLayout" name="gridLayout_7">
             <item row="0" column="0">
              <widget class="QLabel" name="FileLabel">
@@ -165,17 +165,17 @@
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="">
+          <widget class="QWidget" name="layoutWidget">
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
-             <widget class="QPushButton" name="pushButton_2">
+             <widget class="QPushButton" name="ImportWeightsButton">
               <property name="text">
                <string>Import</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_4">
+             <widget class="QPushButton" name="ExportWeights">
               <property name="text">
                <string>Export</string>
               </property>
@@ -202,16 +202,16 @@
          <widget class="QSplitter" name="splitter_2">
           <property name="geometry">
            <rect>
-            <x>10</x>
-            <y>40</y>
-            <width>161</width>
-            <height>121</height>
+            <x>0</x>
+            <y>30</y>
+            <width>171</width>
+            <height>81</height>
            </rect>
           </property>
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
-          <widget class="QWidget" name="">
+          <widget class="QWidget" name="layoutWidget">
            <layout class="QGridLayout" name="gridLayout_8">
             <item row="0" column="0">
              <widget class="QLabel" name="fileleraninglabel">
@@ -264,7 +264,7 @@
          <property name="title">
           <string>Testing</string>
          </property>
-         <widget class="QWidget" name="">
+         <widget class="QWidget" name="layoutWidget">
           <property name="geometry">
            <rect>
             <x>10</x>
@@ -275,41 +275,49 @@
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
            <item>
-            <layout class="QGridLayout" name="gridLayout_9">
-             <item row="0" column="0">
-              <widget class="QLabel" name="FileLabelTesting">
-               <property name="text">
-                <string>File</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <widget class="QLabel" name="FileLabelTestingresult">
-               <property name="text">
-                <string>n/a</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <widget class="QLabel" name="SizeLabelTesting">
-               <property name="text">
-                <string>Size</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="1">
-              <widget class="QLabel" name="SizeLabelTestingResult">
-               <property name="text">
-                <string>n/a</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item>
             <widget class="QPushButton" name="Testingimportbutton">
              <property name="text">
               <string>Import</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>159</width>
+            <height>68</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_9">
+           <item row="0" column="0">
+            <widget class="QLabel" name="FileLabelTesting">
+             <property name="text">
+              <string>File</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="FileLabelTestingresult">
+             <property name="text">
+              <string>n/a</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="SizeLabelTesting">
+             <property name="text">
+              <string>Size</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLabel" name="SizeLabelTestingResult">
+             <property name="text">
+              <string>n/a</string>
              </property>
             </widget>
            </item>
@@ -320,7 +328,7 @@
       </layout>
      </item>
      <item row="0" column="1">
-      <widget class="QTabWidget" name="tabWidget">
+      <widget class="QTabWidget" name="ControlWidget">
        <property name="styleSheet">
         <string notr="true">QTabWidget::pane {
     border-top: 1px solid #f1f1f1;
@@ -328,7 +336,7 @@
 </string>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="recognition">
         <attribute name="title">
@@ -381,7 +389,7 @@
             <x>10</x>
             <y>37</y>
             <width>311</width>
-            <height>241</height>
+            <height>332</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_5">
@@ -752,7 +760,7 @@
           </layout>
          </widget>
         </widget>
-        <widget class="QWidget" name="">
+        <widget class="QWidget" name="layoutWidget">
          <property name="geometry">
           <rect>
            <x>11</x>
@@ -761,7 +769,7 @@
            <height>481</height>
           </rect>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_3">
+         <layout class="QVBoxLayout" name="ImageLayout">
           <item>
            <widget class="QGroupBox" name="PaintBox">
             <property name="styleSheet">
@@ -812,7 +820,7 @@
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
           <item row="0" column="0" rowspan="2">
-           <widget class="QGroupBox" name="groupBox_7">
+           <widget class="QGroupBox" name="OptionBox">
             <property name="styleSheet">
              <string notr="true">QGroupBox {
     border: 1px solid #f1f1f1;
@@ -822,7 +830,7 @@
 </string>
             </property>
             <property name="title">
-             <string>GroupBox</string>
+             <string>Options</string>
             </property>
             <widget class="QWidget" name="layoutWidget">
              <property name="geometry">
@@ -882,14 +890,25 @@
                </widget>
               </item>
               <item>
-               <widget class="QComboBox" name="TypecomboBox"/>
+               <widget class="QComboBox" name="TypecomboBox">
+                <item>
+                 <property name="text">
+                  <string>Default</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Cross Validation</string>
+                 </property>
+                </item>
+               </widget>
               </item>
              </layout>
             </widget>
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QGroupBox" name="groupBox_10">
+           <widget class="QGroupBox" name="ProgressBox">
             <property name="styleSheet">
              <string notr="true">QGroupBox {
     border: 1px solid #f1f1f1;
@@ -899,12 +918,38 @@
 </string>
             </property>
             <property name="title">
-             <string>GroupBox</string>
+             <string>Progress</string>
             </property>
+            <widget class="QWidget" name="">
+             <property name="geometry">
+              <rect>
+               <x>50</x>
+               <y>40</y>
+               <width>191</width>
+               <height>111</height>
+              </rect>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_10">
+              <item row="0" column="0">
+               <widget class="QProgressBar" name="LearningprogressBar">
+                <property name="value">
+                 <number>24</number>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QProgressBar" name="LearningProgress2">
+                <property name="value">
+                 <number>24</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
            </widget>
           </item>
           <item row="1" column="1" rowspan="2">
-           <widget class="QGroupBox" name="groupBox_11">
+           <widget class="QGroupBox" name="Resultbox">
             <property name="styleSheet">
              <string notr="true">QGroupBox {
     border: 1px solid #f1f1f1;
@@ -914,7 +959,7 @@
 </string>
             </property>
             <property name="title">
-             <string>GroupBox</string>
+             <string>Result</string>
             </property>
            </widget>
           </item>
@@ -943,7 +988,7 @@
          </property>
          <layout class="QGridLayout" name="gridLayout_3">
           <item row="0" column="0" rowspan="2">
-           <widget class="QGroupBox" name="groupBox_12">
+           <widget class="QGroupBox" name="Optionstestingbox">
             <property name="styleSheet">
              <string notr="true">QGroupBox {
     border: 1px solid #f1f1f1;
@@ -953,12 +998,35 @@
 </string>
             </property>
             <property name="title">
-             <string>GroupBox</string>
+             <string>Options</string>
             </property>
+            <widget class="QDoubleSpinBox" name="SimpleRateSpinbox">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>80</y>
+               <width>131</width>
+               <height>21</height>
+              </rect>
+             </property>
+            </widget>
+            <widget class="QLabel" name="Simpleratelabel">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>50</y>
+               <width>111</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Simple Rate</string>
+             </property>
+            </widget>
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QGroupBox" name="groupBox_13">
+           <widget class="QGroupBox" name="Progressbox">
             <property name="styleSheet">
              <string notr="true">QGroupBox {
     border: 1px solid #f1f1f1;
@@ -968,12 +1036,32 @@
 </string>
             </property>
             <property name="title">
-             <string>GroupBox</string>
+             <string>Progress</string>
+            </property>
+            <widget class="QProgressBar" name="TestprogressBar">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>60</y>
+               <width>118</width>
+               <height>23</height>
+              </rect>
+             </property>
+             <property name="value">
+              <number>24</number>
+             </property>
+            </widget>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QPushButton" name="StartTestingButton">
+            <property name="text">
+             <string>Start</string>
             </property>
            </widget>
           </item>
           <item row="1" column="1" rowspan="2">
-           <widget class="QGroupBox" name="groupBox_14">
+           <widget class="QGroupBox" name="Result">
             <property name="styleSheet">
              <string notr="true">QGroupBox {
     border: 1px solid #f1f1f1;
@@ -983,15 +1071,90 @@
 </string>
             </property>
             <property name="title">
-             <string>GroupBox</string>
+             <string>Result</string>
             </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QPushButton" name="pushButton_3">
-            <property name="text">
-             <string>PushButton</string>
-            </property>
+            <widget class="QWidget" name="">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>40</y>
+               <width>261</width>
+               <height>181</height>
+              </rect>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_11">
+              <item row="0" column="0">
+               <widget class="QLabel" name="AverageAccuracy">
+                <property name="text">
+                 <string>Average Accuracy</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLabel" name="AverageACResult">
+                <property name="text">
+                 <string>0 %</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="Precion">
+                <property name="text">
+                 <string>Precion</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLabel" name="PrecionResult">
+                <property name="text">
+                 <string>0 %</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="Recall">
+                <property name="text">
+                 <string>Recall</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QLabel" name="Recallall">
+                <property name="text">
+                 <string>0 %</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="FMeasure">
+                <property name="text">
+                 <string>F-measure</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QLabel" name="FMeasureResult">
+                <property name="text">
+                 <string>0 %</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QLabel" name="Time">
+                <property name="text">
+                 <string>Time</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1">
+               <widget class="QLabel" name="TimeResult">
+                <property name="text">
+                 <string>0 sec</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
            </widget>
           </item>
          </layout>
