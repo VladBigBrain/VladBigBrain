@@ -334,7 +334,7 @@
         <attribute name="title">
          <string>Recognition</string>
         </attribute>
-        <widget class="QGroupBox" name="groupBox_6">
+        <widget class="QGroupBox" name="ResultBox">
          <property name="geometry">
           <rect>
            <x>359</x>
@@ -355,7 +355,7 @@
           <string>Result</string>
          </property>
         </widget>
-        <widget class="QGroupBox" name="groupBox_8">
+        <widget class="QGroupBox" name="VisualizationBox">
          <property name="geometry">
           <rect>
            <x>359</x>
@@ -393,7 +393,7 @@
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QProgressBar" name="progressBar">
+            <widget class="QProgressBar" name="AprogressBar">
              <property name="value">
               <number>24</number>
              </property>
@@ -407,7 +407,7 @@
             </widget>
            </item>
            <item row="0" column="3">
-            <widget class="QProgressBar" name="progressBar_13">
+            <widget class="QProgressBar" name="NprogressBar">
              <property name="value">
               <number>24</number>
              </property>
@@ -421,7 +421,7 @@
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QProgressBar" name="progressBar_2">
+            <widget class="QProgressBar" name="BprogressBar">
              <property name="value">
               <number>24</number>
              </property>
@@ -435,7 +435,7 @@
             </widget>
            </item>
            <item row="1" column="3">
-            <widget class="QProgressBar" name="progressBar_14">
+            <widget class="QProgressBar" name="OprogressBar">
              <property name="value">
               <number>24</number>
              </property>
@@ -449,7 +449,7 @@
             </widget>
            </item>
            <item row="2" column="1">
-            <widget class="QProgressBar" name="progressBar_3">
+            <widget class="QProgressBar" name="CprogressBar">
              <property name="value">
               <number>24</number>
              </property>
@@ -463,7 +463,7 @@
             </widget>
            </item>
            <item row="2" column="3">
-            <widget class="QProgressBar" name="progressBar_12">
+            <widget class="QProgressBar" name="PprogressBar">
              <property name="value">
               <number>24</number>
              </property>
@@ -477,7 +477,7 @@
             </widget>
            </item>
            <item row="3" column="1">
-            <widget class="QProgressBar" name="progressBar_4">
+            <widget class="QProgressBar" name="DprogressBar">
              <property name="value">
               <number>24</number>
              </property>
@@ -491,7 +491,7 @@
             </widget>
            </item>
            <item row="3" column="3">
-            <widget class="QProgressBar" name="progressBar_10">
+            <widget class="QProgressBar" name="QprogressBar">
              <property name="value">
               <number>24</number>
              </property>
@@ -505,7 +505,7 @@
             </widget>
            </item>
            <item row="4" column="1">
-            <widget class="QProgressBar" name="progressBar_7">
+            <widget class="QProgressBar" name="EprogressBar">
              <property name="value">
               <number>24</number>
              </property>
@@ -519,7 +519,7 @@
             </widget>
            </item>
            <item row="4" column="3">
-            <widget class="QProgressBar" name="progressBar_9">
+            <widget class="QProgressBar" name="RprogressBar">
              <property name="value">
               <number>24</number>
              </property>
@@ -533,7 +533,7 @@
             </widget>
            </item>
            <item row="5" column="1">
-            <widget class="QProgressBar" name="progressBar_8">
+            <widget class="QProgressBar" name="FprogressBar">
              <property name="value">
               <number>24</number>
              </property>
@@ -547,7 +547,7 @@
             </widget>
            </item>
            <item row="5" column="3">
-            <widget class="QProgressBar" name="progressBar_11">
+            <widget class="QProgressBar" name="SprogressBar">
              <property name="value">
               <number>24</number>
              </property>
@@ -561,7 +561,7 @@
             </widget>
            </item>
            <item row="6" column="1">
-            <widget class="QProgressBar" name="progressBar_6">
+            <widget class="QProgressBar" name="GprogressBar">
              <property name="value">
               <number>24</number>
              </property>
@@ -575,7 +575,7 @@
             </widget>
            </item>
            <item row="6" column="3">
-            <widget class="QProgressBar" name="progressBar_16">
+            <widget class="QProgressBar" name="TprogressBar">
              <property name="value">
               <number>24</number>
              </property>
@@ -589,7 +589,7 @@
             </widget>
            </item>
            <item row="7" column="1">
-            <widget class="QProgressBar" name="progressBar_5">
+            <widget class="QProgressBar" name="HprogressBar">
              <property name="value">
               <number>24</number>
              </property>
@@ -603,7 +603,7 @@
             </widget>
            </item>
            <item row="7" column="3">
-            <widget class="QProgressBar" name="progressBar_15">
+            <widget class="QProgressBar" name="UprogressBar">
              <property name="value">
               <number>24</number>
              </property>
@@ -617,7 +617,7 @@
             </widget>
            </item>
            <item row="8" column="1">
-            <widget class="QProgressBar" name="progressBar_20">
+            <widget class="QProgressBar" name="IprogressBar">
              <property name="value">
               <number>24</number>
              </property>
@@ -631,7 +631,7 @@
             </widget>
            </item>
            <item row="8" column="3">
-            <widget class="QProgressBar" name="progressBar_26">
+            <widget class="QProgressBar" name="VprogressBar">
              <property name="value">
               <number>24</number>
              </property>
@@ -645,7 +645,7 @@
             </widget>
            </item>
            <item row="9" column="1">
-            <widget class="QProgressBar" name="progressBar_21">
+            <widget class="QProgressBar" name="JprogressBar">
              <property name="value">
               <number>24</number>
              </property>
@@ -659,7 +659,7 @@
             </widget>
            </item>
            <item row="9" column="3">
-            <widget class="QProgressBar" name="progressBar_23">
+            <widget class="QProgressBar" name="WprogressBar">
              <property name="value">
               <number>24</number>
              </property>
@@ -673,7 +673,7 @@
             </widget>
            </item>
            <item row="10" column="1">
-            <widget class="QProgressBar" name="progressBar_19">
+            <widget class="QProgressBar" name="progressBarK">
              <property name="value">
               <number>24</number>
              </property>
@@ -687,7 +687,7 @@
             </widget>
            </item>
            <item row="10" column="3">
-            <widget class="QProgressBar" name="progressBar_22">
+            <widget class="QProgressBar" name="XprogressBar">
              <property name="value">
               <number>24</number>
              </property>
@@ -701,7 +701,7 @@
             </widget>
            </item>
            <item row="11" column="1">
-            <widget class="QProgressBar" name="progressBar_18">
+            <widget class="QProgressBar" name="LprogressBar">
              <property name="value">
               <number>24</number>
              </property>
@@ -715,7 +715,7 @@
             </widget>
            </item>
            <item row="11" column="3">
-            <widget class="QProgressBar" name="progressBar_24">
+            <widget class="QProgressBar" name="YprogressBar">
              <property name="value">
               <number>24</number>
              </property>
@@ -729,7 +729,7 @@
             </widget>
            </item>
            <item row="12" column="1">
-            <widget class="QProgressBar" name="progressBar_17">
+            <widget class="QProgressBar" name="MprogressBar">
              <property name="value">
               <number>24</number>
              </property>
@@ -743,7 +743,7 @@
             </widget>
            </item>
            <item row="12" column="3">
-            <widget class="QProgressBar" name="progressBar_25">
+            <widget class="QProgressBar" name="ZprogressBar">
              <property name="value">
               <number>24</number>
              </property>
@@ -763,7 +763,7 @@
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_3">
           <item>
-           <widget class="QGroupBox" name="groupBox_5">
+           <widget class="QGroupBox" name="PaintBox">
             <property name="styleSheet">
              <string notr="true">QGroupBox {
     border: 1px solid #f1f1f1;
@@ -788,7 +788,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="ImportIMageButton">
             <property name="text">
              <string>Import Image</string>
             </property>
