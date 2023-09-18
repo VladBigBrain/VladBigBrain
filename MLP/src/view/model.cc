@@ -6,8 +6,7 @@ void Model::StartLearn() {
       "emnist-letters-train.csv");
 
   for (auto &i : parsedatas) {
-    std::cerr << "i'm Leraning;" << std::endl;
-    network_.Train(1, i.input, i.correct_vector);
+    network_.Train(3, i.input, i.correct_vector);
   }
 }
 
