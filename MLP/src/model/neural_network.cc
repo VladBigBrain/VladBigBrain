@@ -52,16 +52,16 @@ auto NeuralNetwork::BackPropagation(const Eigen::VectorXd &inputs,
       weightdelta * layers_[layers_.size() - 2].GetOutputNeurons().transpose() *
           learningRate;
 
-  // вычисление ошибки предыдущего слоя 
-  auto errorfirst = layers_.back().GetWeights().transpose() * error;
-  
-  auto next = layers_[layers_.size() - 2].GetWeights();
+  // вычисление ошибки предыдущего слоя
+  Eigen::VectorXd errorfirst = layers_.back().GetWeights().transpose() * error;
+  // next
 
-  // std::cout << "newweight = " << std::endl << newweight << std::endl;
-  // for (auto i = layers_.size() - 2; i > 0; --i) {
-  //   std::cerr << "i = " << i << " " << std::endl;
-  //   previous = layers_[i].BackPropagation(previous, learningRate);
-  // }
+  std::cout << "newweight = " << std::endl << newweight << std::endl;
+  for (auto i = layers_.size() - 2; i > 0; --i) {
+    std::cerr << "i = " << i << " " << std::endl;
+    errorfirst =
+        layers_[i].BackPropagation(errorfirst, learningRate, layers_[i - 1]);
+  }
 }
 
 auto operator<<(std::ostream &os, const NeuralNetwork &neuralNetwork)

@@ -18,17 +18,18 @@ auto Layer::FeedForward(const Eigen::VectorXd &inputs) -> Eigen::VectorXd {
   return output;
 }
 
-auto Layer::BackPropagation(const Eigen::VectorXd &error, double learningRate)
-    -> Eigen::VectorXd {
-  auto output = GetOutputNeurons();
-  std::cerr << "i bulded output " << std::endl;
-  Eigen::VectorXd gradient = BuildGradientMatrix(error);
-  std::cerr << "i builded gradient" << std::endl;
-  weights_ -= learningRate * gradient * output.transpose();
-  std::cerr << "i did mul" << std::endl;
-  Eigen::VectorXd new_errors = weights_.transpose() * gradient;
-  std::cerr << "i calc new errors" << std::endl;
-  return new_errors;
+auto Layer::BackPropagation(const Eigen::VectorXd &error, double learningRate,
+                            Layer &layer) -> Eigen::VectorXd {
+  Eigen::VectorXd weightdelta = error.array() * GetDerivativeVector().array();
+
+  // обновление весов
+  auto newweight = weights_ - weightdelta *
+                                  layer.GetOutputNeurons().transpose() *
+                                  learningRate;
+
+  // вычисление ошибки предыдущего слоя
+  auto errorfirst = weights_.transpose() * error;
+  return errorfirst;
 }
 
 auto Layer::GetOutputNeurons() -> Eigen::VectorXd {

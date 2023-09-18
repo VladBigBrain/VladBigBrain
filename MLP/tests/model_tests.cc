@@ -17,7 +17,7 @@ TEST(Test, FeedForward) {
 }
 
 TEST(Test, Back) {
-  s21::NeuralNetwork nn(2, 3, 5);
+  s21::NeuralNetwork nn(2, 120, 5);
   auto inputs = Eigen::RowVectorXd::Random(5);
   auto result = nn.FeedForward(inputs);
   auto temp = Eigen::VectorXd::Zero(26);
