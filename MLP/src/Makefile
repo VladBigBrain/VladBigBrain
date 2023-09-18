@@ -67,7 +67,7 @@ clean: uninstall
 	rm -rf $(P_TBLD_Report)
 
 dvi:
-	texi2dvi docs.texi
+	pdflatex docs.tex
 	rm -f *.toc *.log *.aux *.dvi coverage.info
 
 dist:
