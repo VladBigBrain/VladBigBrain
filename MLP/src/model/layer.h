@@ -19,6 +19,9 @@ class Layer {
   auto BackPropagation(const Eigen::VectorXd& error, double learningRate)
       -> Eigen::VectorXd;
   auto GetDerivativeVector() -> Eigen::VectorXd;
+  auto GetWeights() -> Eigen::MatrixXd { return weights_; }
+  auto GetOutputNeurons() -> Eigen::VectorXd;
+  auto SetWeights(const Eigen::MatrixXd& weights) -> void { weights_ = weights; }
   auto Size() const -> size_t;
   friend auto operator<<(std::ostream& os, const Layer& layer) -> std::ostream&;
 
@@ -26,7 +29,6 @@ class Layer {
   auto BuildGradientMatrix(const Eigen::VectorXd& error) -> Eigen::MatrixXd;
   auto BuildMatrixOfWeights(const std::size_t inputs) -> void;
   auto BuildNeurons(const Eigen::VectorXd& out) -> void;
-  auto BuildOutputNeurons() -> Eigen::VectorXd;
   [[nodiscard]] auto GetNeurons() const -> std::vector<Neuron>;
   std::vector<Neuron> neurons_;
   Eigen::MatrixXd weights_;

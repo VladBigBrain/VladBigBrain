@@ -31,19 +31,30 @@ auto NeuralNetwork::Train(size_t epochs, const Eigen::VectorXd &inputs,
 auto NeuralNetwork::FeedForward(const Eigen::VectorXd &inputs)
     -> Eigen::VectorXd {
   Eigen::VectorXd outputs = inputs;
-  ForEach(layers_, [&](auto &layer) { outputs = layer.FeedForward(outputs); });
+  int i = 0;
+  ForEach(layers_, [&](auto &layer) {
+    // std::cout << "i = " << i++ << std::endl;
+    outputs = layer.FeedForward(outputs);
+  });
   return outputs;
 }
 auto NeuralNetwork::BackPropagation(const Eigen::VectorXd &inputs,
                                     const Eigen::VectorXd &target,
                                     double learningRate) -> void {
   auto error = target - inputs;  // error
-  auto diff = layers_.back().GetDerivativeVector().array() * error.array();
+  auto diff =
+      error.array() * layers_.back().GetDerivativeVector().array();  // 26
+  auto Prelastlayer =
+      layers_[layers_.size() - 2].GetOutputNeurons().transpose();  // 120
   Eigen::VectorXd errors = diff;
-  std::cerr << "Layers size " << layers_.size() << std::endl;
+  auto result = errors * Prelastlayer;
+  auto newweights = layers_.back().GetWeights() - result * learningRate;
+  auto VectorXd = (error.transpose() * layers_.back().GetWeights());
+  layers_.back().SetWeights(newweights);
+  std::cout << previous << std::endl;
   for (auto i = layers_.size() - 2; i > 0; --i) {
     std::cerr << "i = " << i << " " << std::endl;
-    errors = layers_[i].BackPropagation(errors, learningRate);
+    previous = layers_[i].BackPropagation(previous, learningRate);
   }
 }
 
