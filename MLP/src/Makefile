@@ -1,26 +1,51 @@
-#Tests
+# @author  barnards (Barnards Gibbering)
+
+#------------------------------------------------#
+#   INGREDIENTS                                  #
+#------------------------------------------------#
+# NAME					Name of project
+# P_TEST 				Test Directory
+# APP_PATH 				APP Directory PATH
+# INSTALL_DIR 			Install Directory
+# APP 					APP Name
+# P_TBLD_Report 		GcovReport Directory
+# P_TBLD_Tests 			All Tests Directory
+# SOURCES     			Source files
+
+# app
+NAME := MLP
 P_TEST := ../tests
-P_TBLD_Hash := ../tests/HashTableTests
+APP_PATH := ./view
+INSTALL_DIR := ../install
+APP := $(NAME).app
+
+# Tests
 P_TBLD_Report := ../tests/Report
 P_TBLD_Tests := ../tests/Tests
-P_TBLD_MODEL := ../tests/ModelTests
 
-#Targets
-BUILD_DIR_MODEL := ../Model
+#Utils
+SOURCES = $(shell find . \( -name '*.cc' -o -name '*.h' \) ! -path './libraries/*')
 
-.PHONY: install uninstall clean style style-fix cppcheck dvi dist
+
+#------------------------------------------------#
+#   RECIPES                                      #
+#------------------------------------------------#
+# all install
 
 all: install
 
-#app 
+# app 
 install:
+	cmake -S $(APP_PATH) -B $(INSTALL_DIR)
+	cmake --build $(INSTALL_DIR) 
 
 uninstall:
+	rm -rfv $(INSTALL_DIR)
 
-dvi: 
+run:
+	$(INSTALL_DIR)/$(APP)
 
-dist:
-
+# tests
 tests: 
 	cmake -S $(P_TEST) -B $(P_TBLD_Tests)
 	cmake --build $(P_TBLD_Tests) --config Debug --target Model
@@ -30,19 +55,40 @@ coverage:
 	cmake -S $(P_TEST) -B $(P_TBLD_Report)
 	cmake --build $(P_TBLD_Report) --target coverage
 
-#Uttils
-clean:
+# Uttils
+clean: uninstall
 	rm -rf $(P_TBLD)
 	rm -rf /report
 	rm -rf $(BUILD_DIR_MODEL)
 	rm -rf text
 	rm -rf file
+	rm -rf *.tar.gz
 	rm -rf $(P_TBLD_Tests)
+	rm -rf $(P_TBLD_Report)
 
-style:
-	clang-format -n 
-style-fix:
-	clang-format -i 
+dvi:
+	texi2dvi docs.texi
+	rm -f *.toc *.log *.aux *.dvi coverage.info
+
+dist:
+	cp -r $(INSTALL_DIR)/$(APP) ./$(APP)
+	-tar -czvf $(NAME).tar.gz $(APP) */ *.txt Makefile
+	rm -rf $(APP)
+
+linter:
+	clang-format -i -style=google -verbose $(SOURCES)
+	clang-format -n -style=google -verbose $(SOURCES)
 
 cppcheck:
-	cppcheck --language=c++ --std=c++17 --suppress=missingIncludeSystem --suppress=unusedFunction .
+	cppcheck --language=c++ --std=c++17 \
+	--enable=all \
+	--suppress=missingInclude \
+	--suppress=ctuOneDefinitionRuleViolation \
+	$(SOURCES) tests/main.cc
+
+#------------------------------------------------#
+#   SPEC                                         #
+#------------------------------------------------#
+
+.PHONY: clean tests linter cppcheck leaks install uninstall dist dvi
+.SILENT:

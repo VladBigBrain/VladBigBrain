@@ -5,7 +5,7 @@
 PaintScene::PaintScene(QWidget *parent) : QWidget(parent), draw(false) {
 
   QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect();
-  setFixedSize(329, 428); // или любой другой размер
+  setFixedSize(280, 280); // или любой другой размер
 }
 
 void PaintScene::paintEvent(QPaintEvent *event) {

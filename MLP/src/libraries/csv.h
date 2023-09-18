@@ -123,10 +123,10 @@ struct line_length_limit_exceeded : base, with_file_name, with_file_line {
         file_line, file_name);
   }
 };
-} // namespace error
+}  // namespace error
 
 class ByteSourceBase {
-public:
+ public:
   virtual int read(char *buffer, int size) = 0;
   virtual ~ByteSourceBase() {}
 };
@@ -134,7 +134,7 @@ public:
 namespace detail {
 
 class OwningStdIOByteSourceBase : public ByteSourceBase {
-public:
+ public:
   explicit OwningStdIOByteSourceBase(FILE *file) : file(file) {
     // Tell the std library that we want to do the buffering ourself.
     std::setvbuf(file, 0, _IONBF, 0);
@@ -144,12 +144,12 @@ public:
 
   ~OwningStdIOByteSourceBase() { std::fclose(file); }
 
-private:
+ private:
   FILE *file;
 };
 
 class NonOwningIStreamByteSource : public ByteSourceBase {
-public:
+ public:
   explicit NonOwningIStreamByteSource(std::istream &in) : in(in) {}
 
   int read(char *buffer, int size) {
@@ -159,12 +159,12 @@ public:
 
   ~NonOwningIStreamByteSource() {}
 
-private:
+ private:
   std::istream &in;
 };
 
 class NonOwningStringByteSource : public ByteSourceBase {
-public:
+ public:
   NonOwningStringByteSource(const char *str, long long size)
       : str(str), remaining_byte_count(size) {}
 
@@ -180,14 +180,14 @@ public:
 
   ~NonOwningStringByteSource() {}
 
-private:
+ private:
   const char *str;
   long long remaining_byte_count;
 };
 
 #ifndef CSV_IO_NO_THREAD
 class AsynchronousReader {
-public:
+ public:
   void init(std::unique_ptr<ByteSourceBase> arg_byte_source) {
     std::unique_lock<std::mutex> guard(lock);
     byte_source = std::move(arg_byte_source);
@@ -200,13 +200,11 @@ public:
           read_requested_condition.wait(guard, [&] {
             return desired_byte_count != -1 || termination_requested;
           });
-          if (termination_requested)
-            return;
+          if (termination_requested) return;
 
           read_byte_count = byte_source->read(buffer, desired_byte_count);
           desired_byte_count = -1;
-          if (read_byte_count == 0)
-            break;
+          if (read_byte_count == 0) break;
           read_finished_condition.notify_one();
         }
       } catch (...) {
@@ -247,7 +245,7 @@ public:
     }
   }
 
-private:
+ private:
   std::unique_ptr<ByteSourceBase> byte_source;
 
   std::thread worker;
@@ -265,7 +263,7 @@ private:
 #endif
 
 class SynchronousReader {
-public:
+ public:
   void init(std::unique_ptr<ByteSourceBase> arg_byte_source) {
     byte_source = std::move(arg_byte_source);
   }
@@ -279,18 +277,18 @@ public:
 
   int finish_read() { return byte_source->read(buffer, desired_byte_count); }
 
-private:
+ private:
   std::unique_ptr<ByteSourceBase> byte_source;
   char *buffer;
   int desired_byte_count;
 };
-} // namespace detail
+}  // namespace detail
 
 class LineReader {
-private:
+ private:
   static const int block_len = 1 << 20;
-  std::unique_ptr<char[]> buffer; // must be constructed before (and thus
-                                  // destructed after) the reader!
+  std::unique_ptr<char[]> buffer;  // must be constructed before (and thus
+                                   // destructed after) the reader!
 #ifdef CSV_IO_NO_THREAD
   detail::SynchronousReader reader;
 #else
@@ -307,8 +305,8 @@ private:
     // and under Windows we handle \r\n newlines ourself.
     FILE *file = std::fopen(file_name, "rb");
     if (file == 0) {
-      int x = errno; // store errno as soon as possible, doing it after
-                     // constructor call can fail.
+      int x = errno;  // store errno as soon as possible, doing it after
+                      // constructor call can fail.
       error::can_not_open_file err;
       err.set_errno(x);
       err.set_file_name(file_name);
@@ -336,7 +334,7 @@ private:
     }
   }
 
-public:
+ public:
   LineReader() = delete;
   LineReader(const LineReader &) = delete;
   LineReader &operator=(const LineReader &) = delete;
@@ -421,8 +419,7 @@ public:
   unsigned get_file_line() const { return file_line; }
 
   char *next_line() {
-    if (data_begin == data_end)
-      return nullptr;
+    if (data_begin == data_end) return nullptr;
 
     ++file_line;
 
@@ -634,15 +631,16 @@ struct invalid_single_character : base,
         column_content, column_name, file_name, file_line);
   }
 };
-} // namespace error
+}  // namespace error
 
 using ignore_column = unsigned int;
 static const ignore_column ignore_no_column = 0;
 static const ignore_column ignore_extra_column = 1;
 static const ignore_column ignore_missing_column = 2;
 
-template <char... trim_char_list> struct trim_chars {
-private:
+template <char... trim_char_list>
+struct trim_chars {
+ private:
   constexpr static bool is_trim_char(char) { return false; }
 
   template <class... OtherTrimChars>
@@ -651,7 +649,7 @@ private:
     return c == trim_char || is_trim_char(c, other_trim_chars...);
   }
 
-public:
+ public:
   static void trim(char *&str_begin, char *&str_end) {
     while (str_begin != str_end && is_trim_char(*str_begin, trim_char_list...))
       ++str_begin;
@@ -666,19 +664,20 @@ struct no_comment {
   static bool is_comment(const char *) { return false; }
 };
 
-template <char... comment_start_char_list> struct single_line_comment {
-private:
+template <char... comment_start_char_list>
+struct single_line_comment {
+ private:
   constexpr static bool is_comment_start_char(char) { return false; }
 
   template <class... OtherCommentStartChars>
-  constexpr static bool
-  is_comment_start_char(char c, char comment_start_char,
-                        OtherCommentStartChars... other_comment_start_chars) {
+  constexpr static bool is_comment_start_char(
+      char c, char comment_start_char,
+      OtherCommentStartChars... other_comment_start_chars) {
     return c == comment_start_char ||
            is_comment_start_char(c, other_comment_start_chars...);
   }
 
-public:
+ public:
   static bool is_comment(const char *line) {
     return is_comment_start_char(*line, comment_start_char_list...);
   }
@@ -686,12 +685,10 @@ public:
 
 struct empty_line_comment {
   static bool is_comment(const char *line) {
-    if (*line == '\0')
-      return true;
+    if (*line == '\0') return true;
     while (*line == ' ' || *line == '\t') {
       ++line;
-      if (*line == 0)
-        return true;
+      if (*line == 0) return true;
     }
     return false;
   }
@@ -705,17 +702,18 @@ struct single_and_empty_line_comment {
   }
 };
 
-template <char sep> struct no_quote_escape {
+template <char sep>
+struct no_quote_escape {
   static const char *find_next_column_end(const char *col_begin) {
-    while (*col_begin != sep && *col_begin != '\0')
-      ++col_begin;
+    while (*col_begin != sep && *col_begin != '\0') ++col_begin;
     return col_begin;
   }
 
   static void unescape(char *&, char *&) {}
 };
 
-template <char sep, char quote> struct double_quote_escape {
+template <char sep, char quote>
+struct double_quote_escape {
   static const char *find_next_column_end(const char *col_begin) {
     while (*col_begin != sep && *col_begin != '\0')
       if (*col_begin != quote)
@@ -724,8 +722,7 @@ template <char sep, char quote> struct double_quote_escape {
         do {
           ++col_begin;
           while (*col_begin != quote) {
-            if (*col_begin == '\0')
-              throw error::escaped_string_not_closed();
+            if (*col_begin == '\0') throw error::escaped_string_not_closed();
             ++col_begin;
           }
           ++col_begin;
@@ -755,30 +752,36 @@ template <char sep, char quote> struct double_quote_escape {
 };
 
 struct throw_on_overflow {
-  template <class T> static void on_overflow(T &) {
+  template <class T>
+  static void on_overflow(T &) {
     throw error::integer_overflow();
   }
 
-  template <class T> static void on_underflow(T &) {
+  template <class T>
+  static void on_underflow(T &) {
     throw error::integer_underflow();
   }
 };
 
 struct ignore_overflow {
-  template <class T> static void on_overflow(T &) {}
+  template <class T>
+  static void on_overflow(T &) {}
 
-  template <class T> static void on_underflow(T &) {}
+  template <class T>
+  static void on_underflow(T &) {}
 };
 
 struct set_to_max_on_overflow {
-  template <class T> static void on_overflow(T &x) {
+  template <class T>
+  static void on_overflow(T &x) {
     // using (std::numeric_limits<T>::max) instead of
     // std::numeric_limits<T>::max to make code including windows.h with its max
     // macro happy
     x = (std::numeric_limits<T>::max)();
   }
 
-  template <class T> static void on_underflow(T &x) {
+  template <class T>
+  static void on_underflow(T &x) {
     x = (std::numeric_limits<T>::min)();
   }
 };
@@ -805,8 +808,7 @@ template <class trim_policy, class quote_policy>
 void parse_line(char *line, char **sorted_col,
                 const std::vector<int> &col_order) {
   for (int i : col_order) {
-    if (line == nullptr)
-      throw ::io::error::too_few_columns();
+    if (line == nullptr) throw ::io::error::too_few_columns();
     char *col_begin, *col_end;
     chop_next_column<quote_policy>(line, col_begin, col_end);
 
@@ -817,8 +819,7 @@ void parse_line(char *line, char **sorted_col,
       sorted_col[i] = col_begin;
     }
   }
-  if (line != nullptr)
-    throw ::io::error::too_many_columns();
+  if (line != nullptr) throw ::io::error::too_many_columns();
 }
 
 template <unsigned column_count, class trim_policy, class quote_policy>
@@ -869,24 +870,28 @@ void parse_header_line(char *line, std::vector<int> &col_order,
   }
 }
 
-template <class overflow_policy> void parse(char *col, char &x) {
-  if (!*col)
-    throw error::invalid_single_character();
+template <class overflow_policy>
+void parse(char *col, char &x) {
+  if (!*col) throw error::invalid_single_character();
   x = *col;
   ++col;
-  if (*col)
-    throw error::invalid_single_character();
+  if (*col) throw error::invalid_single_character();
 }
 
-template <class overflow_policy> void parse(char *col, std::string &x) {
+template <class overflow_policy>
+void parse(char *col, std::string &x) {
   x = col;
 }
 
-template <class overflow_policy> void parse(char *col, const char *&x) {
+template <class overflow_policy>
+void parse(char *col, const char *&x) {
   x = col;
 }
 
-template <class overflow_policy> void parse(char *col, char *&x) { x = col; }
+template <class overflow_policy>
+void parse(char *col, char *&x) {
+  x = col;
+}
 
 template <class overflow_policy, class T>
 void parse_unsigned_integer(const char *col, T &x) {
@@ -905,19 +910,24 @@ void parse_unsigned_integer(const char *col, T &x) {
   }
 }
 
-template <class overflow_policy> void parse(char *col, unsigned char &x) {
+template <class overflow_policy>
+void parse(char *col, unsigned char &x) {
   parse_unsigned_integer<overflow_policy>(col, x);
 }
-template <class overflow_policy> void parse(char *col, unsigned short &x) {
+template <class overflow_policy>
+void parse(char *col, unsigned short &x) {
   parse_unsigned_integer<overflow_policy>(col, x);
 }
-template <class overflow_policy> void parse(char *col, unsigned int &x) {
+template <class overflow_policy>
+void parse(char *col, unsigned int &x) {
   parse_unsigned_integer<overflow_policy>(col, x);
 }
-template <class overflow_policy> void parse(char *col, unsigned long &x) {
+template <class overflow_policy>
+void parse(char *col, unsigned long &x) {
   parse_unsigned_integer<overflow_policy>(col, x);
 }
-template <class overflow_policy> void parse(char *col, unsigned long long &x) {
+template <class overflow_policy>
+void parse(char *col, unsigned long long &x) {
   parse_unsigned_integer<overflow_policy>(col, x);
 }
 
@@ -945,23 +955,29 @@ void parse_signed_integer(const char *col, T &x) {
   parse_unsigned_integer<overflow_policy>(col, x);
 }
 
-template <class overflow_policy> void parse(char *col, signed char &x) {
+template <class overflow_policy>
+void parse(char *col, signed char &x) {
   parse_signed_integer<overflow_policy>(col, x);
 }
-template <class overflow_policy> void parse(char *col, signed short &x) {
+template <class overflow_policy>
+void parse(char *col, signed short &x) {
   parse_signed_integer<overflow_policy>(col, x);
 }
-template <class overflow_policy> void parse(char *col, signed int &x) {
+template <class overflow_policy>
+void parse(char *col, signed int &x) {
   parse_signed_integer<overflow_policy>(col, x);
 }
-template <class overflow_policy> void parse(char *col, signed long &x) {
+template <class overflow_policy>
+void parse(char *col, signed long &x) {
   parse_signed_integer<overflow_policy>(col, x);
 }
-template <class overflow_policy> void parse(char *col, signed long long &x) {
+template <class overflow_policy>
+void parse(char *col, signed long long &x) {
   parse_signed_integer<overflow_policy>(col, x);
 }
 
-template <class T> void parse_float(const char *col, T &x) {
+template <class T>
+void parse_float(const char *col, T &x) {
   bool is_neg = false;
   if (*col == '-') {
     is_neg = true;
@@ -1015,25 +1031,27 @@ template <class T> void parse_float(const char *col, T &x) {
       x *= base;
     }
   } else {
-    if (*col != '\0')
-      throw error::no_digit();
+    if (*col != '\0') throw error::no_digit();
   }
 
-  if (is_neg)
-    x = -x;
+  if (is_neg) x = -x;
 }
 
-template <class overflow_policy> void parse(char *col, float &x) {
+template <class overflow_policy>
+void parse(char *col, float &x) {
   parse_float(col, x);
 }
-template <class overflow_policy> void parse(char *col, double &x) {
+template <class overflow_policy>
+void parse(char *col, double &x) {
   parse_float(col, x);
 }
-template <class overflow_policy> void parse(char *col, long double &x) {
+template <class overflow_policy>
+void parse(char *col, long double &x) {
   parse_float(col, x);
 }
 
-template <class overflow_policy, class T> void parse(char *col, T &x) {
+template <class overflow_policy, class T>
+void parse(char *col, T &x) {
   // Mute unused variable compiler warning
   (void)col;
   (void)x;
@@ -1045,14 +1063,14 @@ template <class overflow_policy, class T> void parse(char *col, T &x) {
                 "char, char*, const char* and std::string are supported");
 }
 
-} // namespace detail
+}  // namespace detail
 
 template <unsigned column_count, class trim_policy = trim_chars<' ', '\t'>,
           class quote_policy = no_quote_escape<','>,
           class overflow_policy = throw_on_overflow,
           class comment_policy = no_comment>
 class CSVReader {
-private:
+ private:
   LineReader in;
 
   char *row[column_count];
@@ -1068,17 +1086,16 @@ private:
 
   void set_column_names() {}
 
-public:
+ public:
   CSVReader() = delete;
   CSVReader(const CSVReader &) = delete;
   CSVReader &operator=(const CSVReader &);
 
   template <class... Args>
-  explicit CSVReader(Args &&... args) : in(std::forward<Args>(args)...) {
+  explicit CSVReader(Args &&...args) : in(std::forward<Args>(args)...) {
     std::fill(row, row + column_count, nullptr);
     col_order.resize(column_count);
-    for (unsigned i = 0; i < column_count; ++i)
-      col_order[i] = i;
+    for (unsigned i = 0; i < column_count; ++i) col_order[i] = i;
     for (unsigned i = 1; i <= column_count; ++i)
       column_names[i - 1] = "col" + std::to_string(i);
   }
@@ -1097,8 +1114,7 @@ public:
       char *line;
       do {
         line = in.next_line();
-        if (!line)
-          throw error::header_missing();
+        if (!line) throw error::header_missing();
       } while (comment_policy::is_comment(line));
 
       detail::parse_header_line<column_count, trim_policy, quote_policy>(
@@ -1109,7 +1125,8 @@ public:
     }
   }
 
-  template <class... ColNames> void set_header(ColNames... cols) {
+  template <class... ColNames>
+  void set_header(ColNames... cols) {
     static_assert(sizeof...(ColNames) >= column_count,
                   "not enough column names specified");
     static_assert(sizeof...(ColNames) <= column_count,
@@ -1117,8 +1134,7 @@ public:
     set_column_names(std::forward<ColNames>(cols)...);
     std::fill(row, row + column_count, nullptr);
     col_order.resize(column_count);
-    for (unsigned i = 0; i < column_count; ++i)
-      col_order[i] = i;
+    for (unsigned i = 0; i < column_count; ++i) col_order[i] = i;
   }
 
   bool has_column(const std::string &name) const {
@@ -1143,11 +1159,11 @@ public:
 
   unsigned get_file_line() const { return in.get_file_line(); }
 
-private:
+ private:
   void parse_helper(std::size_t) {}
 
   template <class T, class... ColType>
-  void parse_helper(std::size_t r, T &t, ColType &... cols) {
+  void parse_helper(std::size_t r, T &t, ColType &...cols) {
     if (row[r]) {
       try {
         try {
@@ -1164,20 +1180,19 @@ private:
     parse_helper(r + 1, cols...);
   }
 
-public:
-  template <class... ColType> bool read_row(ColType &... cols) {
+ public:
+  template <class... ColType>
+  bool read_row(ColType &...cols) {
     static_assert(sizeof...(ColType) >= column_count,
                   "not enough columns specified");
     static_assert(sizeof...(ColType) <= column_count,
                   "too many columns specified");
     try {
       try {
-
         char *line;
         do {
           line = in.next_line();
-          if (!line)
-            return false;
+          if (!line) return false;
         } while (comment_policy::is_comment(line));
 
         detail::parse_line<trim_policy, quote_policy>(line, row, col_order);
@@ -1195,5 +1210,5 @@ public:
     return true;
   }
 };
-} // namespace io
+}  // namespace io
 #endif

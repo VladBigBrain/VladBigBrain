@@ -4,7 +4,7 @@
 #include <fstream>
 #include <iostream>
 namespace s21 {
-    
+
 class Logger {
  public:
   Logger() { file.open("log.txt", std::ofstream::out | std::ofstream::app); }
@@ -13,8 +13,9 @@ class Logger {
   Logger(Logger&&) = delete;
   auto operator=(Logger&&) -> Logger& = delete;
   ~Logger() = default;
-  
+
   void LogToFile(const std::string& msg) { file << msg << std::endl; }
+
  private:
   std::ofstream file;
 };

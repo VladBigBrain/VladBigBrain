@@ -8,16 +8,16 @@ if(NOT CMAKE_CXX_COMPILER)
 endif()
 
 set(CMAKE_CXX_COMPILER ${CMAKE_CXX_COMPILER})
+
 #Flags
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -Wextra -pedantic")
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -w --coverage")
-#set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --coverage")
-#Flags
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -w --coverage")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --coverage")
 set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_CXX_FLAGS_DEBUG "-g -O0")
+#Flags
 
 #Additional Content
 
@@ -52,9 +52,28 @@ set(modelsource model_tests.cc ../src/model/layer.cc ../src/model/neural_network
 add_executable(Model ${modelsource} ${commonSource})
 target_link_libraries(Model PRIVATE  GTest::gtest_main Eigen3::Eigen)
 target_include_directories(Model PRIVATE ../src/model ../src/libraries)
-
+target_compile_options(Model PRIVATE -fprofile-arcs -ftest-coverage)
+target_compile_features(Model PRIVATE cxx_std_17)
 add_custom_target(build_model
     COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --target Model
     COMMAND Model
     DEPENDS Model)
 
+#Tests
+add_custom_target(tests
+    COMMAND ${CMAKE_COMMAND} --build . --target build_model
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+)
+#Tests
+
+#Coverage
+add_custom_target(coverage
+COMMAND ${CMAKE_COMMAND} --build . --target tests
+COMMAND mkdir -p report
+WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+COMMAND lcov --directory . --capture --output-file report/coverage.info --ignore-errors mismatch
+COMMAND lcov --remove report/coverage.info '/usr/*' '*/_deps/*' --output-file report/coverage.info
+COMMAND lcov --list report/coverage.info
+COMMAND genhtml report/coverage.info --output-directory report
+WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+)

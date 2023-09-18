@@ -45,7 +45,7 @@ auto Layer::Size() const -> size_t { return neurons_.size(); }
 
 auto Layer::BuildGradientMatrix(const Eigen::VectorXd &error)
     -> Eigen::MatrixXd {
-  Eigen::VectorXd derivativeVector = GetDerivativeVector(); // assumed size 120
+  Eigen::VectorXd derivativeVector = GetDerivativeVector();  // assumed size 120
 
   // Initialize gradient matrix with zeros. Size is 26x120
   Eigen::MatrixXd gradientMatrix = Eigen::MatrixXd::Zero(26, 120);
@@ -77,4 +77,4 @@ auto operator<<(std::ostream &os, const Layer &layer) -> std::ostream & {
   return os;
 }
 
-} // namespace s21
+}  // namespace s21

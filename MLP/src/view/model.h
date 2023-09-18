@@ -1,11 +1,12 @@
 #ifndef MODEL_H
 #define MODEL_H
 
-#include "csv.h"
-#include "neural_network.h"
 #include <future>
 #include <iostream>
 #include <vector>
+
+#include "csv.h"
+#include "neural_network.h"
 namespace s21 {
 struct Data {
   Eigen::VectorXd correct_vector;
@@ -18,15 +19,15 @@ struct Data {
 };
 
 class Model {
-public:
+ public:
   void StartLearn();
-  void StartTest() ;
+  void StartTest();
   Model();
 
-private:
+ private:
   std::vector<Data> Parse(const std::string &filename);
   std::vector<Data> ConvertToEigen(const std::vector<std::string> &data);
   NeuralNetwork network_;
 };
-} // namespace s21
-#endif // MODEL_H
+}  // namespace s21
+#endif  // MODEL_H

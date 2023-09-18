@@ -37,7 +37,7 @@ auto NeuralNetwork::FeedForward(const Eigen::VectorXd &inputs)
 auto NeuralNetwork::BackPropagation(const Eigen::VectorXd &inputs,
                                     const Eigen::VectorXd &target,
                                     double learningRate) -> void {
-  auto error = target - inputs; // error
+  auto error = target - inputs;  // error
   auto diff = layers_.back().GetDerivativeVector().array() * error.array();
   Eigen::VectorXd errors = diff;
   std::cerr << "Layers size " << layers_.size() << std::endl;
@@ -58,4 +58,4 @@ auto operator<<(std::ostream &os, const NeuralNetwork &neuralNetwork)
   return os;
 }
 
-} // namespace s21
+}  // namespace s21

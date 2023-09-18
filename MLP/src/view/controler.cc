@@ -5,4 +5,4 @@ void Controler::StartLearn() { model.StartLearn(); }
 void Controler::StartTest() { model.StartTest(); }
 
 Controler::Controler() {}
-} // namespace s21
+}  // namespace s21

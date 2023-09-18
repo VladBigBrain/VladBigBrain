@@ -9,16 +9,16 @@
 class PaintScene : public QWidget {
   Q_OBJECT
 
-public:
+ public:
   explicit PaintScene(QWidget *parent = nullptr);
   void paintEvent(QPaintEvent *event) override;
   void mousePressEvent(QMouseEvent *event) override;
   void mouseMoveEvent(QMouseEvent *event) override;
   void mouseReleaseEvent(QMouseEvent *event) override;
 
-private:
+ private:
   bool draw;
   QVector<QPointF> points;
 };
 
-#endif // PAINTSCENE_H
+#endif  // PAINTSCENE_H

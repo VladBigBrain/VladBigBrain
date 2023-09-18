@@ -362,7 +362,7 @@ QProgressBar::chunk {
         </size>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="recognition">
         <attribute name="title">
@@ -848,16 +848,16 @@ QProgressBar::chunk {
           </layout>
          </widget>
         </widget>
-        <widget class="QWidget" name="layoutWidget">
+        <widget class="QWidget" name="">
          <property name="geometry">
           <rect>
-           <x>11</x>
-           <y>11</y>
-           <width>331</width>
-           <height>451</height>
+           <x>10</x>
+           <y>12</y>
+           <width>281</width>
+           <height>341</height>
           </rect>
          </property>
-         <layout class="QVBoxLayout" name="ImageLayout">
+         <layout class="QVBoxLayout" name="verticalLayout_4">
           <item>
            <widget class="QGroupBox" name="PaintBox">
             <property name="styleSheet">
@@ -876,8 +876,8 @@ QProgressBar::chunk {
               <rect>
                <x>0</x>
                <y>30</y>
-               <width>319</width>
-               <height>428</height>
+               <width>280</width>
+               <height>280</height>
               </rect>
              </property>
             </widget>
@@ -930,7 +930,14 @@ QProgressBar::chunk {
                </widget>
               </item>
               <item>
-               <widget class="QSpinBox" name="HIddenLayersspinbox"/>
+               <widget class="QSpinBox" name="HIddenLayersspinbox">
+                <property name="minimum">
+                 <number>2</number>
+                </property>
+                <property name="maximum">
+                 <number>5</number>
+                </property>
+               </widget>
               </item>
               <item>
                <widget class="QLabel" name="EpochLabel">

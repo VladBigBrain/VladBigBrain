@@ -9,7 +9,7 @@
 namespace s21 {
 
 class NeuralNetwork {
-public:
+ public:
   NeuralNetwork(std::size_t layers = 2, std::size_t neurons = 120,
                 std::size_t inputs = 784);
   NeuralNetwork(const NeuralNetwork &neuralNetwork) = default;
@@ -30,12 +30,12 @@ public:
   friend auto operator<<(std::ostream &os, const NeuralNetwork &neuralNetwork)
       -> std::ostream &;
 
-private:
-//  auto ErrorFunction(const Eigen::VectorXd &inputs, int target)
-//      -> Eigen::VectorXd;
+ private:
+  //  auto ErrorFunction(const Eigen::VectorXd &inputs, int target)
+  //      -> Eigen::VectorXd;
   std::vector<Layer> layers_;
 };
 
-} // namespace s21
+}  // namespace s21
 
-#endif // MLP_MODEL_NEURAL_NETWORK_H_
+#endif  // MLP_MODEL_NEURAL_NETWORK_H_
