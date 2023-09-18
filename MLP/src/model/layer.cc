@@ -26,7 +26,7 @@ auto Layer::BackPropagation(const Eigen::VectorXd &error, double learningRate,
   auto newweight = weights_ - weightdelta *
                                   layer.GetOutputNeurons().transpose() *
                                   learningRate;
-
+  weights_ = newweight;
   // вычисление ошибки предыдущего слоя
   auto errorfirst = weights_.transpose() * error;
   return errorfirst;

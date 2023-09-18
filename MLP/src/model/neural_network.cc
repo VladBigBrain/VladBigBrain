@@ -51,14 +51,14 @@ auto NeuralNetwork::BackPropagation(const Eigen::VectorXd &inputs,
       layers_.back().GetWeights() -
       weightdelta * layers_[layers_.size() - 2].GetOutputNeurons().transpose() *
           learningRate;
-
+  layers_.back().SetWeights(newweight);
   // вычисление ошибки предыдущего слоя
   Eigen::VectorXd errorfirst = layers_.back().GetWeights().transpose() * error;
   // next
 
-  std::cout << "newweight = " << std::endl << newweight << std::endl;
+  // std::cout << "newweight = " << std::endl << newweight << std::endl;
   for (auto i = layers_.size() - 2; i > 0; --i) {
-    std::cerr << "i = " << i << " " << std::endl;
+    // std::cerr << "i = " << i << " " << std::endl;
     errorfirst =
         layers_[i].BackPropagation(errorfirst, learningRate, layers_[i - 1]);
   }
