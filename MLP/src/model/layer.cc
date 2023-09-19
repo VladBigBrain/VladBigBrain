@@ -20,17 +20,20 @@ auto Layer::FeedForward(const Eigen::VectorXd &inputs) -> Eigen::VectorXd {
 
 auto Layer::BackPropagation(const Eigen::VectorXd &error, double learningRate,
                             Layer &layer) -> Eigen::VectorXd {
-  Eigen::VectorXd weightdelta = error.array() * GetDerivativeVector().array();
+  Eigen::VectorXd gradient = error.array() * GetDerivativeVector().array();
 
-  // обновление весов
-  Eigen::MatrixXd newweight =
-      weights_ -
-      weightdelta * layer.GetOutputNeurons().transpose() * learningRate;
-  // обновляем веса
-  weights_ = newweight;
-  // вычисление ошибки предыдущего слоя
-  auto errorfirst = weights_.transpose() * error;
-  return errorfirst;
+  // calc deltaweights
+  auto deltaweights =
+      learningRate * gradient * layer.GetOutputNeurons().transpose();
+
+  // calc new error
+  auto newerror = weights_ * gradient;
+
+  // set mew weights
+  weights_ = weights_ - deltaweights;
+
+  // return new error
+  return newerror;
 }
 
 auto Layer::GetOutputNeurons() -> Eigen::VectorXd {
