@@ -28,7 +28,7 @@ class Layer {
  private:
   auto BuildGradientMatrix(const Eigen::VectorXd& error) -> Eigen::MatrixXd;
   auto BuildMatrixOfWeights(const std::size_t inputs) -> void;
-  auto BuildNeurons(const Eigen::VectorXd& out) -> void;
+  auto BuildNeurons(const Eigen::VectorXd& out) -> Eigen::VectorXd;
   [[nodiscard]] auto GetNeurons() const -> std::vector<Neuron>;
   std::vector<Neuron> neurons_;
   Eigen::MatrixXd weights_;

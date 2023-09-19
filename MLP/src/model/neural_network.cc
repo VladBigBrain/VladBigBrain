@@ -14,10 +14,8 @@ NeuralNetwork::NeuralNetwork(std::size_t layers, std::size_t neurons,
 
 auto NeuralNetwork::Train(size_t epochs, const Eigen::VectorXd &inputs,
                           const Eigen::VectorXd &target) -> void {
-  for (size_t i = 0; i < epochs; ++i) {
-    auto result = FeedForward(inputs);
-    BackPropagation(result, target, 1);
-  }
+  auto result = FeedForward(inputs);
+  BackPropagation(result, target, 0.1);
 }
 
 auto NeuralNetwork::FeedForward(const Eigen::VectorXd &inputs)

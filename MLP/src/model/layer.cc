@@ -10,9 +10,13 @@ Layer::Layer(std::size_t neurons, std::size_t inputs) {
 }
 
 auto Layer::FeedForward(const Eigen::VectorXd &inputs) -> Eigen::VectorXd {
-  Eigen::VectorXd output = weights_ * inputs;
-  BuildNeurons(output);
-  return output;
+  return BuildNeurons(weights_ * inputs);
+}
+
+auto Layer::BuildNeurons(const Eigen::VectorXd &out) -> Eigen::VectorXd {
+  return Eigen::VectorXd::NullaryExpr(neurons_.size(), [&](Eigen::Index i) {
+    return neurons_[i].Activate(out(i));
+  });
 }
 
 auto Layer::BackPropagation(const Eigen::VectorXd &error, double learningRate,
@@ -41,12 +45,10 @@ auto Layer::GetOutputNeurons() -> Eigen::VectorXd {
   });
 }
 
-void Layer::SetWeights(const Eigen::MatrixXd &weights) {
-    weights_ = weights;
-}
+void Layer::SetWeights(const Eigen::MatrixXd &weights) { weights_ = weights; }
 
 auto Layer::GetDerivativeVector() -> Eigen::VectorXd {
-    return Eigen::VectorXd::NullaryExpr(neurons_.size(), [this](Eigen::Index i) {
+  return Eigen::VectorXd::NullaryExpr(neurons_.size(), [this](Eigen::Index i) {
     return neurons_[i].Derivative();
   });
 }
@@ -61,12 +63,6 @@ auto Layer::BuildGradientMatrix(const Eigen::VectorXd &error)
 
 auto Layer::BuildMatrixOfWeights(const std::size_t inputs) -> void {
   weights_ = Eigen::MatrixXd::Random(neurons_.size(), inputs);
-}
-
-auto Layer::BuildNeurons(const Eigen::VectorXd &out) -> void {
-  for (auto i = 0; i < out.size(); ++i) {
-    neurons_[i].Activate(out(i));
-  }
 }
 
 auto operator<<(std::ostream &os, const Layer &layer) -> std::ostream & {
