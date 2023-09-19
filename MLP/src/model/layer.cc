@@ -20,6 +20,7 @@ auto Layer::FeedForward(const Eigen::VectorXd &inputs) -> Eigen::VectorXd {
 
 auto Layer::BackPropagation(const Eigen::VectorXd &error, double learningRate,
                             Layer &layer) -> Eigen::VectorXd {
+  // calc gradient for each neuron
   Eigen::VectorXd gradient = error.array() * GetDerivativeVector().array();
 
   // calc deltaweights

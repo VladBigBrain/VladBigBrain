@@ -41,26 +41,27 @@ auto NeuralNetwork::FeedForward(const Eigen::VectorXd &inputs)
 auto NeuralNetwork::BackPropagation(const Eigen::VectorXd &inputs,
                                     const Eigen::VectorXd &target,
                                     double learningRate) -> void {
-  auto error = target - inputs;  // error
+  // error
+  auto error = target - inputs;
 
   // local gradient for each neuron
   Eigen::VectorXd gradient =
       error.array() * layers_.back().GetDerivativeVector().array();  // 26
-  
+
   // calc deltaweights
   auto deltaweights =
       learningRate * gradient *
       layers_[layers_.size() - 2].GetOutputNeurons().transpose();  // x / 26
-  
+
   // calc error output
   Eigen::VectorXd errorfirst =
       layers_.back().GetWeights().transpose() * gradient;
-  
+
   // set new weights
   layers_.back().SetWeights(layers_.back().GetWeights() - deltaweights);
 
+  // work with another layer
   for (auto i = layers_.size() - 2; i > 0; --i) {
-    //   // std::cerr << "i = " << i << " " << std::endl;
     errorfirst =
         layers_[i].BackPropagation(errorfirst, learningRate, layers_[i - 1]);
   }
