@@ -29,7 +29,7 @@ auto Layer::BackPropagation(const Eigen::VectorXd &error, double learningRate,
   Eigen::VectorXd newerror = weights_.transpose() * gradient;
 
   // update weights
-  weights_ -= deltaweights;
+  weights_ += deltaweights;
 
   // return new error
   return newerror;
@@ -41,8 +41,12 @@ auto Layer::GetOutputNeurons() -> Eigen::VectorXd {
   });
 }
 
+void Layer::SetWeights(const Eigen::MatrixXd &weights) {
+    weights_ = weights;
+}
+
 auto Layer::GetDerivativeVector() -> Eigen::VectorXd {
-  return Eigen::VectorXd::NullaryExpr(neurons_.size(), [this](Eigen::Index i) {
+    return Eigen::VectorXd::NullaryExpr(neurons_.size(), [this](Eigen::Index i) {
     return neurons_[i].Derivative();
   });
 }

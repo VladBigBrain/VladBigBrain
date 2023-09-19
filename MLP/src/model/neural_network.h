@@ -19,7 +19,7 @@ class NeuralNetwork {
   ~NeuralNetwork() = default;
 
   auto FeedForward(const Eigen::VectorXd &inputs) -> Eigen::VectorXd;
-  auto BackPropagation(const Eigen::VectorXd &inputs, const Eigen::VectorXd &,
+  auto BackPropagation(const Eigen::VectorXd &outputnetwork, const Eigen::VectorXd &,
                        double learningRate) -> void;
   auto Train(size_t epochs = 1,
              const Eigen::VectorXd &inputs = Eigen::VectorXd::Random(784),

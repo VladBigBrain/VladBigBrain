@@ -16,22 +16,21 @@ auto NeuralNetwork::Train(size_t epochs, const Eigen::VectorXd &inputs,
                           const Eigen::VectorXd &target) -> void {
   for (size_t i = 0; i < epochs; ++i) {
     auto result = FeedForward(inputs);
-    BackPropagation(result, target, 0.1);
+    BackPropagation(result, target, 1);
   }
 }
 
 auto NeuralNetwork::FeedForward(const Eigen::VectorXd &inputs)
     -> Eigen::VectorXd {
   Eigen::VectorXd outputs = inputs;
-  int i = 0;
   ForEach(layers_, [&](auto &layer) { outputs = layer.FeedForward(outputs); });
   return outputs;
 }
-auto NeuralNetwork::BackPropagation(const Eigen::VectorXd &inputs,
+auto NeuralNetwork::BackPropagation(const Eigen::VectorXd &outputnetwork,
                                     const Eigen::VectorXd &target,
                                     double learningRate) -> void {
   // error
-  auto error = target - inputs;
+  auto error = target - outputnetwork;
 
   // local gradient for each neuron
   Eigen::VectorXd gradient =
@@ -48,7 +47,7 @@ auto NeuralNetwork::BackPropagation(const Eigen::VectorXd &inputs,
   Eigen::VectorXd errorfirst = old_weights.transpose() * gradient;
 
   // set new weights
-  layers_.back().SetWeights(old_weights - deltaweights);
+  layers_.back().SetWeights(old_weights + deltaweights);
 
   for (auto i = layers_.size() - 2; i > 0; --i) {
     errorfirst =

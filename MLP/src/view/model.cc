@@ -15,10 +15,10 @@ void Model::StartTest() {
   int correct = 0, incorrect = 0;
   for (auto &temp : parsedatas) {
     Eigen::VectorXd result = network_.FeedForward(temp.input);
-    int maxIndex;
-    double maxVal = result.maxCoeff(&maxIndex); // Find max coefficient
+    int maxIndex = 0;
+    result.maxCoeff(&maxIndex); // Find max coefficient
 
-    int trueLabelIndex;
+    int trueLabelIndex = 0;
     temp.correct_vector.maxCoeff(&trueLabelIndex); // Find true label index
 
     // Compare and count
@@ -49,7 +49,7 @@ std::vector<Data> Model::Parse(const std::string &filename) {
   return dataset;
 }
 
-Model::Model() { }
+Model::Model() {}
 
 std::vector<Data> Model::ConvertToEigen(const std::vector<std::string> &data) {
   std::vector<Data> dataset;
