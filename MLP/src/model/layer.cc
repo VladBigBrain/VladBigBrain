@@ -69,7 +69,8 @@ auto Layer::BuildGradientMatrix(const Eigen::VectorXd &error)
 }
 
 auto Layer::BuildMatrixOfWeights(const std::size_t inputs) -> void {
-  weights_ = Eigen::MatrixXd::Random(neurons_.size(), inputs);
+  double variance = sqrt(2.0 / (neurons_.size() + inputs));
+  weights_ = Eigen::MatrixXd::Random(neurons_.size(), inputs) * variance;
 }
 
 auto operator<<(std::ostream &os, const Layer &layer) -> std::ostream & {

@@ -10,7 +10,7 @@ namespace s21 {
 
 class NeuralNetwork {
  public:
-  NeuralNetwork(std::size_t layers = 2, std::size_t neurons = 120,
+  NeuralNetwork(std::size_t layers = 1, std::size_t neurons = 360,
                 std::size_t inputs = 784);
   NeuralNetwork(const NeuralNetwork &neuralNetwork) = default;
   NeuralNetwork(NeuralNetwork &&neuralNetwork) = default;
