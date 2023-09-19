@@ -10,7 +10,7 @@ Layer::Layer(std::size_t neurons, std::size_t inputs) {
 }
 
 auto Layer::FeedForward(const Eigen::VectorXd &inputs) -> Eigen::VectorXd {
-  // std::cout << "i feed forward" << std::endl;
+//  std::cout << "i feed forward" << std::endl;
   // std::cout << weights_ << std::endl;
   // std::cout << inputs << std::endl;
   Eigen::VectorXd output = weights_ * inputs;

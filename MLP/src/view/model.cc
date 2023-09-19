@@ -1,9 +1,8 @@
 #include "model.h"
 namespace s21 {
 void Model::StartLearn() {
-  auto parsedatas = Parse(
-      "/opt/goinfre/barnards/VladBigBrain/MLP/datasets/"
-      "emnist-letters-train.csv");
+  auto parsedatas = Parse("/opt/goinfre/barnards/VladBigBrain/MLP/datasets/"
+                          "emnist-letters-train.csv");
 
   for (auto &i : parsedatas) {
     network_.Train(3, i.input, i.correct_vector);
@@ -11,17 +10,16 @@ void Model::StartLearn() {
 }
 
 void Model::StartTest() {
-  auto parsedatas = Parse(
-      "/opt/goinfre/barnards/VladBigBrain/MLP/datasets/"
-      "emnist-letters-test.csv");
+  auto parsedatas = Parse("/opt/goinfre/barnards/VladBigBrain/MLP/datasets/"
+                          "emnist-letters-test.csv");
   int correct = 0, incorrect = 0;
   for (auto &temp : parsedatas) {
     Eigen::VectorXd result = network_.FeedForward(temp.input);
     int maxIndex;
-    double maxVal = result.maxCoeff(&maxIndex);  // Find max coefficient
+    double maxVal = result.maxCoeff(&maxIndex); // Find max coefficient
 
     int trueLabelIndex;
-    temp.correct_vector.maxCoeff(&trueLabelIndex);  // Find true label index
+    temp.correct_vector.maxCoeff(&trueLabelIndex); // Find true label index
 
     // Compare and count
     if (maxIndex == trueLabelIndex) {
@@ -51,7 +49,7 @@ std::vector<Data> Model::Parse(const std::string &filename) {
   return dataset;
 }
 
-Model::Model() {}
+Model::Model() { }
 
 std::vector<Data> Model::ConvertToEigen(const std::vector<std::string> &data) {
   std::vector<Data> dataset;
@@ -77,4 +75,4 @@ std::vector<Data> Model::ConvertToEigen(const std::vector<std::string> &data) {
   return dataset;
 }
 
-}  // namespace s21
+} // namespace s21

@@ -31,8 +31,6 @@ class NeuralNetwork {
       -> std::ostream &;
 
  private:
-  //  auto ErrorFunction(const Eigen::VectorXd &inputs, int target)
-  //      -> Eigen::VectorXd;
   std::vector<Layer> layers_;
 };
 

@@ -12,14 +12,6 @@ NeuralNetwork::NeuralNetwork(std::size_t layers, std::size_t neurons,
   layers_.push_back(last);
 }
 
-// auto NeuralNetwork::ErrorFunction(const Eigen::VectorXd &inputs, int target)
-//     -> Eigen::VectorXd {
-//   Eigen::VectorXd targetVector(inputs.size());
-//   targetVector.setZero();
-//   targetVector(target) = 1.0;
-//   return targetVector;
-// }
-
 auto NeuralNetwork::Train(size_t epochs, const Eigen::VectorXd &inputs,
                           const Eigen::VectorXd &target) -> void {
   for (size_t i = 0; i < epochs; ++i) {
@@ -32,36 +24,53 @@ auto NeuralNetwork::FeedForward(const Eigen::VectorXd &inputs)
     -> Eigen::VectorXd {
   Eigen::VectorXd outputs = inputs;
   int i = 0;
-  ForEach(layers_, [&](auto &layer) {
-    // std::cout << "i = " << i++ << std::endl;
-    outputs = layer.FeedForward(outputs);
-  });
+  ForEach(layers_, [&](auto &layer) { outputs = layer.FeedForward(outputs); });
   return outputs;
 }
 auto NeuralNetwork::BackPropagation(const Eigen::VectorXd &inputs,
                                     const Eigen::VectorXd &target,
                                     double learningRate) -> void {
+//  std::cerr << " input cols " << inputs.cols() << " Input rows "
+//            << inputs.rows() << std::endl;
+
+//  std::cerr << "i'm back propagation" << std::endl;
   // error
   auto error = target - inputs;
 
   // local gradient for each neuron
   Eigen::VectorXd gradient =
-      error.array() * layers_.back().GetDerivativeVector().array();  // 26
+      error.array() * layers_.back().GetDerivativeVector().array(); // 26
 
+  //  std::cerr << " i'm calc gradient " << std::endl;
   // calc deltaweights
-  auto deltaweights =
-      learningRate * gradient *
-      layers_[layers_.size() - 2].GetOutputNeurons().transpose();  // x / 26
+  Eigen::MatrixXd deltaweights =
+      gradient * layers_[layers_.size() - 2].GetOutputNeurons().transpose() *
+      learningRate; // x / 26
+  //  std::cerr << " Deltaweight cools " << deltaweights.cols()
+  //            << " Deltaweights rows " << deltaweights.rows() << std::endl;
+
+  //  std::cerr << "i'm deltaweights " << std::endl;
+  const auto &olewights = layers_.back().GetWeights();
+
+  //  std::cerr << "olewights weights colls" << olewights.cols() << "  "
+  //            << "olewights weight rows = " << olewights.rows() << std::endl;
 
   // calc error output
   Eigen::VectorXd errorfirst =
       layers_.back().GetWeights().transpose() * gradient;
-
+  //  std::cerr << "i'm errorfirst" << std::endl;
   // set new weights
-  layers_.back().SetWeights(layers_.back().GetWeights() - deltaweights);
+
+  Eigen::MatrixXd newweights = olewights - deltaweights;
+
+  //  std::cerr << "current weights colls" << newweights.cols() << "  "
+  //            << "current weight rows = " << newweights.rows() << std::endl;
+
+  layers_.back().SetWeights(newweights);
 
   // work with another layer
   for (auto i = layers_.size() - 2; i > 0; --i) {
+//    std::cout << "i'm learning" << std::endl;
     errorfirst =
         layers_[i].BackPropagation(errorfirst, learningRate, layers_[i - 1]);
   }
@@ -78,4 +87,4 @@ auto operator<<(std::ostream &os, const NeuralNetwork &neuralNetwork)
   return os;
 }
 
-}  // namespace s21
+} // namespace s21

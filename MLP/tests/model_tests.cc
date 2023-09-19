@@ -11,16 +11,15 @@ TEST(Test, Constructors) {
 
 TEST(Test, FeedForward) {
   s21::NeuralNetwork nn(2, 3, 5);
-  auto inputs = Eigen::RowVectorXd::Random(5);
+  auto inputs = Eigen::VectorXd::Random(5);
   auto result = nn.FeedForward(inputs);
   ASSERT_EQ(result.size(), 26);
 }
 
 TEST(Test, Back) {
-  s21::NeuralNetwork nn(2, 120, 5);
-  auto inputs = Eigen::RowVectorXd::Random(5);
+  s21::NeuralNetwork nn(2, 120, 784);
+  auto inputs = Eigen::VectorXd::Random(784);
   auto result = nn.FeedForward(inputs);
-  auto temp = Eigen::VectorXd::Zero(26);
 
   auto fnc = [&](const Eigen::VectorXd& inputs, int target) -> Eigen::VectorXd {
     Eigen::VectorXd targetVector(inputs.size());
