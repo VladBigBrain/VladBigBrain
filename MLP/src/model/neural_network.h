@@ -9,8 +9,9 @@
 namespace s21 {
 
 class NeuralNetwork {
- public:
-  NeuralNetwork(std::size_t layers = 1, std::size_t neurons = 360,
+public:
+  //    144 3
+  NeuralNetwork(std::size_t layers = 3, std::size_t neurons = 144,
                 std::size_t inputs = 784);
   NeuralNetwork(const NeuralNetwork &neuralNetwork) = default;
   NeuralNetwork(NeuralNetwork &&neuralNetwork) = default;
@@ -19,9 +20,9 @@ class NeuralNetwork {
   ~NeuralNetwork() = default;
 
   auto FeedForward(const Eigen::VectorXd &inputs) -> Eigen::VectorXd;
-  auto BackPropagation(const Eigen::VectorXd &outputnetwork, const Eigen::VectorXd &,
-                       double learningRate) -> void;
-  auto Train(size_t epochs = 1,
+  auto BackPropagation(const Eigen::VectorXd &outputnetwork,
+                       const Eigen::VectorXd &, double learningRate) -> void;
+  auto Train(double learningrate = 0.05,
              const Eigen::VectorXd &inputs = Eigen::VectorXd::Random(784),
              const Eigen::VectorXd &target = Eigen::VectorXd::Random(26))
       -> void;
@@ -30,10 +31,10 @@ class NeuralNetwork {
   friend auto operator<<(std::ostream &os, const NeuralNetwork &neuralNetwork)
       -> std::ostream &;
 
- private:
+private:
   std::vector<Layer> layers_;
 };
 
-}  // namespace s21
+} // namespace s21
 
-#endif  // MLP_MODEL_NEURAL_NETWORK_H_
+#endif // MLP_MODEL_NEURAL_NETWORK_H_

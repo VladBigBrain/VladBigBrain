@@ -26,8 +26,10 @@ public:
   auto Size() const -> size_t;
   friend auto operator<<(std::ostream &os, const Layer &layer)
       -> std::ostream &;
-
   const Eigen::VectorXd &bias() const;
+
+  const Eigen::MatrixXd &getPrevious_deltaweights() const;
+  void setPrevious_deltaweights(const Eigen::MatrixXd &newPrevious_deltaweights);
 
 private:
   auto BuildGradientMatrix(const Eigen::VectorXd &error) -> Eigen::MatrixXd;
@@ -36,6 +38,7 @@ private:
   [[nodiscard]] auto GetNeurons() const -> std::vector<Neuron>;
   std::vector<Neuron> neurons_;
   Eigen::MatrixXd weights_;
+  Eigen::MatrixXd previous_deltaweights;
   Eigen::VectorXd bias_;
 };
 

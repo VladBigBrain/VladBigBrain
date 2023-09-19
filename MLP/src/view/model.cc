@@ -3,9 +3,14 @@ namespace s21 {
 void Model::StartLearn() {
   auto parsedatas = Parse("/opt/goinfre/barnards/VladBigBrain/MLP/datasets/"
                           "emnist-letters-train.csv");
-  for (auto i = 0; i < 4; ++i) {
+  double initial_learning_rate = 0.05;
+  // Константа затухания
+  double decay_constant = 0.01;
+  for (auto i = 0; i < 3; ++i) {
+    double learning_rate =
+        initial_learning_rate * std::exp(-decay_constant * i);
     for (auto &i : parsedatas) {
-      network_.Train(1, i.input, i.correct_vector);
+      network_.Train(learning_rate, i.input, i.correct_vector);
     }
   }
 }
