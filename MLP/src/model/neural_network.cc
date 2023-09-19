@@ -15,7 +15,7 @@ NeuralNetwork::NeuralNetwork(std::size_t layers, std::size_t neurons,
 auto NeuralNetwork::Train(size_t epochs, const Eigen::VectorXd &inputs,
                           const Eigen::VectorXd &target) -> void {
   auto result = FeedForward(inputs);
-  BackPropagation(result, target, 0.1);
+  BackPropagation(result, target, 0.05);
 }
 
 auto NeuralNetwork::FeedForward(const Eigen::VectorXd &inputs)
@@ -29,7 +29,6 @@ auto NeuralNetwork::BackPropagation(const Eigen::VectorXd &outputnetwork,
                                     double learningRate) -> void {
   // error
   auto error = target - outputnetwork;
-
   // local gradient for each neuron
   Eigen::VectorXd gradient =
       error.array() * layers_.back().GetDerivativeVector().array(); // 26
@@ -54,7 +53,6 @@ auto NeuralNetwork::BackPropagation(const Eigen::VectorXd &outputnetwork,
     errorfirst =
         layers_[i].BackPropagation(errorfirst, learningRate, layers_[i - 1]);
   }
-
 }
 
 auto operator<<(std::ostream &os, const NeuralNetwork &neuralNetwork)
