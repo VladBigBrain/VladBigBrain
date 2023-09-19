@@ -4,7 +4,7 @@ void Model::StartLearn() {
   auto parsedatas = Parse("/opt/goinfre/barnards/VladBigBrain/MLP/datasets/"
                           "emnist-letters-train.csv");
 
-  for (auto i = 0; i < 10; ++i) {
+  for (auto i = 0; i < 3; ++i) {
     for (auto &i : parsedatas) {
       network_.Train(1, i.input, i.correct_vector);
     }

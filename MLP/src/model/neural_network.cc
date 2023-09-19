@@ -44,6 +44,9 @@ auto NeuralNetwork::BackPropagation(const Eigen::VectorXd &outputnetwork,
   // calc error output
   Eigen::VectorXd errorfirst = old_weights.transpose() * gradient;
 
+  // calc new bias
+  layers_.back().SetBias(layers_.back().bias() + learningRate * gradient);
+
   // set new weights
   layers_.back().SetWeights(old_weights + deltaweights);
 
@@ -51,6 +54,7 @@ auto NeuralNetwork::BackPropagation(const Eigen::VectorXd &outputnetwork,
     errorfirst =
         layers_[i].BackPropagation(errorfirst, learningRate, layers_[i - 1]);
   }
+
 }
 
 auto operator<<(std::ostream &os, const NeuralNetwork &neuralNetwork)

@@ -1,16 +1,18 @@
 #include "layer.h"
-
 #include "console.h"
+#include <cmath>
+#include <random>
 namespace s21 {
 Layer::Layer(std::size_t neurons, std::size_t inputs) {
   for (auto i = 0; i < neurons; ++i) {
     neurons_.push_back(Neuron(0, 0));
   }
+  bias_ = Eigen::VectorXd::Zero(neurons);
   BuildMatrixOfWeights(inputs);
 }
 
 auto Layer::FeedForward(const Eigen::VectorXd &inputs) -> Eigen::VectorXd {
-  return BuildNeurons(weights_ * inputs);
+  return BuildNeurons((weights_ * inputs) + bias_);
 }
 
 auto Layer::BuildNeurons(const Eigen::VectorXd &out) -> Eigen::VectorXd {
@@ -32,6 +34,8 @@ auto Layer::BackPropagation(const Eigen::VectorXd &error, double learningRate,
   // calc error output
   Eigen::VectorXd newerror = weights_.transpose() * gradient;
 
+  // calc new bias
+  bias_ += learningRate * gradient;
   // update weights
   weights_ += deltaweights;
 
@@ -54,6 +58,9 @@ auto Layer::GetDerivativeVector() -> Eigen::VectorXd {
 }
 
 auto Layer::GetNeurons() const -> std::vector<Neuron> { return neurons_; }
+
+const Eigen::VectorXd &Layer::bias() const { return bias_; }
+
 auto Layer::Size() const -> size_t { return neurons_.size(); }
 
 auto Layer::BuildGradientMatrix(const Eigen::VectorXd &error)
