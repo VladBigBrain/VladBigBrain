@@ -30,10 +30,6 @@ auto NeuralNetwork::FeedForward(const Eigen::VectorXd &inputs)
 auto NeuralNetwork::BackPropagation(const Eigen::VectorXd &inputs,
                                     const Eigen::VectorXd &target,
                                     double learningRate) -> void {
-//  std::cerr << " input cols " << inputs.cols() << " Input rows "
-//            << inputs.rows() << std::endl;
-
-//  std::cerr << "i'm back propagation" << std::endl;
   // error
   auto error = target - inputs;
 
@@ -41,36 +37,20 @@ auto NeuralNetwork::BackPropagation(const Eigen::VectorXd &inputs,
   Eigen::VectorXd gradient =
       error.array() * layers_.back().GetDerivativeVector().array(); // 26
 
-  //  std::cerr << " i'm calc gradient " << std::endl;
   // calc deltaweights
   Eigen::MatrixXd deltaweights =
       gradient * layers_[layers_.size() - 2].GetOutputNeurons().transpose() *
       learningRate; // x / 26
-  //  std::cerr << " Deltaweight cools " << deltaweights.cols()
-  //            << " Deltaweights rows " << deltaweights.rows() << std::endl;
 
-  //  std::cerr << "i'm deltaweights " << std::endl;
-  const auto &olewights = layers_.back().GetWeights();
-
-  //  std::cerr << "olewights weights colls" << olewights.cols() << "  "
-  //            << "olewights weight rows = " << olewights.rows() << std::endl;
+  const Eigen::MatrixXd &old_weights = layers_.back().GetWeights();
 
   // calc error output
-  Eigen::VectorXd errorfirst =
-      layers_.back().GetWeights().transpose() * gradient;
-  //  std::cerr << "i'm errorfirst" << std::endl;
+  Eigen::VectorXd errorfirst = old_weights.transpose() * gradient;
+
   // set new weights
+  layers_.back().SetWeights(old_weights - deltaweights);
 
-  Eigen::MatrixXd newweights = olewights - deltaweights;
-
-  //  std::cerr << "current weights colls" << newweights.cols() << "  "
-  //            << "current weight rows = " << newweights.rows() << std::endl;
-
-  layers_.back().SetWeights(newweights);
-
-  // work with another layer
   for (auto i = layers_.size() - 2; i > 0; --i) {
-//    std::cout << "i'm learning" << std::endl;
     errorfirst =
         layers_[i].BackPropagation(errorfirst, learningRate, layers_[i - 1]);
   }

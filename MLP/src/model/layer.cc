@@ -10,9 +10,6 @@ Layer::Layer(std::size_t neurons, std::size_t inputs) {
 }
 
 auto Layer::FeedForward(const Eigen::VectorXd &inputs) -> Eigen::VectorXd {
-//  std::cout << "i feed forward" << std::endl;
-  // std::cout << weights_ << std::endl;
-  // std::cout << inputs << std::endl;
   Eigen::VectorXd output = weights_ * inputs;
   BuildNeurons(output);
   return output;
@@ -20,18 +17,19 @@ auto Layer::FeedForward(const Eigen::VectorXd &inputs) -> Eigen::VectorXd {
 
 auto Layer::BackPropagation(const Eigen::VectorXd &error, double learningRate,
                             Layer &layer) -> Eigen::VectorXd {
-  // calc gradient for each neuron
-  Eigen::VectorXd gradient = error.array() * GetDerivativeVector().array();
+  // local gradient for each neuron
+  Eigen::VectorXd gradient =
+      error.array() * GetDerivativeVector().array(); // 26
 
   // calc deltaweights
-  auto deltaweights =
-      learningRate * gradient * layer.GetOutputNeurons().transpose();
+  Eigen::MatrixXd deltaweights =
+      gradient * layer.GetOutputNeurons().transpose() * learningRate; // x / 26
 
-  // calc new error
-  auto newerror = weights_ * gradient;
+  // calc error output
+  Eigen::VectorXd newerror = weights_.transpose() * gradient;
 
-  // set mew weights
-  weights_ = weights_ - deltaweights;
+  // update weights
+  weights_ -= deltaweights;
 
   // return new error
   return newerror;
@@ -62,7 +60,7 @@ auto Layer::BuildMatrixOfWeights(const std::size_t inputs) -> void {
 }
 
 auto Layer::BuildNeurons(const Eigen::VectorXd &out) -> void {
-  for (auto i = 0; i < neurons_.size(); ++i) {
+  for (auto i = 0; i < out.size(); ++i) {
     neurons_[i].Activate(out(i));
   }
 }
@@ -76,4 +74,4 @@ auto operator<<(std::ostream &os, const Layer &layer) -> std::ostream & {
   return os;
 }
 
-}  // namespace s21
+} // namespace s21
