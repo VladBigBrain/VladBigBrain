@@ -6,6 +6,7 @@ class Controler {
  public:
   auto StartLearn() -> void;
   auto StartTest() -> void;
+  auto ForwardFeed(Eigen::VectorXd input)-> Eigen::VectorXd;
   Controler();
 
  private:

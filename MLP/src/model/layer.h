@@ -37,6 +37,7 @@ private:
   [[nodiscard]] auto GetNeurons() const -> std::vector<Neuron>;
   std::vector<Neuron> neurons_;
   Eigen::MatrixXd weights_;
+  // 
   Eigen::MatrixXd velocity_;
   Eigen::VectorXd bias_;
 };

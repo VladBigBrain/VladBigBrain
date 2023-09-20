@@ -380,6 +380,22 @@ QProgressBar::chunk {
          <property name="title">
           <string>Result</string>
          </property>
+         <widget class="QLabel" name="resultlabel">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>20</y>
+            <width>331</width>
+            <height>161</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>TextLabel</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
         </widget>
         <widget class="QGroupBox" name="VisualizationBox">
          <property name="geometry">

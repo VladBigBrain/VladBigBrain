@@ -22,6 +22,7 @@ class Model {
  public:
   void StartLearn();
   void StartTest();
+  Eigen::VectorXd ForwardFeed(Eigen::VectorXd input);
   Model();
 
  private:

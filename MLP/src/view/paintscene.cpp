@@ -2,37 +2,64 @@
 #include "QtWidgets/qgraphicseffect.h"
 #include <QPainter>
 
-PaintScene::PaintScene(QWidget *parent) : QWidget(parent), draw(false) {
-
-  QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect();
-  setFixedSize(280, 280); // или любой другой размер
+PaintScene::PaintScene(QWidget *parent) : QWidget(parent) {
+  image_ = QImage(kImageWidth_, kImageHeight_, QImage::Format_RGB32);
+  image_.fill(Qt::white);
 }
 
-void PaintScene::paintEvent(QPaintEvent *event) {
-  QPainter painter(this);
-  painter.fillRect(event->rect(), Qt::white);
-  painter.setPen(QPen(Qt::black, 20)); // Черный цвет, толщина 5
-  for (const auto &point : points) {
-    painter.drawPoint(point);
-  }
+bool PaintScene::OpenImage(const QString &filename) {
+  QImage loaded_image;
+  if (!loaded_image.load(filename))
+    return false;
+
+  image_ = loaded_image.scaled(kImageWidth_, kImageHeight_);
+  update();
+  emit updated(image_);
+  return true;
 }
 
 void PaintScene::mousePressEvent(QMouseEvent *event) {
+  // start scribbling
   if (event->button() == Qt::LeftButton) {
-    draw = true;
-    points.push_back(event->pos());
+    start_point_ = event->position().toPoint();
+    scribbling_ = true;
+  }
+
+  // clear area
+  if (event->button() == Qt::RightButton) {
+    image_.fill(Qt::white);
     update();
-  } else if (event->button() == Qt::RightButton) {
-    points.clear();
-    update();
+    emit cleared();
   }
 }
 
 void PaintScene::mouseMoveEvent(QMouseEvent *event) {
-  if (draw) {
-    points.push_back(event->pos());
-    update();
-  }
+  if (scribbling_)
+    DrawLineTo(event->position().toPoint());
 }
 
-void PaintScene::mouseReleaseEvent(QMouseEvent *event) { draw = false; }
+void PaintScene::mouseReleaseEvent(QMouseEvent *event) {
+  if (event->button() == Qt::LeftButton)
+    scribbling_ = false;
+}
+
+void PaintScene::paintEvent(QPaintEvent *event) {
+  image_painter_.begin(this);
+  QRect rect = event->rect();
+  image_painter_.drawImage(rect, image_, rect);
+  image_painter_.end();
+}
+
+void PaintScene::DrawLineTo(const QPoint &end_point) {
+  line_painter_.begin(&image_);
+  line_painter_.setRenderHint(QPainter::SmoothPixmapTransform, true);
+  line_painter_.setRenderHint(QPainter::Antialiasing, true);
+  line_painter_.setPen(
+      QPen(Qt::black, kPenWidth_, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
+  line_painter_.drawLine(start_point_, end_point);
+  line_painter_.end();
+
+  start_point_ = end_point;
+  update();
+  emit updated(image_);
+}

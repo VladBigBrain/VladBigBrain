@@ -32,6 +32,7 @@ public:
       -> std::ostream &;
 
 private:
+  // //
   std::vector<Layer> layers_;
 };
 

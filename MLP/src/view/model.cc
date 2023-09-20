@@ -36,6 +36,10 @@ void Model::StartTest() {
             << std::endl;
 }
 
+Eigen::VectorXd Model::ForwardFeed(Eigen::VectorXd input) {
+  return network_.FeedForward(input);
+}
+
 std::vector<Data> Model::Parse(const std::string &filename) {
   std::vector<Data> dataset;
   io::LineReader reader(filename);
@@ -62,7 +66,7 @@ std::vector<Data> Model::ConvertToEigen(const std::vector<std::string> &data) {
     int label = std::stoi(cell);
     Eigen::VectorXd labelVector = Eigen::VectorXd::Zero(26);
     labelVector[label - 1] = 1.0;
-//    std::cout << label-1 << std::endl;
+    //    std::cout << label-1 << std::endl;
     Eigen::VectorXd pixels(784);
     int i = 0;
     while (std::getline(row_stream, cell, ',')) {
