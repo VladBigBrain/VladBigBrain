@@ -28,17 +28,16 @@ public:
       -> std::ostream &;
   const Eigen::VectorXd &bias() const;
 
-  const Eigen::MatrixXd &getPrevious_deltaweights() const;
-  void setPrevious_deltaweights(const Eigen::MatrixXd &newPrevious_deltaweights);
+  const Eigen::MatrixXd &velocity() const;
+  void setVelocity(const Eigen::MatrixXd &newVelocity);
 
 private:
-  auto BuildGradientMatrix(const Eigen::VectorXd &error) -> Eigen::MatrixXd;
   auto BuildMatrixOfWeights(const std::size_t inputs) -> void;
   auto BuildNeurons(const Eigen::VectorXd &out) -> Eigen::VectorXd;
   [[nodiscard]] auto GetNeurons() const -> std::vector<Neuron>;
   std::vector<Neuron> neurons_;
   Eigen::MatrixXd weights_;
-  Eigen::MatrixXd previous_deltaweights;
+  Eigen::MatrixXd velocity_;
   Eigen::VectorXd bias_;
 };
 

@@ -27,6 +27,8 @@ class Model {
  private:
   std::vector<Data> Parse(const std::string &filename);
   std::vector<Data> ConvertToEigen(const std::vector<std::string> &data);
+  std::vector<Data> parsedatas = Parse("/opt/goinfre/barnards/VladBigBrain/MLP/datasets/"
+                          "emnist-letters-test.csv");
   NeuralNetwork network_;
 };
 }  // namespace s21

@@ -9,11 +9,12 @@ Layer::Layer(std::size_t neurons, std::size_t inputs) {
   }
   bias_ = Eigen::VectorXd::Random(neurons).array() * 0.1;
   BuildMatrixOfWeights(inputs);
+  velocity_ = Eigen::MatrixXd::Zero(neurons_.size(), inputs);
 }
 
 auto Layer::FeedForward(const Eigen::VectorXd &inputs) -> Eigen::VectorXd {
   Eigen::VectorXd output_vector = weights_ * inputs;
-  return BuildNeurons(output_vector + bias_);
+  return BuildNeurons(bias_ + output_vector);
 }
 
 auto Layer::BuildNeurons(const Eigen::VectorXd &out) -> Eigen::VectorXd {
@@ -24,25 +25,15 @@ auto Layer::BuildNeurons(const Eigen::VectorXd &out) -> Eigen::VectorXd {
 
 auto Layer::BackPropagation(const Eigen::VectorXd &error, double learningRate,
                             Layer &layer) -> Eigen::VectorXd {
-  // local gradient for each neuron
-  Eigen::VectorXd gradient =
-      error.array() * GetDerivativeVector().array(); // 26
-//  double momentum = 0.05;
-  // calc deltaweights
+
+  Eigen::VectorXd gradient = error.array() * GetDerivativeVector().array();
   Eigen::MatrixXd deltaweights =
-      gradient * layer.GetOutputNeurons().transpose() * learningRate ;
-//          +
-//      momentum * previous_deltaweights;
-//  previous_deltaweights = deltaweights;
-  // calc error output
+      learningRate * gradient * layer.GetOutputNeurons().transpose();
   Eigen::VectorXd newerror = weights_.transpose() * gradient;
-
-  // calc new bias
+  double gamma = 0.9; // Коэффициент момента
+  velocity_ = gamma * velocity_ + deltaweights;
+  weights_ += velocity_;
   bias_ += learningRate * gradient;
-  // update weights
-  weights_ += deltaweights;
-
-  // return new error
   return newerror;
 }
 
@@ -62,31 +53,25 @@ auto Layer::GetDerivativeVector() -> Eigen::VectorXd {
 
 auto Layer::GetNeurons() const -> std::vector<Neuron> { return neurons_; }
 
-const Eigen::MatrixXd &Layer::getPrevious_deltaweights() const {
-  return previous_deltaweights;
-}
+const Eigen::MatrixXd &Layer::velocity() const { return velocity_; }
 
-void Layer::setPrevious_deltaweights(
-    const Eigen::MatrixXd &newPrevious_deltaweights) {
-  previous_deltaweights = newPrevious_deltaweights;
+void Layer::setVelocity(const Eigen::MatrixXd &newVelocity) {
+  velocity_ = newVelocity;
 }
 
 const Eigen::VectorXd &Layer::bias() const { return bias_; }
 
 auto Layer::Size() const -> size_t { return neurons_.size(); }
 
-auto Layer::BuildGradientMatrix(const Eigen::VectorXd &error)
-    -> Eigen::MatrixXd {
-  return weights_ * error;
-}
-
 auto Layer::BuildMatrixOfWeights(const std::size_t inputs) -> void {
-  //  double variance = sqrt(2.0 / (neurons_.size() + inputs));
-  //  std::cerr << variance;
-  weights_ = Eigen::MatrixXd::Random(neurons_.size(), inputs) * 0.5;
-  previous_deltaweights = Eigen::MatrixXd::Zero(neurons_.size(), inputs);
-  //  weights_ = Eigen::MatrixXd::Random(neurons_.size(), inputs) * variance;
-  //  std::cerr << weights_;
+  std::random_device rd;
+  std::mt19937 gen(rd());
+  std::normal_distribution<> dis(0, 1);
+
+  auto scaling_factor = std::sqrt(2.0 / (inputs + neurons_.size()));
+
+  weights_ = Eigen::MatrixXd::NullaryExpr(
+      neurons_.size(), inputs, [&]() { return dis(gen) * scaling_factor; });
 }
 
 auto operator<<(std::ostream &os, const Layer &layer) -> std::ostream & {

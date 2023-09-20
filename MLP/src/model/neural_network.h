@@ -3,7 +3,7 @@
 #define MLP_MODEL_NEURAL_NETWORK_H_
 
 #include <cmath>
-
+#include <chrono>
 #include "layer.h"
 
 namespace s21 {

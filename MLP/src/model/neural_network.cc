@@ -24,6 +24,7 @@ auto NeuralNetwork::FeedForward(const Eigen::VectorXd &inputs)
   ForEach(layers_, [&](auto &layer) { outputs = layer.FeedForward(outputs); });
   return outputs;
 }
+
 auto NeuralNetwork::BackPropagation(const Eigen::VectorXd &outputnetwork,
                                     const Eigen::VectorXd &target,
                                     double learningRate) -> void {
@@ -32,23 +33,23 @@ auto NeuralNetwork::BackPropagation(const Eigen::VectorXd &outputnetwork,
   Eigen::VectorXd gradient =
       error.array() * layers_.back().GetDerivativeVector().array();
 
-//  double momentum = 0.05;
   Eigen::MatrixXd deltaweights =
-      gradient * layers_[layers_.size() - 2].GetOutputNeurons().transpose() *
-          learningRate;
+      learningRate * gradient *
+      layers_[layers_.size() - 2].GetOutputNeurons().transpose();
 
-//          +
-//      momentum * layers_.back().getPrevious_deltaweights();
+  auto &velocity_ = layers_.back().velocity();
 
-//    layers_.back().setPrevious_deltaweights(deltaweights);
+  double gamma = 0.9; // Коэффициент момента
 
   const Eigen::MatrixXd &old_weights = layers_.back().GetWeights();
+
+  layers_.back().setVelocity(gamma * velocity_ + deltaweights);
 
   Eigen::VectorXd errorfirst = old_weights.transpose() * gradient;
 
   layers_.back().SetBias(layers_.back().bias() + learningRate * gradient);
 
-  layers_.back().SetWeights(old_weights + deltaweights);
+  layers_.back().SetWeights(old_weights + velocity_);
 
   for (auto i = layers_.size() - 2; i > 0; --i) {
     errorfirst =
