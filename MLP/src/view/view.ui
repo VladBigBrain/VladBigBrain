@@ -104,8 +104,8 @@ QProgressBar::chunk {
            <rect>
             <x>10</x>
             <y>40</y>
-            <width>171</width>
-            <height>371</height>
+            <width>251</width>
+            <height>611</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -272,8 +272,8 @@ QProgressBar::chunk {
               <rect>
                <x>0</x>
                <y>20</y>
-               <width>421</width>
-               <height>611</height>
+               <width>511</width>
+               <height>571</height>
               </rect>
              </property>
              <property name="font">
@@ -306,8 +306,8 @@ QProgressBar::chunk {
           <rect>
            <x>11</x>
            <y>20</y>
-           <width>711</width>
-           <height>501</height>
+           <width>1051</width>
+           <height>631</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -421,8 +421,8 @@ QProgressBar::chunk {
           <rect>
            <x>10</x>
            <y>20</y>
-           <width>701</width>
-           <height>481</height>
+           <width>1051</width>
+           <height>631</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_3">

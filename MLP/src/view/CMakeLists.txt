@@ -13,7 +13,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_compile_options(-O3)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
-
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets PrintSupport)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets PrintSupport)
  include(FetchContent)
  FetchContent_Declare(
    Eigen
@@ -29,6 +30,8 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
  FetchContent_MakeAvailable(Eigen)
 
 set(PROJECT_SOURCES
+        ../libraries/qcustomplot/qcustomplot.cpp
+        ../libraries/qcustomplot/qcustomplot.h
         ../model/layer.cc
         ../model/layer.h
         ../model/neural_network.cc
@@ -70,8 +73,8 @@ else()
     endif()
 endif()
 
-target_link_libraries(view PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Eigen3::Eigen)
-target_include_directories(view PRIVATE ../model ../libraries)
+target_link_libraries(view PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Eigen3::Eigen Qt${QT_VERSION_MAJOR}::PrintSupport)
+target_include_directories(view PRIVATE ../model ../libraries ../libraries/qcustomplot)
 
 set_target_properties(view PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
