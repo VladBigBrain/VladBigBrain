@@ -32,7 +32,7 @@ class PaintScene : public QWidget {
   QPoint start_point_;
   QImage image_;
   QPainter line_painter_, image_painter_;
-  const int kPenWidth_ = 30;
+  const int kPenWidth_ = 60;
   const int kImageWidth_ = 512, kImageHeight_ = 512;
 
   void DrawLineTo(const QPoint& end_point);

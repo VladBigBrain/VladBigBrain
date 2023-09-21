@@ -93,18 +93,18 @@ Eigen::VectorXd view::NormalizeAndConvertToEigen(const QImage &originalImage) {
   QImage resizedImage = originalImage.scaled(28, 28, Qt::IgnoreAspectRatio,
                                              Qt::SmoothTransformation);
 
-    resizedImage.invertPixels(QImage::InvertRgba);
+  resizedImage.invertPixels(QImage::InvertRgba);
 
   QTransform transform;
-  transform.rotate(-90); // Поворот на 90 градусов по часовой стрелке
+  transform.rotate(90); // Поворот на 90 градусов по часовой стрелке
   QImage rotatedImage = resizedImage.transformed(transform);
 
   Eigen::VectorXd vec(784);
 
   for (int y = 0; y < 28; ++y) {
     for (int x = 0; x < 28; ++x) {
-      QColor color(resizedImage.pixel(x, y));
-      vec[y * 28 + x] = qGray(color.rgb()) / 255.0;
+      QColor color(rotatedImage.pixel(x, y));
+      vec[y * 28 + x] = qGray(color.rgb());
     }
   }
 

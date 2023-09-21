@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1574</width>
-    <height>1142</height>
+    <width>1376</width>
+    <height>743</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -81,8 +81,8 @@ QProgressBar::chunk {
      <rect>
       <x>10</x>
       <y>0</y>
-      <width>1531</width>
-      <height>861</height>
+      <width>1361</width>
+      <height>691</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout" rowstretch="0" columnstretch="1,4">
@@ -221,8 +221,8 @@ QProgressBar::chunk {
           <rect>
            <x>0</x>
            <y>10</y>
-           <width>1071</width>
-           <height>641</height>
+           <width>1041</width>
+           <height>591</height>
           </rect>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout">
@@ -572,7 +572,7 @@ QProgressBar::chunk {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1574</width>
+     <width>1376</width>
      <height>22</height>
     </rect>
    </property>
