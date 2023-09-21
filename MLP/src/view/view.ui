@@ -210,7 +210,7 @@ QProgressBar::chunk {
         </size>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="recognition">
         <attribute name="title">
@@ -395,6 +395,16 @@ QProgressBar::chunk {
               <property name="title">
                <string>Result</string>
               </property>
+              <widget class="QCustomPlot" name="widget" native="true">
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>30</y>
+                 <width>491</width>
+                 <height>551</height>
+                </rect>
+               </property>
+              </widget>
              </widget>
             </item>
            </layout>
@@ -583,7 +593,13 @@ QProgressBar::chunk {
   <customwidget>
    <class>PaintScene</class>
    <extends>QWidget</extends>
-   <header location="global">paintscene.h</header>
+   <header>paintscene.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>QCustomPlot</class>
+   <extends>QWidget</extends>
+   <header location="global">qcustomplot.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
