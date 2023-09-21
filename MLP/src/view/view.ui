@@ -210,7 +210,7 @@ QProgressBar::chunk {
         </size>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="recognition">
         <attribute name="title">
@@ -456,6 +456,15 @@ QProgressBar::chunk {
                  <height>21</height>
                 </rect>
                </property>
+               <property name="maximum">
+                <double>1.000000000000000</double>
+               </property>
+               <property name="singleStep">
+                <double>0.005000000000000</double>
+               </property>
+               <property name="value">
+                <double>1.000000000000000</double>
+               </property>
               </widget>
               <widget class="QLabel" name="Simpleratelabel">
                <property name="geometry">
@@ -477,87 +486,27 @@ QProgressBar::chunk {
               <property name="title">
                <string>Result</string>
               </property>
-              <widget class="QWidget" name="layoutWidget">
+              <widget class="QLabel" name="resulttest">
                <property name="geometry">
                 <rect>
-                 <x>20</x>
-                 <y>40</y>
-                 <width>261</width>
-                 <height>181</height>
+                 <x>10</x>
+                 <y>30</y>
+                 <width>491</width>
+                 <height>551</height>
                 </rect>
                </property>
-               <layout class="QGridLayout" name="gridLayout_11">
-                <item row="0" column="0">
-                 <widget class="QLabel" name="AverageAccuracy">
-                  <property name="text">
-                   <string>Average Accuracy</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="1">
-                 <widget class="QLabel" name="AverageACResult">
-                  <property name="text">
-                   <string>0 %</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="1" column="0">
-                 <widget class="QLabel" name="Precion">
-                  <property name="text">
-                   <string>Precion</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="1" column="1">
-                 <widget class="QLabel" name="PrecionResult">
-                  <property name="text">
-                   <string>0 %</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="2" column="0">
-                 <widget class="QLabel" name="Recall">
-                  <property name="text">
-                   <string>Recall</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="2" column="1">
-                 <widget class="QLabel" name="Recallall">
-                  <property name="text">
-                   <string>0 %</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="3" column="0">
-                 <widget class="QLabel" name="FMeasure">
-                  <property name="text">
-                   <string>F-measure</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="3" column="1">
-                 <widget class="QLabel" name="FMeasureResult">
-                  <property name="text">
-                   <string>0 %</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="4" column="0">
-                 <widget class="QLabel" name="Time">
-                  <property name="text">
-                   <string>Time</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="4" column="1">
-                 <widget class="QLabel" name="TimeResult">
-                  <property name="text">
-                   <string>0 sec</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
+               <property name="font">
+                <font>
+                 <pointsize>30</pointsize>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+               </property>
               </widget>
              </widget>
             </item>

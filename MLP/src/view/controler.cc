@@ -5,8 +5,8 @@ Controler::StartLearn(const std::string &filename, double epoch) {
   return model.StartLearn(filename, epoch);
 }
 
-void Controler::StartTest(const std::string &filename) {
-  model.StartTest(filename);
+QString Controler::StartTest(const std::string &filename, float fraction) {
+  return model.StartTest(filename,fraction);
 }
 
 Eigen::VectorXd Controler::ForwardFeed(Eigen::VectorXd input) {

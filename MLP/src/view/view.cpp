@@ -60,7 +60,10 @@ void view::update(QImage image) {
   ui->resultlabel->setText(letter);
 }
 
-void view::on_StartTestingButton_clicked() { controller_.StartTest(testfile_); }
+void view::on_StartTestingButton_clicked() {
+  ui->resulttest->setText(
+      controller_.StartTest(testfile_, ui->SimpleRateSpinbox->value()));
+}
 
 void view::on_ImportWeightsButton_clicked() {
   QString filename = QFileDialog::getOpenFileName(this, "Open File", "~/",

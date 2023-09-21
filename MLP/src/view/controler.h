@@ -4,8 +4,9 @@
 namespace s21 {
 class Controler {
 public:
-  auto StartLearn(const std::string &filename,double epoch) -> std::pair<QVector<double>, QVector<double>>;
-  auto StartTest(const std::string &filename) -> void;
+  auto StartLearn(const std::string &filename, double epoch)
+      -> std::pair<QVector<double>, QVector<double>>;
+  auto StartTest(const std::string &filename, float fraction) -> QString;
   auto ForwardFeed(Eigen::VectorXd input) -> Eigen::VectorXd;
   auto SaveWeights(std::string file) -> void;
   auto LoadWeights(std::string file) -> void;

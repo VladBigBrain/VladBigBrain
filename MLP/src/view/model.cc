@@ -21,26 +21,48 @@ Model::StartLearn(const std::string &filename, double epoch) {
   return {errors, epochs};
 }
 
-void Model::StartTest(const std::string &filename) {
+QString Model::StartTest(const std::string &filename, float fraction) {
+  auto start_time = std::chrono::high_resolution_clock::now();
   auto testdatas_ = Parse(filename);
-  int correct = 0, incorrect = 0;
-  for (auto &temp : testdatas_) {
-    Eigen::VectorXd result = network_.FeedForward(temp.input);
+  int total = static_cast<int>(testdatas_.size() * fraction);
+  int correct = 0, incorrect = 0, truePos = 0, falsePos = 0, falseNeg = 0;
+  for (int i = 0; i < total; ++i) {
+    Eigen::VectorXd result = network_.FeedForward(testdatas_[i].input);
     int maxIndex = 0;
     result.maxCoeff(&maxIndex);
     int trueLabelIndex = 0;
-    temp.correct_vector.maxCoeff(&trueLabelIndex);
+    testdatas_[i].correct_vector.maxCoeff(&trueLabelIndex);
     if (maxIndex == trueLabelIndex) {
       correct++;
+      truePos++;
     } else {
       incorrect++;
+      if (maxIndex != trueLabelIndex)
+        falsePos++;
+      if (maxIndex == trueLabelIndex)
+        falseNeg++;
     }
   }
+  float accuracy = static_cast<float>(correct) / total;
+  float precision = static_cast<float>(truePos) / (truePos + falsePos);
+  float recall = static_cast<float>(truePos) / (truePos + falseNeg);
+  float f_measure = 2 * (precision * recall) / (precision + recall);
+  auto end_time = std::chrono::high_resolution_clock::now();
+  auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(
+                      end_time - start_time)
+                      .count();
 
-  // Output results (or do further calculations)
-  std::cout << std::endl
-            << "Correct: " << correct << ", Incorrect: " << incorrect
-            << std::endl;
+  return QString("Average Accuracy: %1\n"
+                 "Precision: %2\n"
+                 "Recall: %3\n"
+                 "F-measure: %4\n"
+                 "Time taken: %5 ms")
+      .arg(accuracy)
+      .arg(precision)
+      .arg(recall)
+      .arg(f_measure)
+      .arg(duration);
+  ;
 }
 
 Eigen::VectorXd Model::ForwardFeed(Eigen::VectorXd input) {

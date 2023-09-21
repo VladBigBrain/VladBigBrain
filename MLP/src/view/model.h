@@ -22,7 +22,7 @@ class Model {
 public:
   std::pair<QVector<double>, QVector<double>>
   StartLearn(const std::string &filename, double epoch);
-  void StartTest(const std::string &filename);
+  QString StartTest(const std::string &filename, float fraction);
   Eigen::VectorXd ForwardFeed(Eigen::VectorXd input);
   Model();
   auto SaveWeights(std::string file) -> void;
