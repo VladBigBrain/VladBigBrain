@@ -13,8 +13,8 @@ view::view(QWidget *parent) : QMainWindow(parent), ui(new Ui::view) {
   ui->setupUi(this);
 
   for (int i = 0; i < 26; ++i) {
-    char letter = 'A' + i; // Calculate the letter based on its position
-    letters_[i] = QString(1, letter); // Add the letter to the map
+    char letter = 'A' + i;
+    letters_[i] = QString(1, letter);
   }
   connect(ui->paintwidget, SIGNAL(updated(QImage)), this, SLOT(update(QImage)));
 }

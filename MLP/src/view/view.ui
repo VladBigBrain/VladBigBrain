@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>947</width>
-    <height>846</height>
+    <width>959</width>
+    <height>618</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -81,8 +81,8 @@ QProgressBar::chunk {
      <rect>
       <x>10</x>
       <y>0</y>
-      <width>921</width>
-      <height>791</height>
+      <width>941</width>
+      <height>561</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout" rowstretch="0" columnstretch="1,4">
@@ -99,246 +99,94 @@ QProgressBar::chunk {
          <property name="title">
           <string>Options</string>
          </property>
-         <widget class="QWidget" name="layoutWidget">
+         <widget class="QWidget" name="">
           <property name="geometry">
            <rect>
             <x>10</x>
-            <y>30</y>
-            <width>161</width>
-            <height>161</height>
-           </rect>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_6">
-           <item row="1" column="0">
-            <widget class="QComboBox" name="TypeBox">
-             <item>
-              <property name="text">
-               <string>Matrix</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Graph</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item row="0" column="0">
-            <widget class="QLabel" name="typelabel">
-             <property name="text">
-              <string>Perceptrone Type</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QGroupBox" name="Weightsbox">
-         <property name="title">
-          <string>Weights</string>
-         </property>
-         <widget class="QSplitter" name="splitter">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>30</y>
+            <y>40</y>
             <width>171</width>
-            <height>161</height>
+            <height>371</height>
            </rect>
           </property>
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <widget class="QWidget" name="layoutWidget">
-           <layout class="QGridLayout" name="gridLayout_7">
-            <item row="0" column="0">
-             <widget class="QLabel" name="FileLabel">
-              <property name="text">
-               <string>File</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QLabel" name="Filelabelresult">
-              <property name="text">
-               <string>n/a</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="HiddenlayerLabel">
-              <property name="text">
-               <string>HiddenLayers</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QLabel" name="HiddenLayersLabelresult">
-              <property name="text">
-               <string>n/a</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="NeuroninLayersLabel">
-              <property name="text">
-               <string>Neuron in Layers</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="QLabel" name="NeuronInlayersLabelresult">
-              <property name="text">
-               <string>n/a</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0">
-             <widget class="QLabel" name="AccuracyLabel">
-              <property name="text">
-               <string>Accuracy</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="1">
-             <widget class="QLabel" name="accuracylabelresult">
-              <property name="text">
-               <string>n/a</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="layoutWidget">
-           <layout class="QHBoxLayout" name="horizontalLayout">
-            <item>
-             <widget class="QPushButton" name="ImportWeightsButton">
-              <property name="text">
-               <string>Import</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="ExportWeights">
-              <property name="text">
-               <string>Export</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </widget>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QGroupBox" name="LearningBox">
-         <property name="title">
-          <string>Lerning</string>
-         </property>
-         <widget class="QSplitter" name="splitter_2">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>30</y>
-            <width>171</width>
-            <height>151</height>
-           </rect>
-          </property>
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <widget class="QWidget" name="layoutWidget">
-           <layout class="QGridLayout" name="gridLayout_8">
-            <item row="0" column="0">
-             <widget class="QLabel" name="fileleraninglabel">
-              <property name="text">
-               <string>File</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QLabel" name="filelearninglabelresult">
-              <property name="text">
-               <string>n/a</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="sizelabel">
-              <property name="text">
-               <string>Size</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QLabel" name="sizelabelresult">
-              <property name="text">
-               <string>n/a</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QPushButton" name="learningimportbuttonresult">
-           <property name="text">
-            <string>Import</string>
-           </property>
-          </widget>
-         </widget>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QGroupBox" name="Testingbox">
-         <property name="title">
-          <string>Testing</string>
-         </property>
-         <widget class="QWidget" name="layoutWidget">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>30</y>
-            <width>171</width>
-            <height>161</height>
-           </rect>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_3">
+          <layout class="QVBoxLayout" name="verticalLayout">
            <item>
-            <layout class="QGridLayout" name="gridLayout_9">
-             <item row="0" column="0">
-              <widget class="QLabel" name="FileLabelTesting">
+            <layout class="QGridLayout" name="gridLayout_8">
+             <item row="0" column="0" colspan="2">
+              <widget class="QLabel" name="weightsimpexplabe">
                <property name="text">
-                <string>File</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <widget class="QLabel" name="FileLabelTestingresult">
-               <property name="text">
-                <string>n/a</string>
+                <string>Weights</string>
                </property>
               </widget>
              </item>
              <item row="1" column="0">
-              <widget class="QLabel" name="SizeLabelTesting">
+              <widget class="QPushButton" name="ImportWeightsButton">
                <property name="text">
-                <string>Size</string>
+                <string>Import</string>
                </property>
               </widget>
              </item>
              <item row="1" column="1">
-              <widget class="QLabel" name="SizeLabelTestingResult">
+              <widget class="QPushButton" name="ExportWeights">
                <property name="text">
-                <string>n/a</string>
+                <string>Export</string>
                </property>
               </widget>
              </item>
             </layout>
            </item>
            <item>
-            <layout class="QVBoxLayout" name="verticalLayout">
-             <item>
+            <layout class="QGridLayout" name="gridLayout_6">
+             <item row="0" column="0">
+              <widget class="QLabel" name="learningimpexplabel">
+               <property name="text">
+                <string>Learning</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QPushButton" name="learningimportbuttonresult">
+               <property name="text">
+                <string>Import</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QGridLayout" name="gridLayout_9">
+             <item row="0" column="0">
+              <widget class="QLabel" name="typelabel">
+               <property name="text">
+                <string>Perceptrone Type</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QComboBox" name="TypeBox">
+               <item>
+                <property name="text">
+                 <string>Matrix</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Graph</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QGridLayout" name="gridLayout_7">
+             <item row="0" column="0">
+              <widget class="QLabel" name="testingimexplabel">
+               <property name="text">
+                <string>Testing</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
               <widget class="QPushButton" name="Testingimportbutton">
                <property name="text">
                 <string>Import</string>
@@ -362,548 +210,88 @@ QProgressBar::chunk {
         </size>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="recognition">
         <attribute name="title">
          <string>Recognition</string>
         </attribute>
-        <widget class="QGroupBox" name="ResultBox">
+        <widget class="QWidget" name="">
          <property name="geometry">
           <rect>
-           <x>359</x>
-           <y>11</y>
-           <width>331</width>
-           <height>191</height>
+           <x>0</x>
+           <y>10</y>
+           <width>731</width>
+           <height>471</height>
           </rect>
          </property>
-         <property name="title">
-          <string>Result</string>
-         </property>
-         <widget class="QLabel" name="resultlabel">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>20</y>
-            <width>331</width>
-            <height>161</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>TextLabel</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </widget>
-        <widget class="QGroupBox" name="VisualizationBox">
-         <property name="geometry">
-          <rect>
-           <x>359</x>
-           <y>199</y>
-           <width>341</width>
-           <height>491</height>
-          </rect>
-         </property>
-         <property name="title">
-          <string>Visualization</string>
-         </property>
-         <widget class="QWidget" name="layoutWidget">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>37</y>
-            <width>311</width>
-            <height>434</height>
-           </rect>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_5">
-           <item row="0" column="0">
-            <widget class="QLabel" name="Alabel">
-             <property name="text">
-              <string>A</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QProgressBar" name="AprogressBar">
-             <property name="value">
-              <number>24</number>
-             </property>
-             <property name="textVisible">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="2">
-            <widget class="QLabel" name="Nlabel">
-             <property name="text">
-              <string>N</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="3">
-            <widget class="QProgressBar" name="NprogressBar">
-             <property name="value">
-              <number>24</number>
-             </property>
-             <property name="textVisible">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="Blabel">
-             <property name="text">
-              <string>B</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QProgressBar" name="BprogressBar">
-             <property name="value">
-              <number>24</number>
-             </property>
-             <property name="textVisible">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="2">
-            <widget class="QLabel" name="Olabel">
-             <property name="text">
-              <string>O</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="3">
-            <widget class="QProgressBar" name="OprogressBar">
-             <property name="value">
-              <number>24</number>
-             </property>
-             <property name="textVisible">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="QLabel" name="Clabel">
-             <property name="text">
-              <string>C</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="1">
-            <widget class="QProgressBar" name="CprogressBar">
-             <property name="value">
-              <number>24</number>
-             </property>
-             <property name="textVisible">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="2">
-            <widget class="QLabel" name="Plabel">
-             <property name="text">
-              <string>P</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="3">
-            <widget class="QProgressBar" name="PprogressBar">
-             <property name="value">
-              <number>24</number>
-             </property>
-             <property name="textVisible">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="0">
-            <widget class="QLabel" name="Dlabel">
-             <property name="text">
-              <string>D</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="1">
-            <widget class="QProgressBar" name="DprogressBar">
-             <property name="value">
-              <number>24</number>
-             </property>
-             <property name="textVisible">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="2">
-            <widget class="QLabel" name="Qlabel">
-             <property name="text">
-              <string>Q</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="3">
-            <widget class="QProgressBar" name="QprogressBar">
-             <property name="value">
-              <number>24</number>
-             </property>
-             <property name="textVisible">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="0">
-            <widget class="QLabel" name="Elabel">
-             <property name="text">
-              <string>E</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="1">
-            <widget class="QProgressBar" name="EprogressBar">
-             <property name="value">
-              <number>24</number>
-             </property>
-             <property name="textVisible">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="2">
-            <widget class="QLabel" name="Rlabel">
-             <property name="text">
-              <string>R</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="3">
-            <widget class="QProgressBar" name="RprogressBar">
-             <property name="value">
-              <number>24</number>
-             </property>
-             <property name="textVisible">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="0">
-            <widget class="QLabel" name="Flabel">
-             <property name="text">
-              <string>F</string>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="1">
-            <widget class="QProgressBar" name="FprogressBar">
-             <property name="value">
-              <number>24</number>
-             </property>
-             <property name="textVisible">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="2">
-            <widget class="QLabel" name="Slabel">
-             <property name="text">
-              <string>S</string>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="3">
-            <widget class="QProgressBar" name="SprogressBar">
-             <property name="value">
-              <number>24</number>
-             </property>
-             <property name="textVisible">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="0">
-            <widget class="QLabel" name="Glabel">
-             <property name="text">
-              <string>G</string>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="1">
-            <widget class="QProgressBar" name="GprogressBar">
-             <property name="value">
-              <number>24</number>
-             </property>
-             <property name="textVisible">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="2">
-            <widget class="QLabel" name="Tlabel">
-             <property name="text">
-              <string>T</string>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="3">
-            <widget class="QProgressBar" name="TprogressBar">
-             <property name="value">
-              <number>24</number>
-             </property>
-             <property name="textVisible">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="7" column="0">
-            <widget class="QLabel" name="Hlabel">
-             <property name="text">
-              <string>H</string>
-             </property>
-            </widget>
-           </item>
-           <item row="7" column="1">
-            <widget class="QProgressBar" name="HprogressBar">
-             <property name="value">
-              <number>24</number>
-             </property>
-             <property name="textVisible">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="7" column="2">
-            <widget class="QLabel" name="Ulabel">
-             <property name="text">
-              <string>U</string>
-             </property>
-            </widget>
-           </item>
-           <item row="7" column="3">
-            <widget class="QProgressBar" name="UprogressBar">
-             <property name="value">
-              <number>24</number>
-             </property>
-             <property name="textVisible">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="8" column="0">
-            <widget class="QLabel" name="Ilabel">
-             <property name="text">
-              <string>I</string>
-             </property>
-            </widget>
-           </item>
-           <item row="8" column="1">
-            <widget class="QProgressBar" name="IprogressBar">
-             <property name="value">
-              <number>24</number>
-             </property>
-             <property name="textVisible">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="8" column="2">
-            <widget class="QLabel" name="Vlabel">
-             <property name="text">
-              <string>V</string>
-             </property>
-            </widget>
-           </item>
-           <item row="8" column="3">
-            <widget class="QProgressBar" name="VprogressBar">
-             <property name="value">
-              <number>24</number>
-             </property>
-             <property name="textVisible">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="9" column="0">
-            <widget class="QLabel" name="Jlabel">
-             <property name="text">
-              <string>J</string>
-             </property>
-            </widget>
-           </item>
-           <item row="9" column="1">
-            <widget class="QProgressBar" name="JprogressBar">
-             <property name="value">
-              <number>24</number>
-             </property>
-             <property name="textVisible">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="9" column="2">
-            <widget class="QLabel" name="Wlabel">
-             <property name="text">
-              <string>W</string>
-             </property>
-            </widget>
-           </item>
-           <item row="9" column="3">
-            <widget class="QProgressBar" name="WprogressBar">
-             <property name="value">
-              <number>24</number>
-             </property>
-             <property name="textVisible">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="10" column="0">
-            <widget class="QLabel" name="Klabel">
-             <property name="text">
-              <string>K</string>
-             </property>
-            </widget>
-           </item>
-           <item row="10" column="1">
-            <widget class="QProgressBar" name="progressBarK">
-             <property name="value">
-              <number>24</number>
-             </property>
-             <property name="textVisible">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="10" column="2">
-            <widget class="QLabel" name="Xlabel">
-             <property name="text">
-              <string>X</string>
-             </property>
-            </widget>
-           </item>
-           <item row="10" column="3">
-            <widget class="QProgressBar" name="XprogressBar">
-             <property name="value">
-              <number>24</number>
-             </property>
-             <property name="textVisible">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="11" column="0">
-            <widget class="QLabel" name="Llabel">
-             <property name="text">
-              <string>L</string>
-             </property>
-            </widget>
-           </item>
-           <item row="11" column="1">
-            <widget class="QProgressBar" name="LprogressBar">
-             <property name="value">
-              <number>24</number>
-             </property>
-             <property name="textVisible">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="11" column="2">
-            <widget class="QLabel" name="Ylabel">
-             <property name="text">
-              <string>Y</string>
-             </property>
-            </widget>
-           </item>
-           <item row="11" column="3">
-            <widget class="QProgressBar" name="YprogressBar">
-             <property name="value">
-              <number>24</number>
-             </property>
-             <property name="textVisible">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="12" column="0">
-            <widget class="QLabel" name="Mlabel">
-             <property name="text">
-              <string>M</string>
-             </property>
-            </widget>
-           </item>
-           <item row="12" column="1">
-            <widget class="QProgressBar" name="MprogressBar">
-             <property name="value">
-              <number>24</number>
-             </property>
-             <property name="textVisible">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="12" column="2">
-            <widget class="QLabel" name="Zlabel">
-             <property name="text">
-              <string>Z</string>
-             </property>
-            </widget>
-           </item>
-           <item row="12" column="3">
-            <widget class="QProgressBar" name="ZprogressBar">
-             <property name="value">
-              <number>24</number>
-             </property>
-             <property name="textVisible">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </widget>
-        <widget class="QWidget" name="layoutWidget">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>12</y>
-           <width>281</width>
-           <height>341</height>
-          </rect>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_4">
+         <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
-           <widget class="QGroupBox" name="PaintBox">
-            <property name="styleSheet">
-             <string notr="true">QGroupBox {
+           <layout class="QVBoxLayout" name="verticalLayout_4">
+            <item>
+             <widget class="QGroupBox" name="PaintBox">
+              <property name="styleSheet">
+               <string notr="true">QGroupBox {
     border: 1px solid #f1f1f1;
     border-radius: 5px;
     margin-top: 1ex;
 }
 </string>
-            </property>
+              </property>
+              <property name="title">
+               <string>Paint</string>
+              </property>
+              <widget class="PaintScene" name="paintwidget" native="true">
+               <property name="geometry">
+                <rect>
+                 <x>0</x>
+                 <y>30</y>
+                 <width>361</width>
+                 <height>401</height>
+                </rect>
+               </property>
+              </widget>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="ImportIMageButton">
+              <property name="text">
+               <string>Import Image</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="ResultBox">
             <property name="title">
-             <string>Paint</string>
+             <string>Result</string>
             </property>
-            <widget class="PaintScene" name="paintwidget" native="true">
+            <widget class="QLabel" name="resultlabel">
              <property name="geometry">
               <rect>
                <x>0</x>
-               <y>30</y>
-               <width>280</width>
-               <height>280</height>
+               <y>20</y>
+               <width>351</width>
+               <height>451</height>
               </rect>
              </property>
+             <property name="font">
+              <font>
+               <pointsize>400</pointsize>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="scaledContents">
+              <bool>true</bool>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
             </widget>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="ImportIMageButton">
-            <property name="text">
-             <string>Import Image</string>
-            </property>
            </widget>
           </item>
          </layout>
@@ -913,144 +301,115 @@ QProgressBar::chunk {
         <attribute name="title">
          <string>Learning</string>
         </attribute>
-        <widget class="QWidget" name="layoutWidget">
+        <widget class="QWidget" name="">
          <property name="geometry">
           <rect>
-           <x>10</x>
+           <x>11</x>
            <y>20</y>
-           <width>651</width>
-           <height>471</height>
+           <width>711</width>
+           <height>501</height>
           </rect>
          </property>
-         <layout class="QGridLayout" name="gridLayout_2">
-          <item row="0" column="0" rowspan="2">
-           <widget class="QGroupBox" name="OptionBox">
-            <property name="title">
-             <string>Options</string>
-            </property>
-            <widget class="QWidget" name="layoutWidget">
-             <property name="geometry">
-              <rect>
-               <x>10</x>
-               <y>30</y>
-               <width>191</width>
-               <height>361</height>
-              </rect>
-             </property>
-             <layout class="QVBoxLayout" name="verticalLayout_2">
-              <item>
-               <widget class="QLabel" name="HIddenLayersLabel">
-                <property name="text">
-                 <string>HIddenLayers</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QSpinBox" name="HIddenLayersspinbox">
-                <property name="minimum">
-                 <number>2</number>
-                </property>
-                <property name="maximum">
-                 <number>5</number>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="EpochLabel">
-                <property name="text">
-                 <string>Epoch</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QSpinBox" name="EpochspinBox"/>
-              </item>
-              <item>
-               <widget class="QLabel" name="FoldCountlabel">
-                <property name="text">
-                 <string>Foldcount</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QSpinBox" name="FoldCountspin"/>
-              </item>
-              <item>
-               <widget class="QLabel" name="LearningRateLabel">
-                <property name="text">
-                 <string>Learningrate</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QDoubleSpinBox" name="doubleSpinBox"/>
-              </item>
-              <item>
-               <widget class="QLabel" name="Type">
-                <property name="text">
-                 <string>Type</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QComboBox" name="TypecomboBox">
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <item>
+             <widget class="QGroupBox" name="OptionBox">
+              <property name="title">
+               <string>Options</string>
+              </property>
+              <widget class="QWidget" name="layoutWidget">
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>30</y>
+                 <width>291</width>
+                 <height>401</height>
+                </rect>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_2">
                 <item>
-                 <property name="text">
-                  <string>Default</string>
-                 </property>
+                 <widget class="QLabel" name="HIddenLayersLabel">
+                  <property name="text">
+                   <string>HIddenLayers</string>
+                  </property>
+                 </widget>
                 </item>
                 <item>
-                 <property name="text">
-                  <string>Cross Validation</string>
-                 </property>
+                 <widget class="QSpinBox" name="HIddenLayersspinbox">
+                  <property name="minimum">
+                   <number>2</number>
+                  </property>
+                  <property name="maximum">
+                   <number>5</number>
+                  </property>
+                 </widget>
                 </item>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </widget>
+                <item>
+                 <widget class="QLabel" name="EpochLabel">
+                  <property name="text">
+                   <string>Epoch</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QSpinBox" name="EpochspinBox"/>
+                </item>
+                <item>
+                 <widget class="QLabel" name="FoldCountlabel">
+                  <property name="text">
+                   <string>Foldcount</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QSpinBox" name="FoldCountspin"/>
+                </item>
+                <item>
+                 <widget class="QLabel" name="LearningRateLabel">
+                  <property name="text">
+                   <string>Learningrate</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QDoubleSpinBox" name="doubleSpinBox"/>
+                </item>
+                <item>
+                 <widget class="QLabel" name="Type">
+                  <property name="text">
+                   <string>Type</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QComboBox" name="TypecomboBox">
+                  <item>
+                   <property name="text">
+                    <string>Default</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Cross Validation</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="Resultbox">
+              <property name="title">
+               <string>Result</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
-          <item row="0" column="1">
-           <widget class="QGroupBox" name="ProgressBox">
-            <property name="title">
-             <string>Progress</string>
-            </property>
-            <widget class="QWidget" name="layoutWidget">
-             <property name="geometry">
-              <rect>
-               <x>50</x>
-               <y>40</y>
-               <width>221</width>
-               <height>151</height>
-              </rect>
-             </property>
-             <layout class="QGridLayout" name="gridLayout_10">
-              <item row="0" column="0">
-               <widget class="QProgressBar" name="LearningprogressBar">
-                <property name="value">
-                 <number>24</number>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QProgressBar" name="LearningProgress2">
-                <property name="value">
-                 <number>24</number>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </widget>
-          </item>
-          <item row="1" column="1" rowspan="2">
-           <widget class="QGroupBox" name="Resultbox">
-            <property name="title">
-             <string>Result</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
+          <item>
            <widget class="QPushButton" name="Learnbutton">
             <property name="enabled">
              <bool>false</bool>
@@ -1067,67 +426,140 @@ QProgressBar::chunk {
         <attribute name="title">
          <string>Testing</string>
         </attribute>
-        <widget class="QWidget" name="layoutWidget">
+        <widget class="QWidget" name="">
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>10</y>
-           <width>661</width>
+           <y>20</y>
+           <width>701</width>
            <height>481</height>
           </rect>
          </property>
-         <layout class="QGridLayout" name="gridLayout_3">
-          <item row="0" column="0" rowspan="2">
-           <widget class="QGroupBox" name="Optionstestingbox">
-            <property name="title">
-             <string>Options</string>
-            </property>
-            <widget class="QDoubleSpinBox" name="SimpleRateSpinbox">
-             <property name="geometry">
-              <rect>
-               <x>0</x>
-               <y>80</y>
-               <width>131</width>
-               <height>21</height>
-              </rect>
-             </property>
-            </widget>
-            <widget class="QLabel" name="Simpleratelabel">
-             <property name="geometry">
-              <rect>
-               <x>10</x>
-               <y>50</y>
-               <width>111</width>
-               <height>21</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>Simple Rate</string>
-             </property>
-            </widget>
-           </widget>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QGroupBox" name="Optionstestingbox">
+              <property name="title">
+               <string>Options</string>
+              </property>
+              <widget class="QDoubleSpinBox" name="SimpleRateSpinbox">
+               <property name="geometry">
+                <rect>
+                 <x>0</x>
+                 <y>80</y>
+                 <width>131</width>
+                 <height>21</height>
+                </rect>
+               </property>
+              </widget>
+              <widget class="QLabel" name="Simpleratelabel">
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>50</y>
+                 <width>111</width>
+                 <height>21</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Simple Rate</string>
+               </property>
+              </widget>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="Result">
+              <property name="title">
+               <string>Result</string>
+              </property>
+              <widget class="QWidget" name="layoutWidget">
+               <property name="geometry">
+                <rect>
+                 <x>20</x>
+                 <y>40</y>
+                 <width>261</width>
+                 <height>181</height>
+                </rect>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_11">
+                <item row="0" column="0">
+                 <widget class="QLabel" name="AverageAccuracy">
+                  <property name="text">
+                   <string>Average Accuracy</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QLabel" name="AverageACResult">
+                  <property name="text">
+                   <string>0 %</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QLabel" name="Precion">
+                  <property name="text">
+                   <string>Precion</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QLabel" name="PrecionResult">
+                  <property name="text">
+                   <string>0 %</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="0">
+                 <widget class="QLabel" name="Recall">
+                  <property name="text">
+                   <string>Recall</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="1">
+                 <widget class="QLabel" name="Recallall">
+                  <property name="text">
+                   <string>0 %</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="0">
+                 <widget class="QLabel" name="FMeasure">
+                  <property name="text">
+                   <string>F-measure</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="1">
+                 <widget class="QLabel" name="FMeasureResult">
+                  <property name="text">
+                   <string>0 %</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="4" column="0">
+                 <widget class="QLabel" name="Time">
+                  <property name="text">
+                   <string>Time</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="4" column="1">
+                 <widget class="QLabel" name="TimeResult">
+                  <property name="text">
+                   <string>0 sec</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+            </item>
+           </layout>
           </item>
-          <item row="0" column="1">
-           <widget class="QGroupBox" name="Progressbox">
-            <property name="title">
-             <string>Progress</string>
-            </property>
-            <widget class="QProgressBar" name="TestprogressBar">
-             <property name="geometry">
-              <rect>
-               <x>10</x>
-               <y>60</y>
-               <width>161</width>
-               <height>31</height>
-              </rect>
-             </property>
-             <property name="value">
-              <number>24</number>
-             </property>
-            </widget>
-           </widget>
-          </item>
-          <item row="2" column="0">
+          <item>
            <widget class="QPushButton" name="StartTestingButton">
             <property name="enabled">
              <bool>false</bool>
@@ -1135,95 +567,6 @@ QProgressBar::chunk {
             <property name="text">
              <string>Start</string>
             </property>
-           </widget>
-          </item>
-          <item row="1" column="1" rowspan="2">
-           <widget class="QGroupBox" name="Result">
-            <property name="title">
-             <string>Result</string>
-            </property>
-            <widget class="QWidget" name="layoutWidget">
-             <property name="geometry">
-              <rect>
-               <x>20</x>
-               <y>40</y>
-               <width>261</width>
-               <height>181</height>
-              </rect>
-             </property>
-             <layout class="QGridLayout" name="gridLayout_11">
-              <item row="0" column="0">
-               <widget class="QLabel" name="AverageAccuracy">
-                <property name="text">
-                 <string>Average Accuracy</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QLabel" name="AverageACResult">
-                <property name="text">
-                 <string>0 %</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="Precion">
-                <property name="text">
-                 <string>Precion</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="QLabel" name="PrecionResult">
-                <property name="text">
-                 <string>0 %</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="Recall">
-                <property name="text">
-                 <string>Recall</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="1">
-               <widget class="QLabel" name="Recallall">
-                <property name="text">
-                 <string>0 %</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="0">
-               <widget class="QLabel" name="FMeasure">
-                <property name="text">
-                 <string>F-measure</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="1">
-               <widget class="QLabel" name="FMeasureResult">
-                <property name="text">
-                 <string>0 %</string>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="0">
-               <widget class="QLabel" name="Time">
-                <property name="text">
-                 <string>Time</string>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="1">
-               <widget class="QLabel" name="TimeResult">
-                <property name="text">
-                 <string>0 sec</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
            </widget>
           </item>
          </layout>
@@ -1239,7 +582,7 @@ QProgressBar::chunk {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>947</width>
+     <width>959</width>
      <height>22</height>
     </rect>
    </property>
