@@ -1,8 +1,12 @@
 #include "controler.h"
 namespace s21 {
-void Controler::StartLearn() { model.StartLearn(); }
+void Controler::StartLearn(const std::string &filename) {
+  model.StartLearn(filename);
+}
 
-void Controler::StartTest() { model.StartTest(); }
+void Controler::StartTest(const std::string &filename) {
+  model.StartTest(filename);
+}
 
 Eigen::VectorXd Controler::ForwardFeed(Eigen::VectorXd input) {
   return model.ForwardFeed(input);

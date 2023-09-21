@@ -35,6 +35,8 @@ private slots:
 private:
   s21::Controler controller_;
   std::map<int, QString> letters_;
+  std::string learningfile_{};
+  std::string testfile_{};
   Ui::view *ui;
 };
 #endif // VIEW_H

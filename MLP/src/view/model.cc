@@ -1,23 +1,23 @@
 #include "model.h"
 namespace s21 {
-void Model::StartLearn() {
-  auto parsedatas2 = Parse("/opt/goinfre/barnards/VladBigBrain/MLP/datasets/"
-                           "emnist-letters-train.csv");
+void Model::StartLearn(const std::string &filename) {
+  auto learningdatas_ = Parse(filename);
   double initial_learning_rate = 0.01;
   // Константа затухания
   double decay_constant = 0.0001;
   for (auto i = 0; i < 5; ++i) {
     double learning_rate =
         initial_learning_rate * std::exp(-decay_constant * i);
-    for (auto &i : parsedatas2) {
+    for (auto &i : learningdatas_) {
       network_.Train(learning_rate, i.input, i.correct_vector);
     }
   }
 }
 
-void Model::StartTest() {
+void Model::StartTest(const std::string &filename) {
+  auto testdatas_ = Parse(filename);
   int correct = 0, incorrect = 0;
-  for (auto &temp : parsedatas) {
+  for (auto &temp : testdatas_) {
     Eigen::VectorXd result = network_.FeedForward(temp.input);
     int maxIndex = 0;
     result.maxCoeff(&maxIndex);

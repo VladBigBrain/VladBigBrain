@@ -4,8 +4,8 @@
 namespace s21 {
 class Controler {
 public:
-  auto StartLearn() -> void;
-  auto StartTest() -> void;
+  auto StartLearn(const std::string &filename) -> void;
+  auto StartTest(const std::string &filename) -> void;
   auto ForwardFeed(Eigen::VectorXd input) -> Eigen::VectorXd;
   auto SaveWeights(std::string file) -> void;
   auto LoadWeights(std::string file) -> void;

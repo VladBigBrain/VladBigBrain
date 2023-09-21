@@ -21,7 +21,7 @@ view::view(QWidget *parent) : QMainWindow(parent), ui(new Ui::view) {
 
 view::~view() { delete ui; }
 
-void view::on_Learnbutton_clicked() { controller_.StartLearn(); }
+void view::on_Learnbutton_clicked() { controller_.StartLearn(learningfile_); }
 
 void view::update(QImage image) {
   QImage resizedImage =
@@ -43,7 +43,7 @@ void view::update(QImage image) {
   ui->resultlabel->setText(letter);
 }
 
-void view::on_StartTestingButton_clicked() { controller_.StartTest(); }
+void view::on_StartTestingButton_clicked() { controller_.StartTest(testfile_); }
 
 void view::on_ImportWeightsButton_clicked() {
   QString filename = QFileDialog::getOpenFileName(this, "Open File", "~/",
@@ -64,11 +64,17 @@ void view::on_ExportWeights_clicked() {
 void view::on_learningimportbuttonresult_clicked() {
   QString filename = QFileDialog::getOpenFileName(this, "Open File", "~/",
                                                   "Text files (*.csv)");
+  ui->Learnbutton->setEnabled(true);
+  if (!filename.isEmpty())
+    learningfile_ = filename.toStdString();
 }
 
 void view::on_Testingimportbutton_clicked() {
   QString filename = QFileDialog::getOpenFileName(this, "Open File", "~/",
                                                   "Text files (*.csv)");
+  ui->StartTestingButton->setEnabled(true);
+  if (!filename.isEmpty())
+    testfile_ = filename.toStdString();
 }
 
 void view::on_ImportIMageButton_clicked() {

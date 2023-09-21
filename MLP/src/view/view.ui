@@ -362,7 +362,7 @@ QProgressBar::chunk {
         </size>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="recognition">
         <attribute name="title">
@@ -1052,6 +1052,9 @@ QProgressBar::chunk {
           </item>
           <item row="2" column="0">
            <widget class="QPushButton" name="Learnbutton">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Start</string>
             </property>
@@ -1126,6 +1129,9 @@ QProgressBar::chunk {
           </item>
           <item row="2" column="0">
            <widget class="QPushButton" name="StartTestingButton">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Start</string>
             </property>

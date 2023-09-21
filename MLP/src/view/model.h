@@ -19,20 +19,18 @@ struct Data {
 };
 
 class Model {
- public:
-  void StartLearn();
-  void StartTest();
+public:
+  void StartLearn(const std::string &filename);
+  void StartTest(const std::string &filename);
   Eigen::VectorXd ForwardFeed(Eigen::VectorXd input);
   Model();
   auto SaveWeights(std::string file) -> void;
   auto LoadWeights(std::string file) -> void;
 
- private:
+private:
   std::vector<Data> Parse(const std::string &filename);
   std::vector<Data> ConvertToEigen(const std::vector<std::string> &data);
-  std::vector<Data> parsedatas = Parse("/opt/goinfre/barnards/VladBigBrain/MLP/datasets/"
-                          "emnist-letters-test.csv");
   NeuralNetwork network_;
 };
-}  // namespace s21
-#endif  // MODEL_H
+} // namespace s21
+#endif // MODEL_H
