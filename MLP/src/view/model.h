@@ -24,6 +24,8 @@ class Model {
   void StartTest();
   Eigen::VectorXd ForwardFeed(Eigen::VectorXd input);
   Model();
+  auto SaveWeights(std::string file) -> void;
+  auto LoadWeights(std::string file) -> void;
 
  private:
   std::vector<Data> Parse(const std::string &filename);

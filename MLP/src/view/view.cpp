@@ -21,23 +21,57 @@ view::view(QWidget *parent) : QMainWindow(parent), ui(new Ui::view) {
 
 view::~view() { delete ui; }
 
-void view::on_Learnbutton_clicked() { controller.StartLearn(); }
+void view::on_Learnbutton_clicked() { controller_.StartLearn(); }
 
 void view::update(QImage image) {
   QImage resizedImage =
       image.scaled(28, 28, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-//  resizedImage.bits();
-  // Step 2: Initialize Eigen Vector
-  Eigen::VectorXd vec(784); // 28x28 = 784
+  Eigen::VectorXd vec(784);
 
-  // Step 3: Fill Vector
   for (int y = 0; y < 28; ++y) {
     for (int x = 0; x < 28; ++x) {
       QColor color(resizedImage.pixel(x, y));
       int grayValue = qGray(color.rgb());
-      vec[y * 28 + x] = grayValue == 255 ? 0 : 1; // 0 for white, 1 for black
+      vec[y * 28 + x] = grayValue == 255 ? 0 : 1;
     }
   }
+
+  int index = 0;
+  auto result = controller_.ForwardFeed(vec);
+  result.maxCoeff(&index);
+  auto letter = letters_[index];
+  ui->resultlabel->setText(letter);
 }
 
-void view::on_StartTestingButton_clicked() { controller.StartTest(); }
+void view::on_StartTestingButton_clicked() { controller_.StartTest(); }
+
+void view::on_ImportWeightsButton_clicked() {
+  QString filename = QFileDialog::getOpenFileName(this, "Open File", "~/",
+                                                  "Text files (*.txt)");
+
+  if (!filename.isEmpty())
+    controller_.LoadWeights(filename.toStdString());
+}
+
+void view::on_ExportWeights_clicked() {
+  QString filename = QFileDialog::getSaveFileName(this, "Save File", "~/",
+                                                  "Text files (*.txt)");
+
+  if (!filename.isEmpty())
+    controller_.SaveWeights(filename.toStdString());
+}
+
+void view::on_learningimportbuttonresult_clicked() {
+  QString filename = QFileDialog::getOpenFileName(this, "Open File", "~/",
+                                                  "Text files (*.csv)");
+}
+
+void view::on_Testingimportbutton_clicked() {
+  QString filename = QFileDialog::getOpenFileName(this, "Open File", "~/",
+                                                  "Text files (*.csv)");
+}
+
+void view::on_ImportIMageButton_clicked() {
+  QString filename = QFileDialog::getOpenFileName(this, "Open File", "~/",
+                                                  "Image files (*.bmp)");
+}

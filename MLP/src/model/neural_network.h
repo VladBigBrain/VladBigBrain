@@ -2,10 +2,10 @@
 #ifndef MLP_MODEL_NEURAL_NETWORK_H_
 #define MLP_MODEL_NEURAL_NETWORK_H_
 
-#include <cmath>
-#include <chrono>
 #include "layer.h"
-
+#include <chrono>
+#include <cmath>
+#include <fstream>
 namespace s21 {
 
 class NeuralNetwork {
@@ -26,13 +26,14 @@ public:
              const Eigen::VectorXd &inputs = Eigen::VectorXd::Random(784),
              const Eigen::VectorXd &target = Eigen::VectorXd::Random(26))
       -> void;
-  [[nodiscard]] auto GetLayers() const -> std::vector<Layer> { return layers_; }
-
+  auto SaveWeights(std::string filename) -> void;
+  auto LoadWeights(std::string filename) -> void;
   friend auto operator<<(std::ostream &os, const NeuralNetwork &neuralNetwork)
       -> std::ostream &;
+  friend auto operator>>(std::ifstream &is, NeuralNetwork &neuralNetwork)
+      -> std::ifstream &;
 
 private:
-  // //
   std::vector<Layer> layers_;
 };
 

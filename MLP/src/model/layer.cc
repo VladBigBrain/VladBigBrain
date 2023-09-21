@@ -75,12 +75,25 @@ auto Layer::BuildMatrixOfWeights(const std::size_t inputs) -> void {
 }
 
 auto operator<<(std::ostream &os, const Layer &layer) -> std::ostream & {
-  for (const auto &neuron : layer.neurons_) {
-    os << neuron;
-  }
-  os << layer.weights_;
-  std::cout << std::endl;
+  os << layer.weights_.rows() << " " << layer.weights_.cols() << std::endl;
+  os << layer.weights_ << std::endl;
   return os;
+}
+
+auto operator>>(std::ifstream &is, Layer &layer) -> std::ifstream & {
+  int rows, cols;
+  if (is >> rows >> cols) {
+    layer.weights_ = Eigen::MatrixXd(rows, cols);
+    for (int i = 0; i < rows; ++i) {
+      for (int j = 0; j < cols; ++j) {
+        double weight;
+        if (is >> weight) {
+          layer.weights_(i, j) = weight;
+        }
+      }
+    }
+  }
+  return is;
 }
 
 } // namespace s21

@@ -3,14 +3,16 @@
 #include "model.h"
 namespace s21 {
 class Controler {
- public:
+public:
   auto StartLearn() -> void;
   auto StartTest() -> void;
-  auto ForwardFeed(Eigen::VectorXd input)-> Eigen::VectorXd;
+  auto ForwardFeed(Eigen::VectorXd input) -> Eigen::VectorXd;
+  auto SaveWeights(std::string file) -> void;
+  auto LoadWeights(std::string file) -> void;
   Controler();
 
- private:
+private:
   Model model;
 };
-}  // namespace s21
-#endif  // CONTROLER_H
+} // namespace s21
+#endif // CONTROLER_H

@@ -56,6 +56,10 @@ std::vector<Data> Model::Parse(const std::string &filename) {
 
 Model::Model() {}
 
+void Model::SaveWeights(std::string file) { network_.SaveWeights(file); }
+
+void Model::LoadWeights(std::string file) { network_.LoadWeights(file); }
+
 std::vector<Data> Model::ConvertToEigen(const std::vector<std::string> &data) {
   std::vector<Data> dataset;
 

@@ -1,9 +1,9 @@
 #ifndef VIEW_H
 #define VIEW_H
 
-#include <QMainWindow>
-
 #include "controler.h"
+#include <QFileDialog>
+#include <QMainWindow>
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class view;
@@ -22,8 +22,18 @@ private slots:
   void update(QImage);
   void on_StartTestingButton_clicked();
 
+  void on_ImportWeightsButton_clicked();
+
+  void on_ExportWeights_clicked();
+
+  void on_learningimportbuttonresult_clicked();
+
+  void on_Testingimportbutton_clicked();
+
+  void on_ImportIMageButton_clicked();
+
 private:
-  s21::Controler controller;
+  s21::Controler controller_;
   std::map<int, QString> letters_;
   Ui::view *ui;
 };

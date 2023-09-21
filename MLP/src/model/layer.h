@@ -26,6 +26,8 @@ public:
   auto Size() const -> size_t;
   friend auto operator<<(std::ostream &os, const Layer &layer)
       -> std::ostream &;
+  friend auto operator>>(std::ifstream &is, Layer &layer)
+      -> std::ifstream &;
   const Eigen::VectorXd &bias() const;
 
   const Eigen::MatrixXd &velocity() const;

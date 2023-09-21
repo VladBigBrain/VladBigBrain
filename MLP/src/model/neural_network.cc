@@ -18,6 +18,20 @@ auto NeuralNetwork::Train(double learningrate, const Eigen::VectorXd &inputs,
   BackPropagation(result, target, learningrate);
 }
 
+void NeuralNetwork::SaveWeights(std::string filename) {
+  std::ofstream file(filename);
+  if (file.is_open()) {
+    file << *this;
+  }
+}
+
+void NeuralNetwork::LoadWeights(std::string filename) {
+  std::ifstream file(filename);
+  if (file.is_open()) {
+    file >> *this;
+  }
+}
+
 auto NeuralNetwork::FeedForward(const Eigen::VectorXd &inputs)
     -> Eigen::VectorXd {
   Eigen::VectorXd outputs = inputs;
@@ -39,7 +53,7 @@ auto NeuralNetwork::BackPropagation(const Eigen::VectorXd &outputnetwork,
 
   auto &velocity_ = layers_.back().velocity();
 
-  double gamma = 0.9; // Коэффициент момента
+  double gamma = 0.9;
 
   const Eigen::MatrixXd &old_weights = layers_.back().GetWeights();
 
@@ -59,13 +73,18 @@ auto NeuralNetwork::BackPropagation(const Eigen::VectorXd &outputnetwork,
 
 auto operator<<(std::ostream &os, const NeuralNetwork &neuralNetwork)
     -> std::ostream & {
-  auto i = 0;
   for (const auto &layer : neuralNetwork.layers_) {
-    std::cout << "Layer " << ++i << ":" << std::endl;
     os << layer;
   }
-  std::cout << std::endl;
   return os;
+}
+
+auto operator>>(std::ifstream &is, NeuralNetwork &neuralNetwork)
+    -> std::ifstream & {
+  for (auto &layer : neuralNetwork.layers_) {
+    is >> layer;
+  }
+  return is;
 }
 
 } // namespace s21
