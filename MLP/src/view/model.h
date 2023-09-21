@@ -20,7 +20,7 @@ struct Data {
 
 class Model {
 public:
-  void StartLearn(const std::string &filename);
+  void StartLearn(const std::string &filename, double epoch);
   void StartTest(const std::string &filename);
   Eigen::VectorXd ForwardFeed(Eigen::VectorXd input);
   Model();

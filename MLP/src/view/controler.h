@@ -4,7 +4,7 @@
 namespace s21 {
 class Controler {
 public:
-  auto StartLearn(const std::string &filename) -> void;
+  auto StartLearn(const std::string &filename,double epoch) -> void;
   auto StartTest(const std::string &filename) -> void;
   auto ForwardFeed(Eigen::VectorXd input) -> Eigen::VectorXd;
   auto SaveWeights(std::string file) -> void;

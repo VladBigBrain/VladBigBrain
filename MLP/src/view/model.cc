@@ -1,11 +1,11 @@
 #include "model.h"
 namespace s21 {
-void Model::StartLearn(const std::string &filename) {
+void Model::StartLearn(const std::string &filename, double epoch) {
   auto learningdatas_ = Parse(filename);
   double initial_learning_rate = 0.01;
   // Константа затухания
   double decay_constant = 0.0001;
-  for (auto i = 0; i < 5; ++i) {
+  for (auto i = 0; i < epoch; ++i) {
     double learning_rate =
         initial_learning_rate * std::exp(-decay_constant * i);
     for (auto &i : learningdatas_) {
@@ -74,7 +74,8 @@ std::vector<Data> Model::ConvertToEigen(const std::vector<std::string> &data) {
     Eigen::VectorXd pixels(784);
     int i = 0;
     while (std::getline(row_stream, cell, ',')) {
-      pixels[i] = std::stod(cell);
+
+      pixels[i] = std::stod(cell) / 255.0;
       i++;
     }
 

@@ -1,7 +1,7 @@
 #include "paintscene.h"
 #include "QtWidgets/qgraphicseffect.h"
-#include <QPainter>
 
+#include <QPainter>
 PaintScene::PaintScene(QWidget *parent) : QWidget(parent) {
   image_ = QImage(kImageWidth_, kImageHeight_, QImage::Format_RGB32);
   image_.fill(Qt::white);
@@ -19,13 +19,11 @@ bool PaintScene::OpenImage(const QString &filename) {
 }
 
 void PaintScene::mousePressEvent(QMouseEvent *event) {
-  // start scribbling
   if (event->button() == Qt::LeftButton) {
     start_point_ = event->position().toPoint();
     scribbling_ = true;
   }
 
-  // clear area
   if (event->button() == Qt::RightButton) {
     image_.fill(Qt::white);
     update();

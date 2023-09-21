@@ -1,6 +1,5 @@
 #ifndef VIEW_H
 #define VIEW_H
-
 #include "controler.h"
 #include <QFileDialog>
 #include <QMainWindow>

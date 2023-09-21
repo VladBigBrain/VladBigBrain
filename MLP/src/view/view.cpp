@@ -21,14 +21,21 @@ view::view(QWidget *parent) : QMainWindow(parent), ui(new Ui::view) {
 
 view::~view() { delete ui; }
 
-void view::on_Learnbutton_clicked() { controller_.StartLearn(learningfile_); }
+void view::on_Learnbutton_clicked() {
+  controller_.StartLearn(learningfile_, ui->EpochspinBox->value());
+}
 
 void view::update(QImage image) {
   auto vec = NormalizeAndConvertToEigen(image);
+  //  std::cout << "Vec size: " << vec.size() << " Vec sum: " << vec.sum()
+  //            << std::endl;
   int index = 0;
   auto result = controller_.ForwardFeed(vec);
   result.maxCoeff(&index);
-  auto letter = letters_[index];
+  QString letter = letters_[index];
+  //  std::cout << "Max coefficient index: " << index << std::endl;
+  //  std::cerr << "LEtter" << letter.toStdString();
+  ui->resultlabel->clear();
   ui->resultlabel->setText(letter);
 }
 
@@ -69,17 +76,35 @@ void view::on_Testingimportbutton_clicked() {
 void view::on_ImportIMageButton_clicked() {
   QString filename = QFileDialog::getOpenFileName(this, "Open File", "~/",
                                                   "Image files (*.bmp)");
+  QImage image;
+  if (image.load(filename)) {
+    auto vec = NormalizeAndConvertToEigen(image);
+    auto result = controller_.ForwardFeed(vec);
+    int index = 0;
+    result.maxCoeff(&index);
+    auto letter = letters_[index];
+    ui->resultlabel->setText(letter);
+  } else {
+    ui->resultlabel->setText("ERROR LOAD");
+  }
 }
 
 Eigen::VectorXd view::NormalizeAndConvertToEigen(const QImage &originalImage) {
   QImage resizedImage = originalImage.scaled(28, 28, Qt::IgnoreAspectRatio,
                                              Qt::SmoothTransformation);
+
+    resizedImage.invertPixels(QImage::InvertRgba);
+
+  QTransform transform;
+  transform.rotate(-90); // Поворот на 90 градусов по часовой стрелке
+  QImage rotatedImage = resizedImage.transformed(transform);
+
   Eigen::VectorXd vec(784);
+
   for (int y = 0; y < 28; ++y) {
     for (int x = 0; x < 28; ++x) {
       QColor color(resizedImage.pixel(x, y));
-      int grayValue = qGray(color.rgb());
-      vec[y * 28 + x] = grayValue / 255.0;
+      vec[y * 28 + x] = qGray(color.rgb()) / 255.0;
     }
   }
 
