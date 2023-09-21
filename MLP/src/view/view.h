@@ -33,6 +33,7 @@ private slots:
   void on_ImportIMageButton_clicked();
 
 private:
+  Eigen::VectorXd NormalizeAndConvertToEigen(const QImage &originalImage);
   s21::Controler controller_;
   std::map<int, QString> letters_;
   std::string learningfile_{};

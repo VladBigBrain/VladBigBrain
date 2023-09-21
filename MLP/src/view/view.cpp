@@ -24,18 +24,7 @@ view::~view() { delete ui; }
 void view::on_Learnbutton_clicked() { controller_.StartLearn(learningfile_); }
 
 void view::update(QImage image) {
-  QImage resizedImage =
-      image.scaled(28, 28, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-  Eigen::VectorXd vec(784);
-
-  for (int y = 0; y < 28; ++y) {
-    for (int x = 0; x < 28; ++x) {
-      QColor color(resizedImage.pixel(x, y));
-      int grayValue = qGray(color.rgb());
-      vec[y * 28 + x] = grayValue == 255 ? 0 : 1;
-    }
-  }
-
+  auto vec = NormalizeAndConvertToEigen(image);
   int index = 0;
   auto result = controller_.ForwardFeed(vec);
   result.maxCoeff(&index);
@@ -80,4 +69,19 @@ void view::on_Testingimportbutton_clicked() {
 void view::on_ImportIMageButton_clicked() {
   QString filename = QFileDialog::getOpenFileName(this, "Open File", "~/",
                                                   "Image files (*.bmp)");
+}
+
+Eigen::VectorXd view::NormalizeAndConvertToEigen(const QImage &originalImage) {
+  QImage resizedImage = originalImage.scaled(28, 28, Qt::IgnoreAspectRatio,
+                                             Qt::SmoothTransformation);
+  Eigen::VectorXd vec(784);
+  for (int y = 0; y < 28; ++y) {
+    for (int x = 0; x < 28; ++x) {
+      QColor color(resizedImage.pixel(x, y));
+      int grayValue = qGray(color.rgb());
+      vec[y * 28 + x] = grayValue / 255.0;
+    }
+  }
+
+  return vec;
 }
