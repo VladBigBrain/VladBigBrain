@@ -1,17 +1,24 @@
 #include "model.h"
 namespace s21 {
-void Model::StartLearn(const std::string &filename, double epoch) {
+std::pair<QVector<double>, QVector<double>>
+Model::StartLearn(const std::string &filename, double epoch) {
+  QVector<double> errors(epoch);
+  QVector<double> epochs(epoch);
   auto learningdatas_ = Parse(filename);
   double initial_learning_rate = 0.01;
   // Константа затухания
   double decay_constant = 0.0001;
-  for (auto i = 0; i < epoch; ++i) {
+  for (auto i = 1; i <= epoch; ++i) {
+    epochs.push_back(i);
     double learning_rate =
         initial_learning_rate * std::exp(-decay_constant * i);
+    double currenterror = 0.;
     for (auto &i : learningdatas_) {
-      network_.Train(learning_rate, i.input, i.correct_vector);
+      currenterror = network_.Train(learning_rate, i.input, i.correct_vector);
     }
+    errors.push_back(currenterror);
   }
+  return {errors, epochs};
 }
 
 void Model::StartTest(const std::string &filename) {
@@ -75,7 +82,7 @@ std::vector<Data> Model::ConvertToEigen(const std::vector<std::string> &data) {
     int i = 0;
     while (std::getline(row_stream, cell, ',')) {
 
-      pixels[i] = std::stod(cell) ;
+      pixels[i] = std::stod(cell);
       i++;
     }
 

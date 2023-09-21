@@ -1,7 +1,8 @@
 #include "controler.h"
 namespace s21 {
-void Controler::StartLearn(const std::string &filename,double epoch) {
-  model.StartLearn(filename,epoch);
+std::pair<QVector<double>, QVector<double>>
+Controler::StartLearn(const std::string &filename, double epoch) {
+  return model.StartLearn(filename, epoch);
 }
 
 void Controler::StartTest(const std::string &filename) {

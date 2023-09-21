@@ -353,7 +353,11 @@ QProgressBar::chunk {
                  </widget>
                 </item>
                 <item>
-                 <widget class="QSpinBox" name="EpochspinBox"/>
+                 <widget class="QSpinBox" name="EpochspinBox">
+                  <property name="value">
+                   <number>5</number>
+                  </property>
+                 </widget>
                 </item>
                 <item>
                  <widget class="QLabel" name="FoldCountlabel">
@@ -395,7 +399,7 @@ QProgressBar::chunk {
               <property name="title">
                <string>Result</string>
               </property>
-              <widget class="QCustomPlot" name="widget" native="true">
+              <widget class="QCustomPlot" name="plot" native="true">
                <property name="geometry">
                 <rect>
                  <x>10</x>

@@ -2,6 +2,8 @@
 #include "console.h"
 #include <cmath>
 #include <random>
+#include <utility>
+
 namespace s21 {
 Layer::Layer(std::size_t neurons, std::size_t inputs) {
   for (auto i = 0; i < neurons; ++i) {

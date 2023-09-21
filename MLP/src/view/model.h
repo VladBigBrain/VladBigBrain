@@ -1,12 +1,12 @@
 #ifndef MODEL_H
 #define MODEL_H
 
+#include "csv.h"
+#include "neural_network.h"
+#include <QVector>
 #include <future>
 #include <iostream>
 #include <vector>
-
-#include "csv.h"
-#include "neural_network.h"
 namespace s21 {
 struct Data {
   Eigen::VectorXd correct_vector;
@@ -20,7 +20,8 @@ struct Data {
 
 class Model {
 public:
-  void StartLearn(const std::string &filename, double epoch);
+  std::pair<QVector<double>, QVector<double>>
+  StartLearn(const std::string &filename, double epoch);
   void StartTest(const std::string &filename);
   Eigen::VectorXd ForwardFeed(Eigen::VectorXd input);
   Model();

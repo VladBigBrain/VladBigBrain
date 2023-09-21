@@ -11,7 +11,7 @@ namespace s21 {
 class NeuralNetwork {
 public:
   //    144 3
-  NeuralNetwork(std::size_t layers = 3, std::size_t neurons = 300,
+  NeuralNetwork(std::size_t layers = 3, std::size_t neurons = 50,
                 std::size_t inputs = 784);
   NeuralNetwork(const NeuralNetwork &neuralNetwork) = default;
   NeuralNetwork(NeuralNetwork &&neuralNetwork) = default;
@@ -21,11 +21,11 @@ public:
 
   auto FeedForward(const Eigen::VectorXd &inputs) -> Eigen::VectorXd;
   auto BackPropagation(const Eigen::VectorXd &outputnetwork,
-                       const Eigen::VectorXd &, double learningRate) -> void;
+                       const Eigen::VectorXd &, double learningRate) -> double;
   auto Train(double learningrate = 0.05,
              const Eigen::VectorXd &inputs = Eigen::VectorXd::Random(784),
              const Eigen::VectorXd &target = Eigen::VectorXd::Random(26))
-      -> void;
+      -> double;
   auto SaveWeights(std::string filename) -> void;
   auto LoadWeights(std::string filename) -> void;
   friend auto operator<<(std::ostream &os, const NeuralNetwork &neuralNetwork)

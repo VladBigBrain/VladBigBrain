@@ -20,15 +20,10 @@ private slots:
   void on_Learnbutton_clicked();
   void update(QImage);
   void on_StartTestingButton_clicked();
-
   void on_ImportWeightsButton_clicked();
-
   void on_ExportWeights_clicked();
-
   void on_learningimportbuttonresult_clicked();
-
   void on_Testingimportbutton_clicked();
-
   void on_ImportIMageButton_clicked();
 
 private:
@@ -38,5 +33,6 @@ private:
   std::string learningfile_{};
   std::string testfile_{};
   Ui::view *ui;
+  void BuildGraph(std::pair<QVector<double>, QVector<double>>);
 };
 #endif // VIEW_H

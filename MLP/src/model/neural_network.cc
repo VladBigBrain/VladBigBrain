@@ -13,9 +13,9 @@ NeuralNetwork::NeuralNetwork(std::size_t layers, std::size_t neurons,
 }
 
 auto NeuralNetwork::Train(double learningrate, const Eigen::VectorXd &inputs,
-                          const Eigen::VectorXd &target) -> void {
+                          const Eigen::VectorXd &target) -> double {
   auto result = FeedForward(inputs);
-  BackPropagation(result, target, learningrate);
+  return BackPropagation(result, target, learningrate);
 }
 
 void NeuralNetwork::SaveWeights(std::string filename) {
@@ -41,7 +41,7 @@ auto NeuralNetwork::FeedForward(const Eigen::VectorXd &inputs)
 
 auto NeuralNetwork::BackPropagation(const Eigen::VectorXd &outputnetwork,
                                     const Eigen::VectorXd &target,
-                                    double learningRate) -> void {
+                                    double learningRate) -> double {
   auto error = target - outputnetwork;
 
   Eigen::VectorXd gradient =
@@ -69,6 +69,8 @@ auto NeuralNetwork::BackPropagation(const Eigen::VectorXd &outputnetwork,
     errorfirst =
         layers_[i].BackPropagation(errorfirst, learningRate, layers_[i - 1]);
   }
+  double mse = error.squaredNorm() / error.size();
+  return mse;
 }
 
 auto operator<<(std::ostream &os, const NeuralNetwork &neuralNetwork)
