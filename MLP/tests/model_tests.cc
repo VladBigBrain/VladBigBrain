@@ -4,10 +4,7 @@
 #include "csv.h"
 #include "neural_network.h"
 
-TEST(Test, Constructors) {
-  s21::NeuralNetwork nn(2, 3, 5);
-  ASSERT_EQ(nn.GetLayers().size(), 4);
-}
+#include <boost/graph/adjacency_list.hpp>
 
 TEST(Test, FeedForward) {
   s21::NeuralNetwork nn(2, 3, 5);

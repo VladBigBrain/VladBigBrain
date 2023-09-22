@@ -1,10 +1,14 @@
 #ifndef MLP_MODEL_LAYER_H_
 #define MLP_MODEL_LAYER_H_
 
+#include <cmath>
+#include <fstream>
 #include <iostream>
+#include <random>
+#include <utility>
 
-#include "algorithm.h"
 #include "neuron.h"
+
 namespace s21 {
 
 class Layer {
@@ -15,6 +19,7 @@ public:
   auto operator=(const Layer &) -> Layer & = default;
   auto operator=(Layer &&) -> Layer & = default;
   ~Layer() = default;
+
   auto FeedForward(const Eigen::VectorXd &inputs) -> Eigen::VectorXd;
   auto BackPropagation(const Eigen::VectorXd &error, double learningRate,
                        Layer &layer) -> Eigen::VectorXd;
@@ -24,24 +29,24 @@ public:
   auto SetWeights(const Eigen::MatrixXd &weights) -> void;
   auto SetBias(const Eigen::VectorXd bias) -> void { bias_ = bias; }
   auto Size() const -> size_t;
+
   friend auto operator<<(std::ostream &os, const Layer &layer)
       -> std::ostream &;
-  friend auto operator>>(std::ifstream &is, Layer &layer)
-      -> std::ifstream &;
-  const Eigen::VectorXd &bias() const;
+  friend auto operator>>(std::ifstream &is, Layer &layer) -> std::ifstream &;
 
-  const Eigen::MatrixXd &velocity() const;
-  void setVelocity(const Eigen::MatrixXd &newVelocity);
+  const Eigen::VectorXd &GetBias() const;
+  const Eigen::MatrixXd &GetVelocity() const;
+  void SetVelocity(const Eigen::MatrixXd &newVelocity);
 
 private:
+  std::vector<Neuron> neurons_;
+  Eigen::MatrixXd weights_;
+  Eigen::MatrixXd velocity_;
+  Eigen::VectorXd bias_;
+
   auto BuildMatrixOfWeights(const std::size_t inputs) -> void;
   auto BuildNeurons(const Eigen::VectorXd &out) -> Eigen::VectorXd;
   [[nodiscard]] auto GetNeurons() const -> std::vector<Neuron>;
-  std::vector<Neuron> neurons_;
-  Eigen::MatrixXd weights_;
-  // 
-  Eigen::MatrixXd velocity_;
-  Eigen::VectorXd bias_;
 };
 
 } // namespace s21

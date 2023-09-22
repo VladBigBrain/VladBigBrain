@@ -1,8 +1,11 @@
-#ifndef VIEW_H
-#define VIEW_H
+#ifndef MLP_VIEW_VIEW_H
+#define MLP_VIEW_VIEW_H
+
 #include "controler.h"
+
 #include <QFileDialog>
 #include <QMainWindow>
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class view;
@@ -27,12 +30,14 @@ private slots:
   void on_ImportIMageButton_clicked();
 
 private:
-  Eigen::VectorXd NormalizeAndConvertToEigen(const QImage &originalImage);
   s21::Controler controller_;
   std::map<int, QString> letters_;
   std::string learningfile_{};
   std::string testfile_{};
   Ui::view *ui;
+
+  Eigen::VectorXd NormalizeAndConvertToEigen(const QImage &originalImage);
   void BuildGraph(std::pair<QVector<double>, QVector<double>>);
 };
-#endif // VIEW_H
+
+#endif // MLP_VIEW_VIEW_H

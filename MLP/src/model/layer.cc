@@ -1,10 +1,7 @@
 #include "layer.h"
-#include "console.h"
-#include <cmath>
-#include <random>
-#include <utility>
 
 namespace s21 {
+
 Layer::Layer(std::size_t neurons, std::size_t inputs) {
   for (auto i = 0; i < neurons; ++i) {
     neurons_.push_back(Neuron(0));
@@ -32,7 +29,7 @@ auto Layer::BackPropagation(const Eigen::VectorXd &error, double learningRate,
   Eigen::MatrixXd deltaweights =
       learningRate * gradient * layer.GetOutputNeurons().transpose();
   Eigen::VectorXd newerror = weights_.transpose() * gradient;
-  double gamma = 0.9; // Коэффициент момента
+  double gamma = 0.9;
   velocity_ = gamma * velocity_ + deltaweights;
   weights_ += velocity_;
   bias_ += learningRate * gradient;
@@ -55,13 +52,13 @@ auto Layer::GetDerivativeVector() -> Eigen::VectorXd {
 
 auto Layer::GetNeurons() const -> std::vector<Neuron> { return neurons_; }
 
-const Eigen::MatrixXd &Layer::velocity() const { return velocity_; }
+const Eigen::MatrixXd &Layer::GetVelocity() const { return velocity_; }
 
-void Layer::setVelocity(const Eigen::MatrixXd &newVelocity) {
+void Layer::SetVelocity(const Eigen::MatrixXd &newVelocity) {
   velocity_ = newVelocity;
 }
 
-const Eigen::VectorXd &Layer::bias() const { return bias_; }
+const Eigen::VectorXd &Layer::GetBias() const { return bias_; }
 
 auto Layer::Size() const -> size_t { return neurons_.size(); }
 

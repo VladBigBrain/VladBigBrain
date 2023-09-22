@@ -3,9 +3,11 @@
 #define MLP_MODEL_NEURAL_NETWORK_H_
 
 #include "layer.h"
+#include <algorithm>
 #include <chrono>
 #include <cmath>
 #include <fstream>
+
 namespace s21 {
 
 class NeuralNetwork {

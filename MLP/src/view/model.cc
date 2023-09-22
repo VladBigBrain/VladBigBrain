@@ -1,5 +1,7 @@
 #include "model.h"
+
 namespace s21 {
+
 std::pair<QVector<double>, QVector<double>>
 Model::StartLearn(const std::string &filename, double epoch) {
   QVector<double> errors(epoch);
@@ -83,8 +85,6 @@ std::vector<Data> Model::Parse(const std::string &filename) {
   return dataset;
 }
 
-Model::Model() {}
-
 void Model::SaveWeights(std::string file) { network_.SaveWeights(file); }
 
 void Model::LoadWeights(std::string file) { network_.LoadWeights(file); }
@@ -99,7 +99,6 @@ std::vector<Data> Model::ConvertToEigen(const std::vector<std::string> &data) {
     int label = std::stoi(cell);
     Eigen::VectorXd labelVector = Eigen::VectorXd::Zero(26);
     labelVector[label - 1] = 1.0;
-    //    std::cout << label-1 << std::endl;
     Eigen::VectorXd pixels(784);
     int i = 0;
     while (std::getline(row_stream, cell, ',')) {

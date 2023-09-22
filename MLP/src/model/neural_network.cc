@@ -1,4 +1,5 @@
 #include "neural_network.h"
+
 namespace s21 {
 
 NeuralNetwork::NeuralNetwork(std::size_t layers, std::size_t neurons,
@@ -35,7 +36,8 @@ void NeuralNetwork::LoadWeights(std::string filename) {
 auto NeuralNetwork::FeedForward(const Eigen::VectorXd &inputs)
     -> Eigen::VectorXd {
   Eigen::VectorXd outputs = inputs;
-  ForEach(layers_, [&](auto &layer) { outputs = layer.FeedForward(outputs); });
+  std::for_each(layers_.begin(), layers_.end(),
+                [&](auto &layer) { outputs = layer.FeedForward(outputs); });
   return outputs;
 }
 
@@ -51,17 +53,17 @@ auto NeuralNetwork::BackPropagation(const Eigen::VectorXd &outputnetwork,
       learningRate * gradient *
       layers_[layers_.size() - 2].GetOutputNeurons().transpose();
 
-  auto &velocity_ = layers_.back().velocity();
+  auto &velocity_ = layers_.back().GetVelocity();
 
   double gamma = 0.9;
 
   const Eigen::MatrixXd &old_weights = layers_.back().GetWeights();
 
-  layers_.back().setVelocity(gamma * velocity_ + deltaweights);
+  layers_.back().SetVelocity(gamma * velocity_ + deltaweights);
 
   Eigen::VectorXd errorfirst = old_weights.transpose() * gradient;
 
-  layers_.back().SetBias(layers_.back().bias() + learningRate * gradient);
+  layers_.back().SetBias(layers_.back().GetBias() + learningRate * gradient);
 
   layers_.back().SetWeights(old_weights + velocity_);
 

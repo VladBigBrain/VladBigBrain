@@ -1,6 +1,7 @@
 
 #include "neuron.h"
 #include <iostream>
+
 namespace s21 {
 
 Neuron::Neuron(double value) : value_(value) {}
