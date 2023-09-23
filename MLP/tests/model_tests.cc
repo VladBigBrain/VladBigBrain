@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 
 #include "csv.h"
+#include "graph_perceptron.h"
 #include "neural_network.h"
 
 TEST(Test, FeedForward) {

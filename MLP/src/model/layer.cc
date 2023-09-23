@@ -24,7 +24,6 @@ auto Layer::BuildNeurons(const Eigen::VectorXd &out) -> Eigen::VectorXd {
 
 auto Layer::BackPropagation(const Eigen::VectorXd &error, double learningRate,
                             Layer &layer) -> Eigen::VectorXd {
-
   Eigen::VectorXd gradient = error.array() * GetDerivativeVector().array();
   Eigen::MatrixXd deltaweights =
       learningRate * gradient * layer.GetOutputNeurons().transpose();
@@ -95,4 +94,4 @@ auto operator>>(std::ifstream &is, Layer &layer) -> std::ifstream & {
   return is;
 }
 
-} // namespace s21
+}  // namespace s21

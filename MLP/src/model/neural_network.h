@@ -2,18 +2,18 @@
 #ifndef MLP_MODEL_NEURAL_NETWORK_H_
 #define MLP_MODEL_NEURAL_NETWORK_H_
 
-#include "layer.h"
 #include <algorithm>
 #include <chrono>
 #include <cmath>
 #include <fstream>
 
+#include "layer.h"
+
 namespace s21 {
 
 class NeuralNetwork {
-public:
-  //    144 3
-  NeuralNetwork(std::size_t layers = 3, std::size_t neurons = 300,
+ public:
+  NeuralNetwork(std::size_t layers = 3, std::size_t neurons = 120,
                 std::size_t inputs = 784);
   NeuralNetwork(const NeuralNetwork &neuralNetwork) = default;
   NeuralNetwork(NeuralNetwork &&neuralNetwork) = default;
@@ -35,10 +35,10 @@ public:
   friend auto operator>>(std::ifstream &is, NeuralNetwork &neuralNetwork)
       -> std::ifstream &;
 
-private:
+ private:
   std::vector<Layer> layers_;
 };
 
-} // namespace s21
+}  // namespace s21
 
-#endif // MLP_MODEL_NEURAL_NETWORK_H_
+#endif  // MLP_MODEL_NEURAL_NETWORK_H_
