@@ -17,7 +17,7 @@ class Node {
   Eigen::VectorXd bias_;
   Eigen::VectorXd velocity_;
 
-  auto BuildOfWeights(const std::size_t neurons, const std::size_t inputs)
+  auto BuildOfWeights(const std::size_t neurons)
       -> void;
   auto Sigmoid(double value) -> double;
   auto Derivative() -> double;

@@ -6,14 +6,15 @@ GraphPerceptrone::GraphPerceptrone(std::size_t layers, std::size_t neurons,
                                    std::size_t inputs) {
   layers_.reserve(layers + 2);
   layers_.push_back(LayerGraph(neurons, inputs));
-  for (std::size_t i = 0; i < layers; ++i) {
-    layers_.push_back(LayerGraph(neurons, neurons));
-  }
-  auto last = LayerGraph(26, neurons);
-  layers_.push_back(last);
+  // for (std::size_t i = 0; i < layers; ++i) {
+  //   layers_.push_back(LayerGraph(neurons, neurons));
+  // }
+  // auto last = LayerGraph(26, neurons);
+  // layers_.push_back(last);
 }
 
-// auto GraphPerceptrone::Train(double learningrate, const Eigen::VectorXd &inputs,
+// auto GraphPerceptrone::Train(double learningrate, const Eigen::VectorXd
+// &inputs,
 //                              const Eigen::VectorXd &target) -> double {
 //   //   auto result = FeedForward(inputs);
 //   //   return BackPropagation(result, target, learningrate);
