@@ -35,9 +35,39 @@ auto Node::Sigmoid(double value) -> double { return (1 + std::exp(-value)); }
 
 auto Node::Derivative() -> double { return value_ * (1 - value_); }
 
+auto Node::SetWeights(Eigen::VectorXd weights) -> void { weights_ = weights; }
+
 auto Node::Activate(Eigen::VectorXd inputs) -> double {
   value_ = Sigmoid(weights_.dot(inputs) + bias_.sum());
   return value_;
+}
+
+auto operator<<(std::ostream &os, const Node &node) -> std::ostream & {
+  os << node.weights_.size() << ' ';
+  os << node.weights_.transpose() << std::endl; // Используем возможности Eigen
+  os << "---" << std::endl;                     // Разделитель
+  return os;
+}
+
+auto operator>>(std::ifstream &is, Node &node) -> std::ifstream & {
+  std::size_t size;
+  is >> size;
+
+  Eigen::VectorXd temp(size);
+  for (std::size_t i = 0; i < size; ++i) {
+    is >> temp[i];
+  }
+
+  std::string delimiter;
+  std::getline(is, delimiter); // Съедаем оставшийся перевод строки
+  std::getline(is, delimiter); // Читаем разделитель
+
+  if (delimiter != "---") {
+    // Handle error
+  }
+
+  node.SetWeights(temp);
+  return is;
 }
 
 } // namespace s21

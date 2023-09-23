@@ -7,13 +7,13 @@
 namespace s21 {
 
 class GraphPerceptrone {
- public:
+public:
   GraphPerceptrone(std::size_t layers = 3, std::size_t neurons = 120,
                    std::size_t inputs = 784);
   GraphPerceptrone(const GraphPerceptrone &GraphPerceptrone) = default;
   GraphPerceptrone(GraphPerceptrone &&GraphPerceptrone) = default;
-  GraphPerceptrone &operator=(const GraphPerceptrone &GraphPerceptrone) =
-      default;
+  GraphPerceptrone &
+  operator=(const GraphPerceptrone &GraphPerceptrone) = default;
   GraphPerceptrone &operator=(GraphPerceptrone &&GraphPerceptrone) = default;
   ~GraphPerceptrone() = default;
 
@@ -32,10 +32,10 @@ class GraphPerceptrone {
   friend auto operator>>(std::ifstream &is, GraphPerceptrone &GraphPerceptrone)
       -> std::ifstream &;
 
- private:
+private:
   std::vector<LayerGraph> layers_;
 };
 
-}  // namespace s21
+} // namespace s21
 
-#endif  // MLP_MODEL_LAYER_GRAPH_PERCEPTRONE_H_
+#endif // MLP_MODEL_LAYER_GRAPH_PERCEPTRONE_H_

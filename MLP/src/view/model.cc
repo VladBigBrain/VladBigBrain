@@ -78,8 +78,9 @@ QString Model::StartTest(const std::string &filename, float fraction,
   ;
 }
 
-Eigen::VectorXd Model::ForwardFeed(Eigen::VectorXd input) {
-  return network_.FeedForward(input);
+Eigen::VectorXd Model::ForwardFeed(Eigen::VectorXd input, int strategy) {
+  return strategy == 0 ? graph_network_.FeedForward(input)
+                       : network_.FeedForward(input);
 }
 
 std::vector<Data> Model::Parse(const std::string &filename) {
@@ -96,9 +97,21 @@ std::vector<Data> Model::Parse(const std::string &filename) {
   return dataset;
 }
 
-void Model::SaveWeights(std::string file) { network_.SaveWeights(file); }
+void Model::SaveWeights(std::string file, int strategy) {
+  if (strategy == 0) {
+    network_.SaveWeights(file);
+  } else {
+    graph_network_.SaveWeights(file);
+  }
+}
 
-void Model::LoadWeights(std::string file) { network_.LoadWeights(file); }
+void Model::LoadWeights(std::string file, int strategy) {
+  if (strategy == 0) {
+    network_.LoadWeights(file);
+  } else {
+    graph_network_.LoadWeights(file);
+  }
+}
 
 std::vector<Data> Model::ConvertToEigen(const std::vector<std::string> &data) {
   std::vector<Data> dataset;

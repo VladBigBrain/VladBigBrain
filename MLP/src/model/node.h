@@ -2,6 +2,7 @@
 #define MLP_MODEL_NODE_H_
 
 #include <Eigen/Dense>
+#include <fstream>
 #include <random>
 namespace s21 {
 
@@ -15,8 +16,11 @@ public:
                      const Eigen::VectorXd &output = Eigen::VectorXd()) -> void;
   auto GetValue() const -> double;
   auto GetWeights() const -> const Eigen::VectorXd &;
-  auto operator()(std::size_t i) -> double & { return weights_[i]; }
-
+  auto SetWeights(Eigen::VectorXd weights) -> void;
+  friend auto operator<<(std::ostream &os, const Node &node)
+      -> std::ostream &;
+  friend auto operator>>(std::ifstream &is, Node &node)
+      -> std::ifstream &;
 private:
   double value_ = 0;
   Eigen::VectorXd weights_;

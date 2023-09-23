@@ -34,10 +34,10 @@ class Model {
   std::pair<QVector<double>, QVector<double>> StartLearn(
       const std::string &filename, double epoch, int strategy);
   QString StartTest(const std::string &filename, float fraction, int strategy);
-  Eigen::VectorXd ForwardFeed(Eigen::VectorXd input);
+  Eigen::VectorXd ForwardFeed(Eigen::VectorXd input,int strategy);
 
-  auto SaveWeights(std::string file) -> void;
-  auto LoadWeights(std::string file) -> void;
+  auto SaveWeights(std::string file, int strategy) -> void;
+  auto LoadWeights(std::string file, int strategy) -> void;
 
  private:
   NeuralNetwork network_;

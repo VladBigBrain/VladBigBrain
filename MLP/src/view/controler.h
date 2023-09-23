@@ -6,7 +6,7 @@
 namespace s21 {
 
 class Controler {
- public:
+public:
   Controler() = default;
   Controler(Controler &) = default;
   Controler(Controler &&) = default;
@@ -18,15 +18,15 @@ class Controler {
       -> std::pair<QVector<double>, QVector<double>>;
   auto StartTest(const std::string &filename, float fraction, int strategy)
       -> QString;
-  auto ForwardFeed(Eigen::VectorXd input) -> Eigen::VectorXd;
+  auto ForwardFeed(Eigen::VectorXd input, int strategy) -> Eigen::VectorXd;
 
-  auto SaveWeights(std::string file) -> void;
-  auto LoadWeights(std::string file) -> void;
+  auto SaveWeights(std::string file, int strategy) -> void;
+  auto LoadWeights(std::string file, int strategy) -> void;
 
- private:
+private:
   Model model_;
 };
 
-}  // namespace s21
+} // namespace s21
 
-#endif  // MLP_VIEW_CONTROLER_H
+#endif // MLP_VIEW_CONTROLER_H

@@ -6,7 +6,7 @@
 namespace s21 {
 
 class LayerGraph {
- public:
+public:
   LayerGraph(std::size_t neurons, std::size_t inputs);
   LayerGraph(const LayerGraph &) = default;
   LayerGraph(LayerGraph &&) = default;
@@ -20,11 +20,15 @@ class LayerGraph {
   auto GetOutputNeurons() -> Eigen::VectorXd;
   auto Size() const -> size_t;
   auto operator()(size_t i) -> Node & { return nodes_[i]; }
+  friend auto operator<<(std::ostream &os, const LayerGraph &layer)
+      -> std::ostream &;
+  friend auto operator>>(std::ifstream &is, LayerGraph &layer)
+      -> std::ifstream &;
 
- private:
+private:
   std::vector<Node> nodes_;
 };
 
-}  // namespace s21
+} // namespace s21
 
-#endif  // MLP_MODEL_LAYER_GRAPH_H_
+#endif // MLP_MODEL_LAYER_GRAPH_H_

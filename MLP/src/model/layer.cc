@@ -94,4 +94,4 @@ auto operator>>(std::ifstream &is, Layer &layer) -> std::ifstream & {
   return is;
 }
 
-}  // namespace s21
+} // namespace s21

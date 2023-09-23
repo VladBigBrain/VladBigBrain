@@ -44,7 +44,7 @@ void view::BuildGraph(std::pair<QVector<double>, QVector<double>> data) {
 void view::update(QImage image) {
   auto vec = NormalizeAndConvertToEigen(image);
   int index = 0;
-  auto result = controller_.ForwardFeed(vec);
+  auto result = controller_.ForwardFeed(vec, ui->TypeBox->currentIndex());
   result.maxCoeff(&index);
   QString letter = letters_[index];
   ui->resultlabel->clear();
@@ -61,7 +61,8 @@ void view::on_ImportWeightsButton_clicked() {
                                                   "Text files (*.txt)");
 
   if (!filename.isEmpty())
-    controller_.LoadWeights(filename.toStdString());
+    controller_.LoadWeights(filename.toStdString(),
+                            ui->TypeBox->currentIndex());
 }
 
 void view::on_ExportWeights_clicked() {
@@ -69,7 +70,8 @@ void view::on_ExportWeights_clicked() {
                                                   "Text files (*.txt)");
 
   if (!filename.isEmpty())
-    controller_.SaveWeights(filename.toStdString());
+    controller_.SaveWeights(filename.toStdString(),
+                            ui->TypeBox->currentIndex());
 }
 
 void view::on_learningimportbuttonresult_clicked() {
@@ -94,7 +96,7 @@ void view::on_ImportIMageButton_clicked() {
   QImage image;
   if (image.load(filename)) {
     auto vec = NormalizeAndConvertToEigen(image);
-    auto result = controller_.ForwardFeed(vec);
+    auto result = controller_.ForwardFeed(vec, ui->TypeBox->currentIndex());
     int index = 0;
     result.maxCoeff(&index);
     auto letter = letters_[index];

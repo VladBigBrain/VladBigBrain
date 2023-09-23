@@ -45,4 +45,17 @@ auto LayerGraph::BackPropagation(const Eigen::VectorXd &error,
   return weightMatrix.transpose() * error;
 }
 
+auto operator<<(std::ostream &os, const LayerGraph &layer) -> std::ostream & {
+  for (const auto &node : layer.nodes_) {
+    os << node;
+  }
+  return os;
+}
+
+auto operator>>(std::ifstream &is, LayerGraph &layer) -> std::ifstream & {
+  for (auto &node : layer.nodes_) {
+    is >> node;
+  }
+}
+
 } // namespace s21

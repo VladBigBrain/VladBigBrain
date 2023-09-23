@@ -19,19 +19,19 @@ auto GraphPerceptrone::Train(double learningrate, const Eigen::VectorXd &inputs,
   return BackPropagation(result, target, learningrate);
 }
 
-// void GraphPerceptrone::SaveWeights(std::string filename) {
-//   //   std::ofstream file(filename);
-//   //   if (file.is_open()) {
-//   //     file << *this;
-//   //   }
-// }
+void GraphPerceptrone::SaveWeights(std::string filename) {
+  std::ofstream file(filename);
+  if (file.is_open()) {
+    file << *this;
+  }
+}
 
-// void GraphPerceptrone::LoadWeights(std::string filename) {
-//   //   std::ifstream file(filename);
-//   //   if (file.is_open()) {
-//   //     file >> *this;
-//   //   }
-// }
+void GraphPerceptrone::LoadWeights(std::string filename) {
+  std::ifstream file(filename);
+  if (file.is_open()) {
+    file >> *this;
+  }
+}
 
 auto GraphPerceptrone::FeedForward(const Eigen::VectorXd &inputs)
     -> Eigen::VectorXd {
@@ -58,20 +58,20 @@ auto GraphPerceptrone::BackPropagation(const Eigen::VectorXd &outputnetwork,
   return mse;
 }
 
-// auto operator<<(std::ostream &os, const GraphPerceptrone &neuralNetwork)
-//     -> std::ostream & {
-//   //   for (const auto &layer : neuralNetwork.layers_) {
-//   //     os << layer;
-//   //   }
-//   //   return os;
-// }
+auto operator<<(std::ostream &os, const GraphPerceptrone &neuralNetwork)
+    -> std::ostream & {
+  for (const auto &layer : neuralNetwork.layers_) {
+    os << layer;
+  }
+  return os;
+}
 
-// auto operator>>(std::ifstream &is, GraphPerceptrone &neuralNetwork)
-//     -> std::ifstream & {
-//   //   for (auto &layer : neuralNetwork.layers_) {
-//   //     is >> layer;
-//   //   }
-//   //   return is;
-// }
+auto operator>>(std::ifstream &is, GraphPerceptrone &neuralNetwork)
+    -> std::ifstream & {
+  for (auto &layer : neuralNetwork.layers_) {
+    is >> layer;
+  }
+  return is;
+}
 
-}  // namespace s21
+} // namespace s21
