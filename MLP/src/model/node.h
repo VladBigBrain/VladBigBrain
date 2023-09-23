@@ -17,11 +17,9 @@ class Node {
   Eigen::VectorXd bias_;
   Eigen::VectorXd velocity_;
 
-  auto BuildOfWeights(const std::size_t neurons)
-      -> void;
+  auto BuildOfWeights(const std::size_t neurons) -> void;
   auto Sigmoid(double value) -> double;
   auto Derivative() -> double;
-  auto Summator(const Eigen::VectorXd& inputs) -> Eigen::VectorXd;
 };
 
 }  // namespace s21

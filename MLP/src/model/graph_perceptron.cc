@@ -34,13 +34,13 @@ GraphPerceptrone::GraphPerceptrone(std::size_t layers, std::size_t neurons,
 //   //   }
 // }
 
-// auto GraphPerceptrone::FeedForward(const Eigen::VectorXd &inputs)
-//     -> Eigen::VectorXd {
-//   Eigen::VectorXd outputs = inputs;
-//   std::for_each(layers_.begin(), layers_.end(),
-//                 [&](auto &layer) { outputs = layer.FeedForward(outputs); });
-//   return outputs;
-// }
+auto GraphPerceptrone::FeedForward(const Eigen::VectorXd &inputs)
+    -> Eigen::VectorXd {
+  Eigen::VectorXd outputs = inputs;
+  std::for_each(layers_.begin(), layers_.end(),
+                [&](auto &layer) { outputs = layer.FeedForward(outputs); });
+  return outputs;
+}
 
 // auto GraphPerceptrone::BackPropagation(const Eigen::VectorXd &outputnetwork,
 //                                        const Eigen::VectorXd &target,

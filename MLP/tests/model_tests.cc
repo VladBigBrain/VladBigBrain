@@ -29,8 +29,8 @@ TEST(Test, Back) {
 
 TEST(TestGraph, GraphFeedForward) {
   s21::GraphPerceptrone nn(2, 3, 5);
-  // auto inputs = Eigen::VectorXd::Random(5);
-  // auto result = nn.FeedForward(inputs);
+  auto inputs = Eigen::VectorXd::Random(5);
+  auto result = nn.FeedForward(inputs);
   // ASSERT_EQ(result.size(), 26);
 }
 

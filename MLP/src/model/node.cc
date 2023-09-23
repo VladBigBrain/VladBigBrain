@@ -5,7 +5,7 @@ namespace s21 {
 
 Node::Node(std::size_t neurons) {
   BuildOfWeights(neurons);
-  // bias_ = Eigen::VectorXd::Random(neurons).array() * 0.1;
+  bias_ = Eigen::VectorXd::Random(neurons).array() * 0.1;
 }
 
 auto Node::BuildOfWeights(const std::size_t neurons) -> void {
@@ -22,13 +22,9 @@ auto Node::Sigmoid(double value) -> double { return (1 + std::exp(-value)); }
 
 auto Node::Derivative() -> double { return value_ * (1 - value_); }
 
-auto Node::Summator(const Eigen::VectorXd& inputs) -> Eigen::VectorXd {
-  return weights_ * inputs;
-}
-
 auto Node::Activate(Eigen::VectorXd inputs) -> double {
-  value_ = (Summator(inputs) + bias_).sum();
-  return Sigmoid(value_);
+  value_ = Sigmoid(weights_.dot(inputs) + bias_.sum());
+  return value_;
 }
 
 }  // namespace s21
