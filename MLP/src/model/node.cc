@@ -5,7 +5,7 @@ namespace s21 {
 
 Node::Node(std::size_t neurons) {
   BuildOfWeights(neurons);
-  bias_ = Eigen::VectorXd::Random(neurons).array() * 0.1;
+  bias_ = Eigen::VectorXd::Random(1).array() * 0.1;
 }
 
 auto Node::BuildOfWeights(const std::size_t neurons) -> void {
@@ -16,6 +16,15 @@ auto Node::BuildOfWeights(const std::size_t neurons) -> void {
   velocity_ = Eigen::VectorXd::Zero(neurons);
   weights_ = Eigen::VectorXd::NullaryExpr(
       neurons, [&]() { return dis(gen) * scaling_factor; });
+}
+
+auto Node::UpdateWeights(double gradient, double learningRate,
+                         const Eigen::VectorXd& output) -> void {
+  double gamma = 0.9;
+  auto deltaweights = learningRate * gradient * output;
+  velocity_ = gamma * velocity_ + deltaweights;
+  weights_ += velocity_;
+  bias_ = bias_.array() + learningRate * gradient;
 }
 
 auto Node::Sigmoid(double value) -> double { return (1 + std::exp(-value)); }

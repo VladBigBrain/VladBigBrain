@@ -10,16 +10,19 @@ class Node {
   Node(std::size_t neurons);
   ~Node() = default;
   auto Activate(Eigen::VectorXd inputs) -> double;
+  auto Derivative() -> double;
+  auto UpdateWeights(double gradient = 0, double learningRate = 0,
+                     const Eigen::VectorXd& output = Eigen::VectorXd()) -> void;
+  auto GetValue() const -> double { return value_; }
+  auto operator()(size_t i) -> double& { return weights_[i]; }
 
  private:
   double value_ = 0;
   Eigen::VectorXd weights_;
   Eigen::VectorXd bias_;
   Eigen::VectorXd velocity_;
-
   auto BuildOfWeights(const std::size_t neurons) -> void;
   auto Sigmoid(double value) -> double;
-  auto Derivative() -> double;
 };
 
 }  // namespace s21
