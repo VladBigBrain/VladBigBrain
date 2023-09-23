@@ -43,30 +43,27 @@ auto Node::Activate(Eigen::VectorXd inputs) -> double {
 }
 
 auto operator<<(std::ostream &os, const Node &node) -> std::ostream & {
-  os << node.weights_.size() << ' ';
-  os << node.weights_.transpose() << std::endl; // Используем возможности Eigen
-  os << "---" << std::endl;                     // Разделитель
+  for (int i = 0; i < node.weights_.size(); ++i) {
+    os << node.weights_[i];
+    if (i < node.weights_.size() - 1) {
+      os << ", ";
+    }
+  }
+  os << std::endl;
   return os;
 }
 
 auto operator>>(std::ifstream &is, Node &node) -> std::ifstream & {
-  std::size_t size;
-  is >> size;
-
-  Eigen::VectorXd temp(size);
-  for (std::size_t i = 0; i < size; ++i) {
-    is >> temp[i];
+  std::string line;
+  if (std::getline(is, line)) {
+    std::stringstream ss(line);
+    std::vector<double> values;
+    std::string item;
+    while (std::getline(ss, item, ',')) { // Разделитель - запятая
+      values.push_back(std::stod(item)); // Преобразование в double
+    }
+    node.SetWeights(Eigen::VectorXd::Map(values.data(), values.size()));
   }
-
-  std::string delimiter;
-  std::getline(is, delimiter); // Съедаем оставшийся перевод строки
-  std::getline(is, delimiter); // Читаем разделитель
-
-  if (delimiter != "---") {
-    // Handle error
-  }
-
-  node.SetWeights(temp);
   return is;
 }
 
