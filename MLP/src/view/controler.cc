@@ -3,12 +3,13 @@
 namespace s21 {
 
 std::pair<QVector<double>, QVector<double>>
-Controler::StartLearn(const std::string &filename, double epoch) {
-  return model_.StartLearn(filename, epoch);
+Controler::StartLearn(const std::string &filename, double epoch, int strategy) {
+  return model_.StartLearn(filename, epoch, strategy);
 }
 
-QString Controler::StartTest(const std::string &filename, float fraction) {
-  return model_.StartTest(filename, fraction);
+QString Controler::StartTest(const std::string &filename, float fraction,
+                             int strategy) {
+  return model_.StartTest(filename, fraction, strategy);
 }
 
 Eigen::VectorXd Controler::ForwardFeed(Eigen::VectorXd input) {

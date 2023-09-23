@@ -2,6 +2,7 @@
 #define MLP_VIEW_MODEL_H
 
 #include "csv.h"
+#include "graph_perceptron.h"
 #include "neural_network.h"
 #include <QVector>
 #include <future>
@@ -30,8 +31,8 @@ public:
   ~Model() = default;
 
   std::pair<QVector<double>, QVector<double>>
-  StartLearn(const std::string &filename, double epoch);
-  QString StartTest(const std::string &filename, float fraction);
+  StartLearn(const std::string &filename, double epoch, int strategy);
+  QString StartTest(const std::string &filename, float fraction, int strategy);
   Eigen::VectorXd ForwardFeed(Eigen::VectorXd input);
 
   auto SaveWeights(std::string file) -> void;
@@ -39,6 +40,7 @@ public:
 
 private:
   NeuralNetwork network_;
+  GraphPerceptrone graph_network_;
 
   std::vector<Data> Parse(const std::string &filename);
   std::vector<Data> ConvertToEigen(const std::vector<std::string> &data);

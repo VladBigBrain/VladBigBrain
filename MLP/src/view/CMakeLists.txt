@@ -38,6 +38,12 @@ set(PROJECT_SOURCES
         ../model/neural_network.h
         ../model/neuron.cc
         ../model/neuron.h
+        ../model/layer_graph.h
+        ../model/layer_graph.cc
+        ../model/node.h
+        ../model/node.cc
+        ../model/graph_perceptron.h
+        ../model/graph_perceptron.cc
         main.cpp
         controler.cc
         controler.h

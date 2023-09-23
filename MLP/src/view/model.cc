@@ -3,7 +3,7 @@
 namespace s21 {
 
 std::pair<QVector<double>, QVector<double>>
-Model::StartLearn(const std::string &filename, double epoch) {
+Model::StartLearn(const std::string &filename, double epoch, int strategy) {
   QVector<double> errors(epoch);
   QVector<double> epochs(epoch);
   auto learningdatas_ = Parse(filename);
@@ -16,20 +16,31 @@ Model::StartLearn(const std::string &filename, double epoch) {
         initial_learning_rate * std::exp(-decay_constant * i);
     double currenterror = 0.;
     for (auto &i : learningdatas_) {
-      currenterror = network_.Train(learning_rate, i.input, i.correct_vector);
+      if (strategy == 0) {
+        currenterror = network_.Train(learning_rate, i.input, i.correct_vector);
+      } else {
+        currenterror =
+            graph_network_.Train(learning_rate, i.input, i.correct_vector);
+      }
     }
     errors.push_back(currenterror);
   }
   return {errors, epochs};
 }
 
-QString Model::StartTest(const std::string &filename, float fraction) {
+QString Model::StartTest(const std::string &filename, float fraction,
+                         int strategy) {
   auto start_time = std::chrono::high_resolution_clock::now();
   auto testdatas_ = Parse(filename);
   int total = static_cast<int>(testdatas_.size() * fraction);
   int correct = 0, incorrect = 0, truePos = 0, falsePos = 0, falseNeg = 0;
   for (int i = 0; i < total; ++i) {
-    Eigen::VectorXd result = network_.FeedForward(testdatas_[i].input);
+    Eigen::VectorXd result;
+    if (strategy == 0) {
+      result = network_.FeedForward(testdatas_[i].input);
+    } else {
+      result = graph_network_.FeedForward(testdatas_[i].input);
+    }
     int maxIndex = 0;
     result.maxCoeff(&maxIndex);
     int trueLabelIndex = 0;

@@ -15,9 +15,9 @@ public:
   auto operator=(Controler &&) -> Controler & = default;
   ~Controler() = default;
 
-  auto StartLearn(const std::string &filename, double epoch)
+  auto StartLearn(const std::string &filename, double epoch,int strategy)
       -> std::pair<QVector<double>, QVector<double>>;
-  auto StartTest(const std::string &filename, float fraction) -> QString;
+  auto StartTest(const std::string &filename, float fraction,int strategy) -> QString;
   auto ForwardFeed(Eigen::VectorXd input) -> Eigen::VectorXd;
 
   auto SaveWeights(std::string file) -> void;

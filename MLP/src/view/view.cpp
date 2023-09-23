@@ -22,8 +22,8 @@ view::view(QWidget *parent) : QMainWindow(parent), ui(new Ui::view) {
 view::~view() { delete ui; }
 
 void view::on_Learnbutton_clicked() {
-  auto result =
-      controller_.StartLearn(learningfile_, ui->EpochspinBox->value());
+  auto result = controller_.StartLearn(learningfile_, ui->EpochspinBox->value(),
+                                       ui->TypeBox->currentIndex());
   BuildGraph(result);
 }
 
@@ -52,8 +52,8 @@ void view::update(QImage image) {
 }
 
 void view::on_StartTestingButton_clicked() {
-  ui->resulttest->setText(
-      controller_.StartTest(testfile_, ui->SimpleRateSpinbox->value()));
+  ui->resulttest->setText(controller_.StartTest(
+      testfile_, ui->SimpleRateSpinbox->value(), ui->TypeBox->currentIndex()));
 }
 
 void view::on_ImportWeightsButton_clicked() {
