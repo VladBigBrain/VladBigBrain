@@ -8,7 +8,7 @@
 class PaintScene : public QWidget {
   Q_OBJECT
 
-public:
+ public:
   PaintScene(QWidget *parent = nullptr);
   ~PaintScene() = default;
   PaintScene(const PaintScene &) = delete;
@@ -18,17 +18,17 @@ public:
 
   bool OpenImage(const QString &filename);
 
-signals:
+ signals:
   void updated(QImage);
   void cleared();
 
-protected:
+ protected:
   void mousePressEvent(QMouseEvent *event) override;
   void mouseMoveEvent(QMouseEvent *event) override;
   void mouseReleaseEvent(QMouseEvent *event) override;
   void paintEvent(QPaintEvent *event) override;
 
-private:
+ private:
   bool scribbling_ = false;
   QPoint start_point_;
   QImage image_;
@@ -39,4 +39,4 @@ private:
   void DrawLineTo(const QPoint &end_point);
 };
 
-#endif // MLP_VIEW_PAINTSCENE_H
+#endif  // MLP_VIEW_PAINTSCENE_H

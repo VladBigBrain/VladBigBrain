@@ -113,7 +113,6 @@ std::vector<Data> Model::ConvertToEigen(const std::vector<std::string> &data) {
     Eigen::VectorXd pixels(784);
     int i = 0;
     while (std::getline(row_stream, cell, ',')) {
-
       pixels[i] = std::stod(cell);
       i++;
     }

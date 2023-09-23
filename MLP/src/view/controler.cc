@@ -2,8 +2,8 @@
 
 namespace s21 {
 
-std::pair<QVector<double>, QVector<double>>
-Controler::StartLearn(const std::string &filename, double epoch, int strategy) {
+std::pair<QVector<double>, QVector<double>> Controler::StartLearn(
+    const std::string &filename, double epoch, int strategy) {
   return model_.StartLearn(filename, epoch, strategy);
 }
 
@@ -20,4 +20,4 @@ void Controler::SaveWeights(std::string file) { model_.SaveWeights(file); }
 
 void Controler::LoadWeights(std::string file) { model_.LoadWeights(file); }
 
-} // namespace s21
+}  // namespace s21

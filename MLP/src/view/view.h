@@ -1,10 +1,10 @@
 #ifndef MLP_VIEW_VIEW_H
 #define MLP_VIEW_VIEW_H
 
-#include "controler.h"
-
 #include <QFileDialog>
 #include <QMainWindow>
+
+#include "controler.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -15,11 +15,11 @@ QT_END_NAMESPACE
 class view : public QMainWindow {
   Q_OBJECT
 
-public:
+ public:
   view(QWidget *parent = nullptr);
   ~view();
 
-private slots:
+ private slots:
   void on_Learnbutton_clicked();
   void update(QImage);
   void on_StartTestingButton_clicked();
@@ -29,7 +29,7 @@ private slots:
   void on_Testingimportbutton_clicked();
   void on_ImportIMageButton_clicked();
 
-private:
+ private:
   s21::Controler controller_;
   std::map<int, QString> letters_;
   std::string learningfile_{};
@@ -40,4 +40,4 @@ private:
   void BuildGraph(std::pair<QVector<double>, QVector<double>>);
 };
 
-#endif // MLP_VIEW_VIEW_H
+#endif  // MLP_VIEW_VIEW_H

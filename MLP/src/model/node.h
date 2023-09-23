@@ -6,17 +6,18 @@
 namespace s21 {
 
 class Node {
- public:
+public:
   Node(std::size_t neurons);
   ~Node() = default;
   auto Activate(Eigen::VectorXd inputs) -> double;
   auto Derivative() -> double;
   auto UpdateWeights(double gradient = 0, double learningRate = 0,
-                     const Eigen::VectorXd& output = Eigen::VectorXd()) -> void;
-  auto GetValue() const -> double { return value_; }
-  auto operator()(size_t i) -> double& { return weights_[i]; }
+                     const Eigen::VectorXd &output = Eigen::VectorXd()) -> void;
+  auto GetValue() const -> double;
+  auto GetWeights() const -> const Eigen::VectorXd &;
+  auto operator()(std::size_t i) -> double & { return weights_[i]; }
 
- private:
+private:
   double value_ = 0;
   Eigen::VectorXd weights_;
   Eigen::VectorXd bias_;
@@ -25,6 +26,6 @@ class Node {
   auto Sigmoid(double value) -> double;
 };
 
-}  // namespace s21
+} // namespace s21
 
-#endif  // MLP_MODEL_NODE_H_
+#endif // MLP_MODEL_NODE_H_

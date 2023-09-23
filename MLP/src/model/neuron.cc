@@ -1,14 +1,13 @@
 
 #include "neuron.h"
+
 #include <iostream>
 
 namespace s21 {
 
 Neuron::Neuron(double value) : value_(value) {}
 
-auto Neuron::Derivative() -> double {
-  return value_ * (1 - value_);
-}
+auto Neuron::Derivative() -> double { return value_ * (1 - value_); }
 
 std::ostream &operator<<(std::ostream &os, const Neuron &neuron) {
   os << "VALUE " << neuron.value_ << " " << std::endl;
@@ -24,4 +23,4 @@ auto Neuron::Activate(double value) -> double {
 
 auto Neuron::GetValue() const -> double { return value_; }
 
-} // namespace s21
+}  // namespace s21

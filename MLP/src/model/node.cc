@@ -19,13 +19,17 @@ auto Node::BuildOfWeights(const std::size_t neurons) -> void {
 }
 
 auto Node::UpdateWeights(double gradient, double learningRate,
-                         const Eigen::VectorXd& output) -> void {
+                         const Eigen::VectorXd &output) -> void {
   double gamma = 0.9;
   auto deltaweights = learningRate * gradient * output;
   velocity_ = gamma * velocity_ + deltaweights;
   weights_ += velocity_;
   bias_ = bias_.array() + learningRate * gradient;
 }
+
+double Node::GetValue() const { return value_; }
+
+auto Node::GetWeights() const -> const Eigen::VectorXd & { return weights_; }
 
 auto Node::Sigmoid(double value) -> double { return (1 + std::exp(-value)); }
 
@@ -36,4 +40,4 @@ auto Node::Activate(Eigen::VectorXd inputs) -> double {
   return value_;
 }
 
-}  // namespace s21
+} // namespace s21

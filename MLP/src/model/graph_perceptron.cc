@@ -53,6 +53,7 @@ auto GraphPerceptrone::BackPropagation(const Eigen::VectorXd &outputnetwork,
     errorfirst =
         layers_[i].BackPropagation(errorfirst, learningRate, layers_[i - 1]);
   }
+
   double mse = error.squaredNorm() / error.size();
   return mse;
 }

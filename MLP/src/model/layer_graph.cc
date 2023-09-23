@@ -30,24 +30,19 @@ auto LayerGraph::GetOutputNeurons() -> Eigen::VectorXd {
 auto LayerGraph::BackPropagation(const Eigen::VectorXd &error,
                                  double learningRate, LayerGraph &layer)
     -> Eigen::VectorXd {
-  // новая ошибка
-  Eigen::VectorXd newError{layer.Size()};
-  for (auto i = 0; i < layer.Size(); ++i) {
-    newError[i] = 0;
-    for (auto j = 0; j < nodes_.size(); ++j) {
-      newError[i] += nodes_[j](i) * error[j];
-    }
-    newError[i] *= layer(i).Derivative();
-  }
 
-  // изменяем веса
+  Eigen::MatrixXd weightMatrix =
+      Eigen::MatrixXd::Zero(nodes_.size(), layer.Size());
+
   auto LastLayerOutput = layer.GetOutputNeurons();
+
   for (auto i = 0; i < nodes_.size(); ++i) {
     double gradient = error[i] * nodes_[i].Derivative();
+    weightMatrix.row(i) = nodes_[i].GetWeights();
     nodes_[i].UpdateWeights(gradient, learningRate, LastLayerOutput);
   }
 
-  return newError;
+  return weightMatrix.transpose() * error;
 }
 
-}  // namespace s21
+} // namespace s21
