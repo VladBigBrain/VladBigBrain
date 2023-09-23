@@ -42,23 +42,6 @@ set(EIGEN_BUILD_PKGCONFIG OFF)
 set( OFF)
 FetchContent_MakeAvailable(Eigen)
 
-# Fetch Boost
-include(FetchContent)
-FetchContent_Declare(
-  Boost
-  URL https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.tar.bz2
-)
-FetchContent_GetProperties(Boost)
-if(NOT boost_POPULATED)
-  FetchContent_Populate(Boost)
-  set(BOOST_ROOT ${boost_SOURCE_DIR})
-endif()
-
-# Настройка Boost
-find_package(Boost 1.76.0 REQUIRED)
-if(Boost_FOUND)
-  include_directories(${Boost_INCLUDE_DIRS})
-endif()
 
 enable_testing()
 
@@ -68,8 +51,8 @@ set(commonSource)
 #MODELTEST
 set(modelsource model_tests.cc ../src/model/layer.cc ../src/model/neural_network.cc ../src/model/neuron.cc)
 add_executable(Model ${modelsource} ${commonSource})
-target_link_libraries(Model PRIVATE  GTest::gtest_main Eigen3::Eigen ${Boost_LIBRARIES})
-target_include_directories(Model PRIVATE ../src/model ../src/libraries ${Boost_INCLUDE_DIRS})
+target_link_libraries(Model PRIVATE  GTest::gtest_main Eigen3::Eigen )
+target_include_directories(Model PRIVATE ../src/model ../src/libraries )
 target_compile_options(Model PRIVATE -fprofile-arcs -ftest-coverage)
 target_compile_features(Model PRIVATE cxx_std_17)
 add_custom_target(build_model

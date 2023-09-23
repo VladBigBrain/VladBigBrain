@@ -34,3 +34,4 @@ protected:
 } // namespace s21
 
 #endif  // MLP_INTERFACES_ABSTRACT_NEURAL_NETWORK_H_
+

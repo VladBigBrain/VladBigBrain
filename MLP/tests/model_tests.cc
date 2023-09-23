@@ -1,10 +1,7 @@
 #include <gtest/gtest.h>
 
-#include "console.h"
 #include "csv.h"
 #include "neural_network.h"
-
-#include <boost/graph/adjacency_list.hpp>
 
 TEST(Test, FeedForward) {
   s21::NeuralNetwork nn(2, 3, 5);
