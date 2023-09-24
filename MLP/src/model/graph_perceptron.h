@@ -8,7 +8,7 @@ namespace s21 {
 
 class GraphPerceptrone {
 public:
-  GraphPerceptrone(std::size_t layers = 3, std::size_t neurons = 120,
+  GraphPerceptrone(std::size_t layers = 3, std::size_t neurons = 300,
                    std::size_t inputs = 784);
   GraphPerceptrone(const GraphPerceptrone &GraphPerceptrone) = default;
   GraphPerceptrone(GraphPerceptrone &&GraphPerceptrone) = default;

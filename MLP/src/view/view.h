@@ -29,7 +29,9 @@ class view : public QMainWindow {
   void on_Testingimportbutton_clicked();
   void on_ImportIMageButton_clicked();
 
- private:
+  void on_HIddenLayersspinbox_valueChanged(int arg1);
+
+  private:
   s21::Controler controller_;
   std::map<int, QString> letters_;
   std::string learningfile_{};

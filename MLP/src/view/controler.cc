@@ -16,6 +16,11 @@ Eigen::VectorXd Controler::ForwardFeed(Eigen::VectorXd input, int strategy) {
   return model_.ForwardFeed(input, strategy);
 }
 
+void Controler::SetLayers(std::size_t num)
+{
+  model_.SetLayers(num);
+}
+
 void Controler::SaveWeights(std::string file, int strategy) {
   model_.SaveWeights(file, strategy);
 }

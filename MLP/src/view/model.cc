@@ -79,9 +79,17 @@ QString Model::StartTest(const std::string &filename, float fraction,
 }
 
 Eigen::VectorXd Model::ForwardFeed(Eigen::VectorXd input, int strategy) {
-  return strategy == 0 ? graph_network_.FeedForward(input)
-                       : network_.FeedForward(input);
+
+  return strategy == 0 ? network_.FeedForward(input)
+                       : graph_network_.FeedForward(input);
 }
+
+void Model::SetLayers(std::size_t layers_)
+{
+  network_ = NeuralNetwork(layers_, 300, 784);
+  graph_network_ = GraphPerceptrone(layers_, 300, 784);
+}
+
 
 std::vector<Data> Model::Parse(const std::string &filename) {
   std::vector<Data> dataset;
