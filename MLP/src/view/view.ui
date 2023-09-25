@@ -377,7 +377,7 @@ QProgressBar::chunk {
                  </widget>
                 </item>
                 <item>
-                 <widget class="QComboBox" name="TypecomboBox">
+                 <widget class="QComboBox" name="crossvalidbox">
                   <item>
                    <property name="text">
                     <string>Default</string>
@@ -536,7 +536,7 @@ QProgressBar::chunk {
      <x>0</x>
      <y>0</y>
      <width>1376</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

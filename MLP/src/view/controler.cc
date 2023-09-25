@@ -7,6 +7,12 @@ Controler::StartLearn(const std::string &filename, double epoch, int strategy) {
   return model_.StartLearn(filename, epoch, strategy);
 }
 
+std::pair<QVector<double>, QVector<double>>
+Controler::StartLearnWithCrossValidation(const std::string &filename,
+                                         double epoch, int strategy, int k) {
+  model_.StartLearnWithCrossValidation(filename, epoch, strategy, k);
+}
+
 QString Controler::StartTest(const std::string &filename, float fraction,
                              int strategy) {
   return model_.StartTest(filename, fraction, strategy);
@@ -16,10 +22,7 @@ Eigen::VectorXd Controler::ForwardFeed(Eigen::VectorXd input, int strategy) {
   return model_.ForwardFeed(input, strategy);
 }
 
-void Controler::SetLayers(std::size_t num)
-{
-  model_.SetLayers(num);
-}
+void Controler::SetLayers(std::size_t num) { model_.SetLayers(num); }
 
 void Controler::SaveWeights(std::string file, int strategy) {
   model_.SaveWeights(file, strategy);

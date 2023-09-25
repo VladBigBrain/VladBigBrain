@@ -22,9 +22,21 @@ view::view(QWidget *parent) : QMainWindow(parent), ui(new Ui::view) {
 view::~view() { delete ui; }
 
 void view::on_Learnbutton_clicked() {
-  auto result = controller_.StartLearn(learningfile_, ui->EpochspinBox->value(),
-                                       ui->TypeBox->currentIndex());
-  BuildGraph(result);
+  try {
+    std::pair<QVector<double>, QVector<double>> result;
+    if (ui->crossvalidbox->currentIndex() == 0) {
+      result = controller_.StartLearn(learningfile_, ui->EpochspinBox->value(),
+                                      ui->TypeBox->currentIndex());
+    } else {
+      result = controller_.StartLearnWithCrossValidation(
+          learningfile_, ui->EpochspinBox->value(), ui->TypeBox->currentIndex(),
+          ui->FoldCountspin->value());
+    }
+
+    BuildGraph(result);
+  } catch (const std::exception &e) {
+    std::cerr << " ERROR" << std::endl;
+  }
 }
 
 void view::BuildGraph(std::pair<QVector<double>, QVector<double>> data) {
@@ -42,18 +54,27 @@ void view::BuildGraph(std::pair<QVector<double>, QVector<double>> data) {
 }
 
 void view::update(QImage image) {
-  auto vec = NormalizeAndConvertToEigen(image);
-  int index = 0;
-  auto result = controller_.ForwardFeed(vec, ui->TypeBox->currentIndex());
-  result.maxCoeff(&index);
-  QString letter = letters_[index];
-  ui->resultlabel->clear();
-  ui->resultlabel->setText(letter);
+  try {
+    auto vec = NormalizeAndConvertToEigen(image);
+    int index = 0;
+    auto result = controller_.ForwardFeed(vec, ui->TypeBox->currentIndex());
+    result.maxCoeff(&index);
+    QString letter = letters_[index];
+    ui->resultlabel->clear();
+    ui->resultlabel->setText(letter);
+  } catch (const std::exception &e) {
+    std::cerr << " ERROR" << std::endl;
+  }
 }
 
 void view::on_StartTestingButton_clicked() {
-  ui->resulttest->setText(controller_.StartTest(
-      testfile_, ui->SimpleRateSpinbox->value(), ui->TypeBox->currentIndex()));
+  try {
+    ui->resulttest->setText(
+        controller_.StartTest(testfile_, ui->SimpleRateSpinbox->value(),
+                              ui->TypeBox->currentIndex()));
+  } catch (const std::exception &e) {
+    std::cerr << " ERROR" << std::endl;
+  }
 }
 
 void view::on_ImportWeightsButton_clicked() {
@@ -61,8 +82,12 @@ void view::on_ImportWeightsButton_clicked() {
                                                   "Text files (*.txt)");
 
   if (!filename.isEmpty())
-    controller_.LoadWeights(filename.toStdString(),
-                            ui->TypeBox->currentIndex());
+    try {
+      controller_.LoadWeights(filename.toStdString(),
+                              ui->TypeBox->currentIndex());
+    } catch (const std::exception &e) {
+      std::cerr << " ERROR" << std::endl;
+    }
 }
 
 void view::on_ExportWeights_clicked() {
@@ -70,8 +95,12 @@ void view::on_ExportWeights_clicked() {
                                                   "Text files (*.txt)");
 
   if (!filename.isEmpty())
-    controller_.SaveWeights(filename.toStdString(),
-                            ui->TypeBox->currentIndex());
+    try {
+      controller_.SaveWeights(filename.toStdString(),
+                              ui->TypeBox->currentIndex());
+    } catch (const std::exception &e) {
+      std::cerr << " ERROR" << std::endl;
+    }
 }
 
 void view::on_learningimportbuttonresult_clicked() {
@@ -93,16 +122,20 @@ void view::on_Testingimportbutton_clicked() {
 void view::on_ImportIMageButton_clicked() {
   QString filename = QFileDialog::getOpenFileName(this, "Open File", "~/",
                                                   "Image files (*.bmp)");
-  QImage image;
-  if (image.load(filename)) {
-    auto vec = NormalizeAndConvertToEigen(image);
-    auto result = controller_.ForwardFeed(vec, ui->TypeBox->currentIndex());
-    int index = 0;
-    result.maxCoeff(&index);
-    auto letter = letters_[index];
-    ui->resultlabel->setText(letter);
-  } else {
-    ui->resultlabel->setText("ERROR LOAD");
+  try {
+    QImage image;
+    if (image.load(filename)) {
+      auto vec = NormalizeAndConvertToEigen(image);
+      auto result = controller_.ForwardFeed(vec, ui->TypeBox->currentIndex());
+      int index = 0;
+      result.maxCoeff(&index);
+      auto letter = letters_[index];
+      ui->resultlabel->setText(letter);
+    } else {
+      ui->resultlabel->setText("ERROR LOAD");
+    }
+  } catch (const std::exception &e) {
+    std::cerr << " ERROR" << std::endl;
   }
 }
 

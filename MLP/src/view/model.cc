@@ -4,9 +4,14 @@ namespace s21 {
 
 std::pair<QVector<double>, QVector<double>>
 Model::StartLearn(const std::string &filename, double epoch, int strategy) {
+  auto datas = Parse(filename);
+  return Learn(datas, epoch, strategy);
+}
+
+std::pair<QVector<double>, QVector<double>>
+Model::Learn(std::vector<Data> &learningdatas_, double epoch, int strategy) {
   QVector<double> errors(epoch);
   QVector<double> epochs(epoch);
-  auto learningdatas_ = Parse(filename);
   double initial_learning_rate = 0.01;
   double decay_constant = 0.0001;
   for (auto i = 1; i <= epoch; ++i) {
@@ -25,6 +30,53 @@ Model::StartLearn(const std::string &filename, double epoch, int strategy) {
     errors.push_back(currenterror);
   }
   return {errors, epochs};
+}
+
+std::pair<QVector<double>, QVector<double>>
+s21::Model::Model::StartLearnWithCrossValidation(const std::string &filename,
+                                                 double epoch, int strategy,
+                                                 int k) {
+  auto all_data = Parse(filename);
+  auto splitted_data = SplitData(all_data, k);
+
+  QVector<double> avg_errors(epoch);
+  QVector<double> epochs(epoch);
+
+  for (int fold = 0; fold < k; ++fold) {
+    std::vector<Data> train_data;
+    std::vector<Data> test_data = splitted_data[fold];
+
+    for (int j = 0; j < k; ++j) {
+      if (j == fold)
+        continue;
+      train_data.insert(train_data.end(), splitted_data[j].begin(),
+                        splitted_data[j].end());
+    }
+
+    auto result = Learn(train_data, epoch, strategy);
+    auto errors = result.first;
+
+    for (int e = 0; e < epoch; ++e) {
+      avg_errors[e] += errors[e];
+    }
+  }
+
+  for (int e = 0; e < epoch; ++e) {
+    avg_errors[e] /= k;
+    epochs.push_back(e + 1);
+  }
+
+  return {avg_errors, epochs};
+}
+
+std::vector<std::vector<Data>> Model::SplitData(const std::vector<Data> &data,
+                                                int k) {
+  std::vector<std::vector<Data>> splitted_data(k);
+  int size = data.size();
+  for (int i = 0; i < size; ++i) {
+    splitted_data[i % k].push_back(data[i]);
+  }
+  return splitted_data;
 }
 
 QString Model::StartTest(const std::string &filename, float fraction,
@@ -116,16 +168,6 @@ void Model::LoadWeights(std::string file, int strategy) {
   } else {
     graph_network_.LoadWeights(file);
   }
-}
-
-std::vector<std::vector<Data>> Model::SplitData(const std::vector<Data> &data,
-                                                int k) {
-  std::vector<std::vector<Data>> splitted_data(k);
-  int size = data.size();
-  for (int i = 0; i < size; ++i) {
-    splitted_data[i % k].push_back(data[i]);
-  }
-  return splitted_data;
 }
 
 std::vector<Data> Model::ConvertToEigen(const std::vector<std::string> &data) {

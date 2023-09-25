@@ -16,6 +16,9 @@ public:
 
   auto StartLearn(const std::string &filename, double epoch, int strategy)
       -> std::pair<QVector<double>, QVector<double>>;
+  std::pair<QVector<double>, QVector<double>>
+  StartLearnWithCrossValidation(const std::string &filename, double epoch,
+                                int strategy, int k);
   auto StartTest(const std::string &filename, float fraction, int strategy)
       -> QString;
   auto ForwardFeed(Eigen::VectorXd input, int strategy) -> Eigen::VectorXd;
