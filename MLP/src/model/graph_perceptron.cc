@@ -1,4 +1,5 @@
 #include "graph_perceptron.h"
+#include <iostream>
 
 namespace s21 {
 
@@ -44,8 +45,8 @@ auto GraphPerceptrone::FeedForward(const Eigen::VectorXd &inputs)
 auto GraphPerceptrone::BackPropagation(const Eigen::VectorXd &outputnetwork,
                                        const Eigen::VectorXd &target,
                                        double learningRate) -> double {
-  auto error = target - outputnetwork;
 
+  auto error = target - outputnetwork;
   Eigen::VectorXd errorfirst = layers_.back().BackPropagation(
       error, learningRate, layers_[layers_.size() - 2]);
 

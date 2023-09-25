@@ -10,17 +10,16 @@ class Node {
 public:
   Node(std::size_t neurons);
   ~Node() = default;
-  auto Activate(Eigen::VectorXd inputs) -> double;
+  auto Activate(const Eigen::VectorXd &inputs) -> double;
   auto Derivative() -> double;
   auto UpdateWeights(double gradient = 0, double learningRate = 0,
                      const Eigen::VectorXd &output = Eigen::VectorXd()) -> void;
   auto GetValue() const -> double;
   auto GetWeights() const -> const Eigen::VectorXd &;
-  auto SetWeights(Eigen::VectorXd weights) -> void;
-  friend auto operator<<(std::ostream &os, const Node &node)
-      -> std::ostream &;
-  friend auto operator>>(std::ifstream &is, Node &node)
-      -> std::ifstream &;
+  auto SetWeights(Eigen::VectorXd &weights) -> void;
+  friend auto operator<<(std::ostream &os, const Node &node) -> std::ostream &;
+  friend auto operator>>(std::ifstream &is, Node &node) -> std::ifstream &;
+
 private:
   double value_ = 0;
   Eigen::VectorXd weights_;

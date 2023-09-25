@@ -8,7 +8,6 @@ Model::StartLearn(const std::string &filename, double epoch, int strategy) {
   QVector<double> epochs(epoch);
   auto learningdatas_ = Parse(filename);
   double initial_learning_rate = 0.01;
-  // Константа затухания
   double decay_constant = 0.0001;
   for (auto i = 1; i <= epoch; ++i) {
     epochs.push_back(i);
@@ -84,12 +83,10 @@ Eigen::VectorXd Model::ForwardFeed(Eigen::VectorXd input, int strategy) {
                        : graph_network_.FeedForward(input);
 }
 
-void Model::SetLayers(std::size_t layers_)
-{
+void Model::SetLayers(std::size_t layers_) {
   network_ = NeuralNetwork(layers_, 300, 784);
   graph_network_ = GraphPerceptrone(layers_, 300, 784);
 }
-
 
 std::vector<Data> Model::Parse(const std::string &filename) {
   std::vector<Data> dataset;
@@ -119,6 +116,16 @@ void Model::LoadWeights(std::string file, int strategy) {
   } else {
     graph_network_.LoadWeights(file);
   }
+}
+
+std::vector<std::vector<Data>> Model::SplitData(const std::vector<Data> &data,
+                                                int k) {
+  std::vector<std::vector<Data>> splitted_data(k);
+  int size = data.size();
+  for (int i = 0; i < size; ++i) {
+    splitted_data[i % k].push_back(data[i]);
+  }
+  return splitted_data;
 }
 
 std::vector<Data> Model::ConvertToEigen(const std::vector<std::string> &data) {

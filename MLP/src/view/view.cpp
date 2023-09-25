@@ -123,8 +123,6 @@ Eigen::VectorXd view::NormalizeAndConvertToEigen(const QImage &originalImage) {
   return vec;
 }
 
-void view::on_HIddenLayersspinbox_valueChanged(int arg1)
-{
+void view::on_HIddenLayersspinbox_valueChanged(int arg1) {
   controller_.SetLayers(arg1);
 }
-

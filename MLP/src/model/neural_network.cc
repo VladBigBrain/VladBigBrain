@@ -44,6 +44,7 @@ auto NeuralNetwork::FeedForward(const Eigen::VectorXd &inputs)
 auto NeuralNetwork::BackPropagation(const Eigen::VectorXd &outputnetwork,
                                     const Eigen::VectorXd &target,
                                     double learningRate) -> double {
+
   auto error = target - outputnetwork;
 
   Eigen::VectorXd gradient =
@@ -71,6 +72,7 @@ auto NeuralNetwork::BackPropagation(const Eigen::VectorXd &outputnetwork,
     errorfirst =
         layers_[i].BackPropagation(errorfirst, learningRate, layers_[i - 1]);
   }
+
   double mse = error.squaredNorm() / error.size();
   return mse;
 }

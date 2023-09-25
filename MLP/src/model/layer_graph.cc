@@ -1,4 +1,5 @@
 #include "layer_graph.h"
+#include <iostream>
 
 namespace s21 {
 
@@ -36,13 +37,15 @@ auto LayerGraph::BackPropagation(const Eigen::VectorXd &error,
 
   auto LastLayerOutput = layer.GetOutputNeurons();
 
+  Eigen::VectorXd gradient = error.array() * GetDerivativeVector().array();
+
   for (auto i = 0; i < nodes_.size(); ++i) {
-    double gradient = error[i] * nodes_[i].Derivative();
+    //    Eigen::VectorXd delta = learningRate * gradient[i] * LastLayerOutput;
     weightMatrix.row(i) = nodes_[i].GetWeights();
-    nodes_[i].UpdateWeights(gradient, learningRate, LastLayerOutput);
+    nodes_[i].UpdateWeights(gradient[i], learningRate, LastLayerOutput);
   }
 
-  return weightMatrix.transpose() * error;
+  return weightMatrix.transpose() * gradient;
 }
 
 auto operator<<(std::ostream &os, const LayerGraph &layer) -> std::ostream & {
@@ -56,6 +59,7 @@ auto operator>>(std::ifstream &is, LayerGraph &layer) -> std::ifstream & {
   for (auto &node : layer.nodes_) {
     is >> node;
   }
+  return is;
 }
 
 } // namespace s21
