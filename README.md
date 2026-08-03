@@ -17,7 +17,3 @@
 - Reusable **agent skills** and tool integrations
 - **Prompt engineering**, evaluation, and practical guardrails
 - **Codex-powered** developer workflows
-
-## Public Project
-
-- [Resume](https://github.com/VladBigBrain/resume) — a multilingual resume website built with React, TypeScript, Vite, and OpenAI Sites.
