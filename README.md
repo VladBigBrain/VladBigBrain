@@ -1,21 +1,23 @@
-## Hi, I’m Vladislav 👋
+# Hi, I’m Vladislav 👋
 
-I’m an AI-driven backend engineer building reliable Java/Spring systems and practical AI integrations.
+> AI-driven backend engineer building reliable Java/Spring systems and practical AI integrations.
 
-My focus:
+## My Focus
 
-- Java 17, Spring Boot, Kafka, and PostgreSQL
-- LLM agents, tool-calling, MCP, and controlled service access
-- DDD, Clean Architecture, TDD, load testing, and CI/CD
+### Backend Engineering
 
-### Agent engineering
+- **Java 17**, Spring Boot, Kafka, and PostgreSQL
+- **DDD**, Clean Architecture, TDD, load testing, and CI/CD
+- Reliable, maintainable services with clear engineering workflows
 
-- AI agent loops and multi-step agent execution
-- Subagent workflow design
-- Reusable agent skills and tool integrations
-- Prompt engineering, evaluation, and practical guardrails
-- Codex-powered developer workflows
+### Agent Engineering
 
-### Public project
+- **AI agent loops** and multi-step agent execution
+- **Subagent workflow design**
+- Reusable **agent skills** and tool integrations
+- **Prompt engineering**, evaluation, and practical guardrails
+- **Codex-powered** developer workflows
+
+## Public Project
 
 - [Resume](https://github.com/VladBigBrain/resume) — a multilingual resume website built with React, TypeScript, Vite, and OpenAI Sites.
