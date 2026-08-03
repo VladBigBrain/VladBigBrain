@@ -10,6 +10,12 @@
 - **DDD**, Clean Architecture, TDD, load testing, and CI/CD
 - Reliable, maintainable services with clear engineering workflows
 
+### Infrastructure
+
+- **OpenShift** and **Kubernetes**
+- **Docker** containers and local development environments
+- **PostgreSQL** operations and service integration
+
 ### Agent Engineering
 
 - **AI agent loops** and multi-step agent execution
